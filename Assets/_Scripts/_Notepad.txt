@@ -1,0 +1,5 @@
+Commit:
+created Game scene; set up Player with PlayerMovement script
+
+TODO: 
+- setup assembly definitions

@@ -1,5 +1,10 @@
-Commit:
+COMMIT
+cur - 
+created first assembly definition; got player moving
+
+last - 
 created Game scene; set up Player with PlayerMovement script
 
+------------------------------------------------------------------------------------
 TODO: 
 - setup assembly definitions

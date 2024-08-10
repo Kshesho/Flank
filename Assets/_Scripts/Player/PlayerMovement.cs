@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 {
 #region Variables
 
-
+    [SerializeField] Vector2 _startPos;
+    [SerializeField] float _moveSpeed = 3f;
 
 #endregion
 #region Base Methods
@@ -21,18 +22,25 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    void Start () 
+    void Start() 
     {
-		
+        transform.position = _startPos;
 	}
 	
-	void Update () 
+	void FixedUpdate() 
     {
-		
+        Move();
 	}
 
 #endregion
 
-
+    void Move()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        Vector2 dir = new Vector2(x, y);
+        dir.Normalize();
+        transform.Translate(dir * _moveSpeed * Time.fixedDeltaTime);
+    }
 
 }

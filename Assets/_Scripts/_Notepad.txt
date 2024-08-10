@@ -1,5 +1,5 @@
 COMMIT
-cur - 
+cur - created ninja star and got player spawning it with PlayerWeaponController; created Prefabs folder
 
 
 last - 
@@ -7,4 +7,4 @@ clamped the player's movement inside the screen
 
 ------------------------------------------------------------------------------------
 TODO: 
-- 
+- Import object pooling asset?

@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 _startPos;
     [SerializeField] float _moveSpeed = 3f;
 
+    [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
+
 #endregion
 #region Base Methods
 
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 	void FixedUpdate() 
     {
         Move();
+        ConstrainPosition();
 	}
 
 #endregion
@@ -41,6 +44,13 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(x, y);
         dir.Normalize();
         transform.Translate(dir * _moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void ConstrainPosition()
+    {
+        float clampedX = Mathf.Clamp(transform.position.x, (_xBounds * -1), _xBounds);
+        float clampedY = Mathf.Clamp(transform.position.y, (_yBounds * -1), _yBounds);
+        transform.position = new Vector2(clampedX, clampedY);
     }
 
 }

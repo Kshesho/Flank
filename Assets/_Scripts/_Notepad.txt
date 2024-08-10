@@ -1,10 +1,10 @@
 COMMIT
 cur - 
-created first assembly definition; got player moving
+
 
 last - 
-created Game scene; set up Player with PlayerMovement script
+clamped the player's movement inside the screen
 
 ------------------------------------------------------------------------------------
 TODO: 
-- setup assembly definitions
+- 

@@ -1,10 +1,12 @@
 COMMIT
-cur - created ninja star and got player spawning it with PlayerWeaponController; created Prefabs folder
+cur - 
+got ninja star moving and being destroyed; created folder for Utility scripts and added DestroyOrDisable
 
 
 last - 
-clamped the player's movement inside the screen
+created ninja star and got player spawning it with PlayerWeaponController; created Prefabs folder
 
 ------------------------------------------------------------------------------------
 TODO: 
+- custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked
 - Import object pooling asset?

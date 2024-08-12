@@ -28,7 +28,7 @@ public class PlayerWeaponController : MonoBehaviour
 	
 	void Update () 
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(_ninjaStarPref, transform.position, Quaternion.identity);
         }

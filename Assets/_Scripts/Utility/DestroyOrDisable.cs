@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 #endregion
 
 /// <summary>
@@ -62,7 +63,7 @@ public class DestroyOrDisable : MonoBehaviour
 
     IEnumerator DisableAfterDurationRtn()
     {
-        yield return new WaitForSeconds(_timeBeforeDisable);
+        yield return new WaitForSeconds (_timeBeforeDisable);
         Disable();
     }
 

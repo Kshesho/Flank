@@ -1,10 +1,10 @@
 COMMIT
 cur - 
-got ninja star moving and being destroyed; created folder for Utility scripts and added DestroyOrDisable
+
 
 
 last - 
-created ninja star and got player spawning it with PlayerWeaponController; created Prefabs folder
+got ninja star moving and being destroyed; created folder for Utility scripts and added DestroyOrDisable
 
 ------------------------------------------------------------------------------------
 TODO: 

@@ -1,9 +1,7 @@
 {
-    "name": "Flank.Player",
-    "rootNamespace": "",
-    "references": [
-        "GUID:ea196f04dc6918d4db643e54f57d1625"
-    ],
+    "name": "Narzioth.Utilities",
+    "rootNamespace": "Narzioth.Utilities",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

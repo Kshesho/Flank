@@ -12,7 +12,9 @@ public class PlayerWeaponController : MonoBehaviour
 {
 #region Variables
 
-    
+    [SerializeField] GameObject _ninjaStarPref;
+    [SerializeField] float _cooldownTime = 0.25f;
+    float _canFireTime = -1;
     Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
 #endregion
@@ -27,10 +29,6 @@ public class PlayerWeaponController : MonoBehaviour
     {
 		
 	}
-
-    [SerializeField] GameObject _ninjaStarPref;
-    [SerializeField] float _cooldownTime = 0.25f;
-    float _canFireTime = -1;
 	
 	void Update () 
     {

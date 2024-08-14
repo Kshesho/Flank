@@ -1,6 +1,6 @@
 COMMIT
 cur - 
-made Tags class, Events class;
+made Tags class, Events class; set up event-driven collisions (projectiles now get destroyed when hitting an enemy, and enemies get damaged); added a cooldown to PlayerWeaponController
 
 
 last - 

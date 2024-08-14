@@ -1,6 +1,7 @@
 #region Using Statements
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 #endregion
 
@@ -11,7 +12,8 @@ public class PlayerWeaponController : MonoBehaviour
 {
 #region Variables
 
-    [SerializeField] GameObject _ninjaStarPref; 
+    
+    Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
 #endregion
 #region Base Methods
@@ -25,12 +27,20 @@ public class PlayerWeaponController : MonoBehaviour
     {
 		
 	}
+
+    [SerializeField] GameObject _ninjaStarPref;
+    [SerializeField] float _cooldownTime = 0.25f;
+    float _canFireTime = -1;
 	
 	void Update () 
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(_ninjaStarPref, transform.position, Quaternion.identity);
+            if (_canFireTime < Time.time)//cooldown finished
+            {
+                Instantiate(_ninjaStarPref, transform.position + _spawnOffset, Quaternion.identity);
+                _canFireTime = Time.time + _cooldownTime;
+            }
         }
 	}
 

@@ -1,12 +1,12 @@
 COMMIT
 cur - 
-
+made Tags class, Events class;
 
 
 last - 
-got ninja star moving and being destroyed; created folder for Utility scripts and added DestroyOrDisable
+imported Narzioth tools scripts
 
 ------------------------------------------------------------------------------------
 TODO: 
-- custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked
-- Import object pooling asset?
+- custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
+- Import object pooling asset? (write article about it)

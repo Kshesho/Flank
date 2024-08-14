@@ -1,10 +1,10 @@
 COMMIT
 cur - 
-made Tags class, Events class; set up event-driven collisions (projectiles now get destroyed when hitting an enemy, and enemies get damaged); added a cooldown to PlayerWeaponController
-
+enemy now moves and gets destroyed by projectile
 
 last - 
-imported Narzioth tools scripts
+made Tags class, Events class; set up event-driven collisions (projectiles now get destroyed when hitting an enemy, and enemies get damaged); added a cooldown to PlayerWeaponController
+
 
 ------------------------------------------------------------------------------------
 TODO: 

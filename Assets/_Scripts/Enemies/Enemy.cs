@@ -39,9 +39,13 @@ public class Enemy : MonoBehaviour
         {
             Events.OnCollide += TakeDamage;
         }
+        else if (other.tag == Tags.Player)
+        {
+            //do I handle the collision in here?
+        }
     }
 
-    #endregion
+#endregion
 
     void TakeDamage(int damage)
     {
@@ -51,7 +55,7 @@ public class Enemy : MonoBehaviour
         _health -= damage;
         if (_health < 1)
         {
-            //kill me
+            Destroy(this.gameObject);
         }
     }
 

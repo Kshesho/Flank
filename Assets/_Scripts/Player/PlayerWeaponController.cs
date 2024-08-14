@@ -15,6 +15,12 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] GameObject _ninjaStarPref;
     [SerializeField] float _cooldownTime = 0.25f;
     float _canFireTime = -1;
+    bool CooldownFinished()
+    {
+        if (_canFireTime < Time.time)
+            return true;
+        return false;
+    }
     Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
 #endregion
@@ -34,7 +40,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (_canFireTime < Time.time)//cooldown finished
+            if (CooldownFinished())
             {
                 Instantiate(_ninjaStarPref, transform.position + _spawnOffset, Quaternion.identity);
                 _canFireTime = Time.time + _cooldownTime;

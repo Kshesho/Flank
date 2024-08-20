@@ -7,6 +7,7 @@ TagManager:
   - EDamagable
   - PDamagable
   - PWeapon
+  - Enemy
   layers:
   - Default
   - TransparentFX

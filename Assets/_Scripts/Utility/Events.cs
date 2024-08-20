@@ -7,7 +7,9 @@ using System;
 /// </summary>
 public class Events 
 {
-
+    /// <summary>
+    /// Event for when collisions happen and damage is dealt.
+    /// </summary>
     public static Action<int> OnCollide;
 
 

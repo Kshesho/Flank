@@ -10,6 +10,9 @@ public class Tags
     public static string EDamagable 
     { get { return nameof(EDamagable); } }
 
+    public static string Enemy 
+    { get { return nameof(Enemy); } }
+
     public static string Player
     { get { return nameof(Player); } }
 

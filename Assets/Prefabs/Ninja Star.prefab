@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018128607291614008}
   - component: {fileID: -6833021039667414617}
+  - component: {fileID: 3062716387878128249}
   - component: {fileID: 3805673163220935855}
   - component: {fileID: 7829031938937026174}
   - component: {fileID: 3215043751977555945}
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6833021039667414617
 MonoBehaviour:
@@ -51,6 +52,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _damage: 2
+  _collisionTrigger: {fileID: 3062716387878128249}
+--- !u!114 &3062716387878128249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5577562111785511575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac0a0eca26556c4c9da6355c36b980f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3805673163220935855
 MonoBehaviour:
   m_ObjectHideFlags: 0

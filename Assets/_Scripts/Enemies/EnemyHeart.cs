@@ -6,12 +6,11 @@ using Narzioth.Utilities;
 #endregion
 
 /// <summary>
-/// (responsibility of this class)
+/// Holds Enemy health and damage functionality.
 /// </summary>
-public class Enemy : MonoBehaviour 
+public class EnemyHeart : MonoBehaviour 
 {
 #region Variables
-
 
     [SerializeField] int _health = 10;
 
@@ -39,10 +38,6 @@ public class Enemy : MonoBehaviour
         {
             Events.OnCollide += TakeDamage;
         }
-        else if (other.tag == Tags.Player)
-        {
-            //do I handle the collision in here?
-        }
     }
 
 #endregion
@@ -53,6 +48,7 @@ public class Enemy : MonoBehaviour
         Events.OnCollide -= TakeDamage;
 
         _health -= damage;
+        Debug.Log("Enemy health: " + _health);
         if (_health < 1)
         {
             Destroy(this.gameObject);

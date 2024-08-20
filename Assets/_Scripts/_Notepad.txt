@@ -1,12 +1,15 @@
 COMMIT
 cur - 
-enemy now moves and gets destroyed by projectile
+Updated collision functinoality; Separated parts of Player and Enemy into body, heart, and weapon
 
 last - 
-made Tags class, Events class; set up event-driven collisions (projectiles now get destroyed when hitting an enemy, and enemies get damaged); added a cooldown to PlayerWeaponController
-
+- enemy now moves and gets destroyed by projectile
 
 ------------------------------------------------------------------------------------
 TODO: 
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
 - Import object pooling asset? (write article about it)
+
+
+COLLISION
+Offensive collisions - thing doing damage *calls* OnCollision, thing taking damage *subscribes to* OnCollision

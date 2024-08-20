@@ -1,19 +1,17 @@
 #region Using Statements
-using Narzioth.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #endregion
 
 /// <summary>
-/// Handles behavior for projectiles
+/// Collides with and damages player and damagables
 /// </summary>
-public class Projectile : MonoBehaviour 
+public class EnemyWeapon : MonoBehaviour 
 {
 #region Variables
 
-    [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] int _damage = 10;
+    [SerializeField] int _damage = 5;
 
     [SerializeField] CollisionTrigger _collisionTrigger;
 
@@ -32,20 +30,18 @@ public class Projectile : MonoBehaviour
 	
 	void Update () 
     {
-        transform.Translate(Vector2.up * _moveSpeed * Time.deltaTime, Space.Self);
+		
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(Tags.Player))
+        {
+            _collisionTrigger.CallOnCollision(_damage);
+        }
+    }
 
 #endregion
 
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(Tags.EDamagable))
-        {
-            _collisionTrigger.CallOnCollision(_damage);
-            Destroy(this.gameObject);
-        }
-    }
-    
-    
+
 }

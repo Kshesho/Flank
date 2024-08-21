@@ -13,6 +13,7 @@ public class EnemyHeart : MonoBehaviour
 #region Variables
 
     [SerializeField] int _health = 10;
+    [SerializeField] GameObject _enemyContainer;
 
 #endregion
 #region Base Methods
@@ -48,10 +49,9 @@ public class EnemyHeart : MonoBehaviour
         Events.OnCollide -= TakeDamage;
 
         _health -= damage;
-        Debug.Log("Enemy health: " + _health);
         if (_health < 1)
         {
-            Destroy(this.gameObject);
+            Destroy(_enemyContainer);
         }
     }
 

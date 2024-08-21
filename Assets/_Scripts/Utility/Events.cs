@@ -12,5 +12,9 @@ public class Events
     /// </summary>
     public static Action<int> OnCollide;
 
+    /// <summary>
+    /// Event for when the player dies.
+    /// </summary>
+    public static Action OnPlayerDeath;
 
 }

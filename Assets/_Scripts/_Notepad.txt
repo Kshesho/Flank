@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-Updated collision functinoality; Separated parts of Player and Enemy into body, heart, and weapon
+Enemies now spawn through SpawnManager; created event for when player dies, and enemies now stop spawning when it's raised
 
 last - 
-- enemy now moves and gets destroyed by projectile
+- 
 
 ------------------------------------------------------------------------------------
 TODO: 

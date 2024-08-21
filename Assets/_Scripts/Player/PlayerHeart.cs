@@ -11,9 +11,10 @@ public class PlayerHeart : MonoBehaviour
 {
 #region Variables
 
-    int _maxHealth = 100;
+    int _maxHealth = 10;
     int _currentHealth;
     public int CurrentHealth { get { return _currentHealth; } }
+    [SerializeField] GameObject _playerContainer;
 
 #endregion
 #region Base Methods
@@ -57,8 +58,14 @@ public class PlayerHeart : MonoBehaviour
         // TODO: update UI
         if (_currentHealth < 1)
         {
-            // TODO: death
+            Death();
         }
+    }
+
+    void Death()
+    {
+        Destroy(_playerContainer);
+        Events.OnPlayerDeath?.Invoke();
     }
 
 

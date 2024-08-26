@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41de851e50484de40a251db096bd02c8
+guid: 3c250104b46788d42ae7c7e5373ec124
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_0
+      name: NES_Ranger_Run_Sheet_4way_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eb45a747e112f143a6a54c3edf90d1f
-      internalID: -1751311458
+      spriteID: 05b58226506c8504d9cea7413da5c905
+      internalID: 253991247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_1
+      name: NES_Ranger_Run_Sheet_4way_1
       rect:
         serializedVersion: 2
         x: 16
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 805cb2919431e3147899cf2efffb2418
-      internalID: 819370077
+      spriteID: 93a80fe60d7179c4690be8efacd88b1e
+      internalID: -1940671311
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_2
+      name: NES_Ranger_Run_Sheet_4way_2
       rect:
         serializedVersion: 2
         x: 32
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 454ed4585af32d146ad81379511c2832
-      internalID: 2061893978
+      spriteID: 887a12ecf44c738428c2d642705cf1a6
+      internalID: -2078826590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_3
+      name: NES_Ranger_Run_Sheet_4way_3
       rect:
         serializedVersion: 2
         x: 48
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a9c7e6594407a84f8b40cc758465203
-      internalID: 1738299742
+      spriteID: 1f6953ac108e4bc4a9d326c633416c34
+      internalID: -1092329171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_4
+      name: NES_Ranger_Run_Sheet_4way_4
       rect:
         serializedVersion: 2
         x: 0
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0f081874aac75643858d13a413b072f
-      internalID: 691645494
+      spriteID: 2f6dfa2e1f8694647bd314db31a354c9
+      internalID: 622325947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_5
+      name: NES_Ranger_Run_Sheet_4way_5
       rect:
         serializedVersion: 2
         x: 16
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac06c2bdbdd50fd4a93086ab35c2cc2e
-      internalID: 297369472
+      spriteID: 53445cd656200dd4a8d39546c74829f3
+      internalID: 1722157578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_6
+      name: NES_Ranger_Run_Sheet_4way_6
       rect:
         serializedVersion: 2
         x: 32
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 137730fb06aa2a74db2c9b3e8cd4c784
-      internalID: -651377348
+      spriteID: cb60752a61265954bbcf8a27190035c3
+      internalID: -1122441404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_7
+      name: NES_Ranger_Run_Sheet_4way_7
       rect:
         serializedVersion: 2
         x: 48
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 065109fe477ee454d9276d7bd6c9e6a2
-      internalID: 1016239016
+      spriteID: 43853e46a3b47924d83875c763c9291a
+      internalID: -1740835143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_8
+      name: NES_Ranger_Run_Sheet_4way_8
       rect:
         serializedVersion: 2
         x: 0
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea1bb0418bebff84d9c4d9992fd71347
-      internalID: -367044867
+      spriteID: 428aff33437a37d4f85b191b3a525c81
+      internalID: -1664203520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_9
+      name: NES_Ranger_Run_Sheet_4way_9
       rect:
         serializedVersion: 2
         x: 16
@@ -326,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35c90e68d51adc049a04073fb94bfcc4
-      internalID: -778543148
+      spriteID: 74721d7897b91b74a81a8a111b9e93ac
+      internalID: 1216250881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_10
+      name: NES_Ranger_Run_Sheet_4way_10
       rect:
         serializedVersion: 2
         x: 32
@@ -347,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59bbcc1c0c4ff3542889856bcadf28a8
-      internalID: -1196963521
+      spriteID: 40589c39e325fa54d81c670ee6886614
+      internalID: -1898050515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_11
+      name: NES_Ranger_Run_Sheet_4way_11
       rect:
         serializedVersion: 2
         x: 48
@@ -368,14 +368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc9d16b9a91f5b6458c7acab162eef38
-      internalID: -425942747
+      spriteID: 59290871041c7034da3dcf1db3710b99
+      internalID: -708720821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_12
+      name: NES_Ranger_Run_Sheet_4way_12
       rect:
         serializedVersion: 2
         x: 0
@@ -389,14 +389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f26557f1231a8954cb282bb9427be98b
-      internalID: -111491703
+      spriteID: 7a6457683904c314ab20b1743a7fd0c5
+      internalID: 1001617897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_13
+      name: NES_Ranger_Run_Sheet_4way_13
       rect:
         serializedVersion: 2
         x: 16
@@ -410,14 +410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c436cfdee3bb7e4095acee64b29cd7f
-      internalID: 51382714
+      spriteID: bf802c89dfedbc24bb6547761ef8bcf8
+      internalID: 1584572556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_14
+      name: NES_Ranger_Run_Sheet_4way_14
       rect:
         serializedVersion: 2
         x: 32
@@ -431,14 +431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 419380b276cfe6c4dbc4ea39e9e0b6cb
-      internalID: -540689300
+      spriteID: fd619db63b394944f9ce30a16774197a
+      internalID: 581500805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_15
+      name: NES_Ranger_Run_Sheet_4way_15
       rect:
         serializedVersion: 2
         x: 48
@@ -452,8 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaa4072890e86e643a3b27dd043dcedf
-      internalID: 1097455452
+      spriteID: b501802dd1adca948a13df8a0e086427
+      internalID: -1892763670
       vertices: []
       indices: 
       edges: []
@@ -461,7 +461,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8c4608e2401972242b04421b05ad0403
+    spriteID: fd79861cb5e8a21428ea015469c45fd4
     internalID: 0
     vertices: []
     indices: 
@@ -469,22 +469,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NES_Ranger_Idle_Sheet_4way_0: -1751311458
-      NES_Ranger_Idle_Sheet_4way_1: 819370077
-      NES_Ranger_Idle_Sheet_4way_10: -1196963521
-      NES_Ranger_Idle_Sheet_4way_11: -425942747
-      NES_Ranger_Idle_Sheet_4way_12: -111491703
-      NES_Ranger_Idle_Sheet_4way_13: 51382714
-      NES_Ranger_Idle_Sheet_4way_14: -540689300
-      NES_Ranger_Idle_Sheet_4way_15: 1097455452
-      NES_Ranger_Idle_Sheet_4way_2: 2061893978
-      NES_Ranger_Idle_Sheet_4way_3: 1738299742
-      NES_Ranger_Idle_Sheet_4way_4: 691645494
-      NES_Ranger_Idle_Sheet_4way_5: 297369472
-      NES_Ranger_Idle_Sheet_4way_6: -651377348
-      NES_Ranger_Idle_Sheet_4way_7: 1016239016
-      NES_Ranger_Idle_Sheet_4way_8: -367044867
-      NES_Ranger_Idle_Sheet_4way_9: -778543148
+      NES_Ranger_Run_Sheet_4way_0: 253991247
+      NES_Ranger_Run_Sheet_4way_1: -1940671311
+      NES_Ranger_Run_Sheet_4way_10: -1898050515
+      NES_Ranger_Run_Sheet_4way_11: -708720821
+      NES_Ranger_Run_Sheet_4way_12: 1001617897
+      NES_Ranger_Run_Sheet_4way_13: 1584572556
+      NES_Ranger_Run_Sheet_4way_14: 581500805
+      NES_Ranger_Run_Sheet_4way_15: -1892763670
+      NES_Ranger_Run_Sheet_4way_2: -2078826590
+      NES_Ranger_Run_Sheet_4way_3: -1092329171
+      NES_Ranger_Run_Sheet_4way_4: 622325947
+      NES_Ranger_Run_Sheet_4way_5: 1722157578
+      NES_Ranger_Run_Sheet_4way_6: -1122441404
+      NES_Ranger_Run_Sheet_4way_7: -1740835143
+      NES_Ranger_Run_Sheet_4way_8: -1664203520
+      NES_Ranger_Run_Sheet_4way_9: 1216250881
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

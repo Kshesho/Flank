@@ -34,7 +34,7 @@ public class PlayerHeart : MonoBehaviour
 		
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(Tags.Enemy))
         {

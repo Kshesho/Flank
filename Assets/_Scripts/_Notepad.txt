@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-Enemies now spawn through SpawnManager; created event for when player dies, and enemies now stop spawning when it's raised
+imported GDHQ Filebase assets; imported player and background sprites; installed 2D Unity packages
 
 last - 
-- 
+Enemies now spawn through SpawnManager; created event for when player dies, and enemies now stop spawning when it's raised
 
 ------------------------------------------------------------------------------------
 TODO: 

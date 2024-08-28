@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-set up tilemap and started creating background with palette; converted enemy to 2D
+Set up enemy run animation and weapon; updated player projectile to ninja star; added more to tilemaps; changed player pivot and body collider; changed project's Transparency Sort Mode to work with drawing sprites over each other on the Y axis
 
 last - 
-Set up player sprites and idle and run animations; converted 3D collision code to 2D
+set up tilemap and started creating background with palette; converted enemy to 2D
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -13,3 +13,10 @@ TODO:
 
 COLLISION
 Offensive collisions - thing doing damage *calls* OnCollision, thing taking damage *subscribes to* OnCollision
+
+TILE SORTING LAYERS
+Ground (grass, dirt, water, paths)   <--- Lowest
+Fauna 1 (plants, rocks)
+Fauna 2 (trees)
+Player
+Heights (rooftops, clouds)   <--- Highest

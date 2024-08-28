@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41de851e50484de40a251db096bd02c8
+guid: 7893581367c70a940b1f40761898a1cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,337 +123,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_0
+      name: NES Pirate_Weapons_Small 0
       rect:
         serializedVersion: 2
         x: 0
-        y: 72
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        y: 29
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8eb45a747e112f143a6a54c3edf90d1f
-      internalID: -1751311458
+      spriteID: 3ea0445922276904cb6586cd490e3c03
+      internalID: -1781806803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_1
+      name: NES Pirate_Weapons_Small 1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 72
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        x: 20
+        y: 29
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 805cb2919431e3147899cf2efffb2418
-      internalID: 819370077
+      spriteID: 4857583ab2f14ae47b21007029120ed7
+      internalID: -619229114
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 72
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 454ed4585af32d146ad81379511c2832
-      internalID: 2061893978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 72
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a9c7e6594407a84f8b40cc758465203
-      internalID: 1738299742
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0f081874aac75643858d13a413b072f
-      internalID: 691645494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac06c2bdbdd50fd4a93086ab35c2cc2e
-      internalID: 297369472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 137730fb06aa2a74db2c9b3e8cd4c784
-      internalID: -651377348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_7
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 065109fe477ee454d9276d7bd6c9e6a2
-      internalID: 1016239016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 24
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea1bb0418bebff84d9c4d9992fd71347
-      internalID: -367044867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_9
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 24
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35c90e68d51adc049a04073fb94bfcc4
-      internalID: -778543148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_10
+      name: NES Pirate_Weapons_Small 2
       rect:
         serializedVersion: 2
         x: 32
         y: 24
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59bbcc1c0c4ff3542889856bcadf28a8
-      internalID: -1196963521
+      spriteID: 8f1703d6613bf6b4d92becf4eb5e3fb9
+      internalID: -85046127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_11
+      name: NES Pirate_Weapons_Small 3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 53
         y: 24
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc9d16b9a91f5b6458c7acab162eef38
-      internalID: -425942747
+      spriteID: b9019187bcf785e4491f2ba518f04eed
+      internalID: -1601281455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_12
+      name: NES Pirate_Weapons_Small 5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 33
         width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f26557f1231a8954cb282bb9427be98b
-      internalID: -111491703
+      spriteID: ecd32f4898b83d6448038095ac3655a0
+      internalID: -1117050175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_13
+      name: NES Pirate_Weapons_Small 6
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        x: 81
+        y: 24
+        width: 6
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c436cfdee3bb7e4095acee64b29cd7f
-      internalID: 51382714
+      spriteID: 1f11bc3dc1ac1d9448071abd5fb4170b
+      internalID: 2129151840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_14
+      name: NES Pirate_Weapons_Small 7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        x: 89
+        y: 24
+        width: 6
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 419380b276cfe6c4dbc4ea39e9e0b6cb
-      internalID: -540689300
+      spriteID: 9b55252c903b7c44183559714ebee034
+      internalID: 1085106237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_Ranger_Idle_Sheet_4way_15
+      name: NES Pirate_Weapons_Large 2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 24
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        x: 96
+        y: 3
+        width: 8
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaa4072890e86e643a3b27dd043dcedf
-      internalID: 1097455452
+      spriteID: 302cb6b062087fe4d932217b257402d9
+      internalID: -220631294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES Pirate_Weapons_Large 0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 16
+        width: 44
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8ef02e6366acf04c8ceb3bae0857d3b
+      internalID: 1981883314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES Pirate_Weapons_Large 1
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 8
+        width: 44
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 525084ce69c915e40aa2ad63d3ce706a
+      internalID: -350058478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES Pirate_Weapons_Small 4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 25
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd2742733d105294fbde2da6fbfc5c7c
+      internalID: -1188247581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES Pirate_Weapons_Large 3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 3
+        width: 8
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42d40b813652624db744a548981baf2
+      internalID: -427727366
       vertices: []
       indices: 
       edges: []
@@ -461,7 +377,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8c4608e2401972242b04421b05ad0403
+    spriteID: db82c0520c3ef0a4294ad7002a02f479
     internalID: 0
     vertices: []
     indices: 
@@ -469,22 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NES_Ranger_Idle_Sheet_4way_0: -1751311458
-      NES_Ranger_Idle_Sheet_4way_1: 819370077
-      NES_Ranger_Idle_Sheet_4way_10: -1196963521
-      NES_Ranger_Idle_Sheet_4way_11: -425942747
-      NES_Ranger_Idle_Sheet_4way_12: -111491703
-      NES_Ranger_Idle_Sheet_4way_13: 51382714
-      NES_Ranger_Idle_Sheet_4way_14: -540689300
-      NES_Ranger_Idle_Sheet_4way_15: 1097455452
-      NES_Ranger_Idle_Sheet_4way_2: 2061893978
-      NES_Ranger_Idle_Sheet_4way_3: 1738299742
-      NES_Ranger_Idle_Sheet_4way_4: 691645494
-      NES_Ranger_Idle_Sheet_4way_5: 297369472
-      NES_Ranger_Idle_Sheet_4way_6: -651377348
-      NES_Ranger_Idle_Sheet_4way_7: 1016239016
-      NES_Ranger_Idle_Sheet_4way_8: -367044867
-      NES_Ranger_Idle_Sheet_4way_9: -778543148
+      NES Pirate_Weapons_Large 0: 1981883314
+      NES Pirate_Weapons_Large 1: -350058478
+      NES Pirate_Weapons_Large 2: -220631294
+      NES Pirate_Weapons_Large 3: -427727366
+      NES Pirate_Weapons_Small 0: -1781806803
+      NES Pirate_Weapons_Small 1: -619229114
+      NES Pirate_Weapons_Small 2: -85046127
+      NES Pirate_Weapons_Small 3: -1601281455
+      NES Pirate_Weapons_Small 4: -1188247581
+      NES Pirate_Weapons_Small 5: -1117050175
+      NES Pirate_Weapons_Small 6: 2129151840
+      NES Pirate_Weapons_Small 7: 1085106237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

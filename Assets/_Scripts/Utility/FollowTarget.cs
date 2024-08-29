@@ -5,13 +5,13 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// Collides with and damages player and damagables
+/// (responsibility of this class)
 /// </summary>
-public class EnemyWeapon : MonoBehaviour 
+public class FollowTarget : MonoBehaviour 
 {
 #region Variables
 
-    [SerializeField] int _damage = 5;
+    [SerializeField] Transform _target;
 
 #endregion
 #region Base Methods
@@ -28,18 +28,14 @@ public class EnemyWeapon : MonoBehaviour
 	
 	void Update () 
     {
-		
+        if (_target != null)
+        {
+            transform.position = new Vector3(_target.position.x, _target.position.y, this.transform.position.z);
+        }
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag(Tags.Player))
-        {
-            Events.OnCollide?.Invoke(other, _damage);
-        }
-    }
-
 #endregion
+
 
 
 }

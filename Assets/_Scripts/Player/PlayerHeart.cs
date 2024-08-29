@@ -15,6 +15,7 @@ public class PlayerHeart : MonoBehaviour
     int _currentHealth;
     public int CurrentHealth { get { return _currentHealth; } }
     [SerializeField] GameObject _playerContainer;
+    [SerializeField] Collider2D _thisCollider;
 
 #endregion
 #region Base Methods
@@ -22,6 +23,14 @@ public class PlayerHeart : MonoBehaviour
     void Awake()
     {
         InitHealth();
+    }
+    void OnEnable()
+    {
+        Events.OnCollide += TakeDamage;
+    }
+    void OnDisable()
+    {
+        Events.OnCollide -= TakeDamage;        
     }
 
     void Start () 
@@ -34,13 +43,6 @@ public class PlayerHeart : MonoBehaviour
 		
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag(Tags.Enemy))
-        {
-            Events.OnCollide += TakeDamage;
-        }
-    }
 
 #endregion
 
@@ -49,9 +51,10 @@ public class PlayerHeart : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
-    void TakeDamage(int damage)
+    void TakeDamage(Collider2D colliderBeingHit, int damage)
     {
-        Events.OnCollide -= TakeDamage;
+        if (colliderBeingHit != _thisCollider)
+            return;
 
         _currentHealth -= damage;
         Debug.Log("Health: " +  _currentHealth);

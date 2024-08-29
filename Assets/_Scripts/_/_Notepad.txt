@@ -1,12 +1,14 @@
 COMMIT
 cur - 
-Set up enemy run animation and weapon; updated player projectile to ninja star; added more to tilemaps; changed player pivot and body collider; changed project's Transparency Sort Mode to work with drawing sprites over each other on the Y axis
+[PHASE 2]: updated OnCollide event to work by checking individual colliders, making the CollisionTrigger class obsolete; changed player movement to work with tilemap collisions; set up tilemap collision; added more to map; added FollowTarget script to camera to follow the player (which will be turned off for now)
 
 last - 
-set up tilemap and started creating background with palette; converted enemy to 2D
+Set up enemy run animation and weapon; updated player projectile to ninja star; added more to tilemaps; changed player pivot and body collider; changed project's Transparency Sort Mode to work with drawing sprites over each other on the Y axis
 
 ------------------------------------------------------------------------------------
 TODO: 
+- Implement melee attack for player and enemy
+- Have enemies NOT reappear at the top of the screen after player dies
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
 - Import object pooling asset? (write article about it)
 

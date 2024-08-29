@@ -14,13 +14,19 @@ public class EnemyHeart : MonoBehaviour
 
     [SerializeField] int _health = 10;
     [SerializeField] GameObject _enemyContainer;
+    [SerializeField] Collider2D _thisCollider;
 
 #endregion
 #region Base Methods
 
-    void Awake()
+    void OnEnable()
     {
-        
+        Events.OnCollide += TakeDamage;
+    }
+
+    private void OnDisable()
+    {
+        Events.OnCollide -= TakeDamage;
     }
 
     void Start () 
@@ -37,16 +43,16 @@ public class EnemyHeart : MonoBehaviour
     {
         if (other.tag == Tags.PWeapon)
         {
-            Events.OnCollide += TakeDamage;
+            
         }
     }
 
 #endregion
 
-    void TakeDamage(int damage)
+    void TakeDamage(Collider2D colliderBeingHit, int damage)
     {
-        ///unsubscribe right after the method is called to avoid it calling it twice
-        Events.OnCollide -= TakeDamage;
+        if (colliderBeingHit != _thisCollider)
+            return;
 
         _health -= damage;
         if (_health < 1)

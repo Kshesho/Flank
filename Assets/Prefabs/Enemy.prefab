@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa76a94b1174c249925d8739baaa0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  _moveSpeed: 3
   _yOffScreenPoint: -7
   _yResetPoint: 6.5
   _xBounds: 9
@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 10
   _enemyContainer: {fileID: 541813928304913277}
+  _thisCollider: {fileID: 2744672957695426269}
 --- !u!61 &2744672957695426269
 BoxCollider2D:
   m_ObjectHideFlags: 0

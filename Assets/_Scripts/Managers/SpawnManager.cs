@@ -20,9 +20,14 @@ public class SpawnManager : MonoBehaviour
 #endregion
 #region Base Methods
 
-    void Awake()
+    void OnEnable()
     {
         Events.OnPlayerDeath += StopSpawning;
+    }
+
+    void OnDisable()
+    {
+        Events.OnPlayerDeath -= StopSpawning;
     }
 
     void Start () 

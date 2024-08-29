@@ -1,5 +1,6 @@
 #region Using Statements
 using System;
+using UnityEngine;
 #endregion
 
 /// <summary>
@@ -10,7 +11,7 @@ public class Events
     /// <summary>
     /// Event for when collisions happen and damage is dealt.
     /// </summary>
-    public static Action<int> OnCollide;
+    public static Action<Collider2D, int> OnCollide;
 
     /// <summary>
     /// Event for when the player dies.

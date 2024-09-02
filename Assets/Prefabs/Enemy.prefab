@@ -341,7 +341,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5158603114286959348}
   - component: {fileID: 7060940645605862615}
-  - component: {fileID: 3439854639075843672}
   - component: {fileID: 8472701223970630552}
   m_Layer: 0
   m_Name: Body
@@ -378,19 +377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 5
-  _collisionTrigger: {fileID: 3439854639075843672}
---- !u!114 &3439854639075843672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7786792729659804048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac0a0eca26556c4c9da6355c36b980f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8472701223970630552
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,26 +5,27 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// Collides with and damages player and damagables
+/// (responsibility of this class)
 /// </summary>
-public class EnemyWeapon : MonoBehaviour 
+public class Sword : MonoBehaviour 
 {
 #region Variables
 
-    [SerializeField] int _damage = 2;
+
 
 #endregion
 #region Base Methods
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(Tags.Player))
+        if (other.CompareTag(Tags.EDamagable))
         {
-            Events.OnCollide?.Invoke(other, _damage);
+            Events.OnCollide?.Invoke(other, 20);
         }
     }
 
 #endregion
+
 
 
 }

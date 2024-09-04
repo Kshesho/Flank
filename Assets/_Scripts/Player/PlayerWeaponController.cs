@@ -23,7 +23,7 @@ public class PlayerWeaponController : MonoBehaviour
     }
     Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
-    float _swordCooldownTime = 2f;
+    float _swordCooldownTime = 0.5f;
     [SerializeField] Animator _swordAnim;
     float _canSwingTime = -1;
     bool SwordCooldownFinished()

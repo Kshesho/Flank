@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[PHASE 2]: updated OnCollide event to work by checking individual colliders, making the CollisionTrigger class obsolete; changed player movement to work with tilemap collisions; set up tilemap collision; added more to map; added FollowTarget script to camera to follow the player (which will be turned off for now)
+got sword attack prototype functinoal; changed enemy damage to player to 2
 
 last - 
-Set up enemy run animation and weapon; updated player projectile to ninja star; added more to tilemaps; changed player pivot and body collider; changed project's Transparency Sort Mode to work with drawing sprites over each other on the Y axis
+
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -14,7 +14,8 @@ TODO:
 
 
 COLLISION
-Offensive collisions - thing doing damage *calls* OnCollision, thing taking damage *subscribes to* OnCollision
+Offensive collisions - things that do damage handle OnTriggerEnter and call OnCollision, giving it a damage amount
+things taking damage subscribe to OnCollision when they're enabled
 
 TILE SORTING LAYERS
 Ground (grass, dirt, water, paths)   <--- Lowest

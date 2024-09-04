@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.49641275, b: 0.5748176, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122538,7 +122538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747323977}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: 0.241, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -124313,7 +124313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ninjaStarPref: {fileID: 5577562111785511575, guid: c30b94fc91856d14cb89cbae36b967c6, type: 3}
   _cooldownTime: 0.25
-  _swordAnim: {fileID: 0}
+  _swordAnim: {fileID: 747323979}
 --- !u!1 &1477556556
 GameObject:
   m_ObjectHideFlags: 0
@@ -124324,6 +124324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477556557}
   - component: {fileID: 1477556559}
+  - component: {fileID: 1477556560}
   - component: {fileID: 1477556558}
   m_Layer: 0
   m_Name: Sword
@@ -124340,7 +124341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477556556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.372, z: 0}
   m_LocalScale: {x: 0.1, y: 0.8860336, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124354,7 +124355,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477556556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -124444,6 +124445,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1477556560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477556556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dd2bf82c20f0944a0bf41fe596ec85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1600669634
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,14 +39,6 @@ public class EnemyHeart : MonoBehaviour
 		
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == Tags.PWeapon)
-        {
-            
-        }
-    }
-
 #endregion
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)

@@ -14,6 +14,11 @@ public class Events
     public static Action<Collider2D, int> OnCollide;
 
     /// <summary>
+    /// Event for when the Player collects a Powerup.
+    /// </summary>
+    public static Action<PowerupType> OnPowerupCollected;
+
+    /// <summary>
     /// Event for when the player dies.
     /// </summary>
     public static Action OnPlayerDeath;

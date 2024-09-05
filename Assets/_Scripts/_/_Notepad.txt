@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-got sword attack prototype functinoal; changed enemy damage to player to 2
+created javelin weapon and powerup; changed sword swing animation to adjust collider
 
 last - 
-
+got sword attack prototype functinoal; changed enemy damage to player to 2
 
 ------------------------------------------------------------------------------------
 TODO: 

@@ -35,5 +35,10 @@ public class PlayerAnimStateChanger : MonoBehaviour
 
 #endregion
 
+    public void Attack()
+    {
+        _anim.SetTrigger("attack");
+    }
+
 
 }

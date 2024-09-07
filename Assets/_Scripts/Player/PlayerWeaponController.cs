@@ -13,6 +13,8 @@ public class PlayerWeaponController : MonoBehaviour
 {
 #region Variables
 
+    [SerializeField] PlayerAnimStateChanger _playerAnimChanger;
+
     bool _ninjaStarActive = true, _javelinActive;
 
     [SerializeField] GameObject _ninjaStarPref;
@@ -78,6 +80,7 @@ public class PlayerWeaponController : MonoBehaviour
             {
                 _canSwingTime = Time.time + _swordCooldownTime;
                 _swordAnim.SetTrigger("swing");
+                _playerAnimChanger.Attack();
             }
         }
 	}

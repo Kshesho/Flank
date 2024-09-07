@@ -1,14 +1,15 @@
 COMMIT
 cur - 
-created javelin weapon and powerup; changed sword swing animation to adjust collider
+created new player attack animations; implemented javelin powerup spawning; created javelin powerup animation; added javelin sprite
 
 last - 
-got sword attack prototype functinoal; changed enemy damage to player to 2
+created javelin weapon and powerup; changed sword swing animation to adjust collider
 
 ------------------------------------------------------------------------------------
 TODO: 
-- Implement melee attack for player and enemy
+- Implement melee attack for enemy
 - Have enemies NOT reappear at the top of the screen after player dies
+- Blend torso and legs player animations so the legs keep running when player attacks
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
 - Import object pooling asset? (write article about it)
 

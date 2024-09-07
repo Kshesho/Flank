@@ -14,6 +14,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] float _spawnCooldown = 2;
     [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] GameObject _javelinPowerupPrefab;
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
 
@@ -33,11 +34,7 @@ public class SpawnManager : MonoBehaviour
     void Start () 
     {
 	    StartCoroutine(SpawnEnemiesRtn());
-	}
-	
-	void Update () 
-    {
-		
+        StartCoroutine(SpawnPowerupsRtn());
 	}
 
 #endregion
@@ -49,6 +46,18 @@ public class SpawnManager : MonoBehaviour
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
             Instantiate(_enemyPrefab, spawnPos, Quaternion.identity);
             yield return HM.WaitTime(_spawnCooldown);
+        }
+    }
+
+    IEnumerator SpawnPowerupsRtn()
+    {
+        while (_spawning)
+        {
+            float rand = Random.Range(4f, 10f);
+            yield return HM.WaitTime(rand);
+            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+            //TODO: choose random powerup when there are more
+            Instantiate(_javelinPowerupPrefab, spawnPos, Quaternion.identity);
         }
     }
 

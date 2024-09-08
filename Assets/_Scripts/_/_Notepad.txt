@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-created new player attack animations; implemented javelin powerup spawning; created javelin powerup animation; added javelin sprite
+[Log 4] Implemented dodge mechanic
 
 last - 
-created javelin weapon and powerup; changed sword swing animation to adjust collider
+created new player attack animations; implemented javelin powerup spawning; created javelin powerup animation; added javelin sprite
 
 ------------------------------------------------------------------------------------
 TODO: 

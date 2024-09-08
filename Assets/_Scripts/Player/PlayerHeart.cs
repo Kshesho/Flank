@@ -13,6 +13,7 @@ public class PlayerHeart : MonoBehaviour
 
     int _maxHealth = 10;
     int _currentHealth;
+    bool _deathless;
     public int CurrentHealth { get { return _currentHealth; } }
     [SerializeField] GameObject _playerContainer;
     [SerializeField] Collider2D _thisCollider;
@@ -53,7 +54,8 @@ public class PlayerHeart : MonoBehaviour
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)
     {
-        if (colliderBeingHit != _thisCollider)
+        if (colliderBeingHit != _thisCollider ||
+            _deathless)
             return;
 
         _currentHealth -= damage;
@@ -69,6 +71,15 @@ public class PlayerHeart : MonoBehaviour
     {
         Destroy(_playerContainer);
         Events.OnPlayerDeath?.Invoke();
+    }
+
+    public void EnableDeathless()
+    {
+        _deathless = true;
+    }
+    public void DisableDeathless()
+    {
+        _deathless = false;
     }
 
 

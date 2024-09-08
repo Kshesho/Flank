@@ -29,16 +29,6 @@ public class EnemyHeart : MonoBehaviour
         Events.OnCollide -= TakeDamage;
     }
 
-    void Start () 
-    {
-		
-	}
-	
-	void Update () 
-    {
-		
-	}
-
 #endregion
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)

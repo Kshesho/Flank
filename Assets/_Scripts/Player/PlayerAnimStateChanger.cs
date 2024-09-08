@@ -12,6 +12,8 @@ public class PlayerAnimStateChanger : MonoBehaviour
 #region Variables
 
     [SerializeField] Animator _anim;
+    bool _dodging;
+    
 
 #endregion
 #region Base Methods
@@ -20,6 +22,9 @@ public class PlayerAnimStateChanger : MonoBehaviour
     {
         float hInput = Input.GetAxisRaw("Horizontal");
         float vInput = Input.GetAxisRaw("Vertical");
+
+        if (_dodging)
+            return;
 
         if (hInput != 0 || vInput != 0)
         {
@@ -38,6 +43,17 @@ public class PlayerAnimStateChanger : MonoBehaviour
     public void Attack()
     {
         _anim.SetTrigger("attack");
+    }
+
+    public void DodgeStarted()
+    {
+        _dodging = true;
+        _anim.SetBool("dodge", true);
+    }
+    public void DodgeFinished()
+    {
+        _dodging = false;
+        _anim.SetBool("dodge", false);
     }
 
 

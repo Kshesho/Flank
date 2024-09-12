@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented dpdge cooldown powerup
+implemented shield powerup; added damage cooldown to player so that they can't be damaged multiple times simultaneously
 
 last - 
-[Log 4] Implemented dodge mechanic
+implemented dpdge cooldown powerup
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -32,4 +32,6 @@ Heights (rooftops, clouds)   <--- Highest
 - was able to not touch powerup pickup code because of event. 
 - Implemented what dodge cooldown powerup does in actual PlayerMovement class
 - Changed SpawnManager to pick a random powerup and spawn it, using a return type to look nice
-- 
+- added shield to player that gives a check for whether it's active or not
+- gave player some invulnerability after they get damaged.
+- Used animation layers for the flash animation to play on top of player movement animations.

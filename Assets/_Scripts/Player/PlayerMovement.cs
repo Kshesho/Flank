@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _animStateChanger.DodgeStarted();
         transform.localScale = Vector2.one * 1.1f;
-        _heart.EnableDeathless();            
+        _heart.EnableDodgeInvulnerability();            
     }
     /// <summary>
     /// Ends the dodge after dodge duration.
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         _curMoveSpeed = _normalMoveSpeed;
         _animStateChanger.DodgeFinished();
         transform.localScale = Vector2.one;
-        _heart.DisableDeathless();
+        _heart.DisableDodgeInvulnerability();
     }
 
     public void LowerDodgeCooldown(PowerupType powerupCollected)

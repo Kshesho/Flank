@@ -56,5 +56,10 @@ public class PlayerAnimStateChanger : MonoBehaviour
         _anim.SetBool("dodge", false);
     }
 
+    public void PlayDamageFlash()
+    {
+        _anim.Play("Damaged_flash");
+    }
+
 
 }

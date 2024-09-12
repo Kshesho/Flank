@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] float _spawnCooldown = 2;
     [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] GameObject _javelinPowerupPrefab;
+    [SerializeField] GameObject[] _powerupPrefabs;
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
 
@@ -56,9 +56,14 @@ public class SpawnManager : MonoBehaviour
             float rand = Random.Range(4f, 10f);
             yield return HM.WaitTime(rand);
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-            //TODO: choose random powerup when there are more
-            Instantiate(_javelinPowerupPrefab, spawnPos, Quaternion.identity);
+            
+            Instantiate(RandomPowerup(), spawnPos, Quaternion.identity);
         }
+    }
+    GameObject RandomPowerup()
+    {
+        int rand = Random.Range(0, _powerupPrefabs.Length);
+        return _powerupPrefabs[rand];
     }
 
     void StopSpawning()

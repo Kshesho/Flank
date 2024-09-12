@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[Log 4] Implemented dodge mechanic
+implemented dpdge cooldown powerup
 
 last - 
-created new player attack animations; implemented javelin powerup spawning; created javelin powerup animation; added javelin sprite
+[Log 4] Implemented dodge mechanic
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -24,3 +24,12 @@ Fauna 1 (plants, rocks)
 Fauna 2 (trees)
 Player
 Heights (rooftops, clouds)   <--- Highest
+
+
+-------------------------------------------------------------------------------------
+[Log 4]
+- duplicated javelin powerup
+- was able to not touch powerup pickup code because of event. 
+- Implemented what dodge cooldown powerup does in actual PlayerMovement class
+- Changed SpawnManager to pick a random powerup and spawn it, using a return type to look nice
+- 

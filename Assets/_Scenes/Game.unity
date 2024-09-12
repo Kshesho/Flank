@@ -22258,8 +22258,10 @@ MonoBehaviour:
   _startPos: {x: 0, y: -1}
   _normalMoveSpeed: 200
   _dodgeDuration: 0.3
-  _dodgeCooldown: 0.5
   _dodgeSpeedMultiplier: 1.67
+  _defDodgeCooldown: 0.7
+  _pwrDodgeCooldown: 0.4
+  _dodgeCooldownPowerupActiveTime: 5
   _xBounds: 10
   _yBounds: 5
 --- !u!212 &464631656
@@ -136824,7 +136826,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnCooldown: 2
   _enemyPrefab: {fileID: 541813928304913277, guid: 9bc81f1adb677f84db317bf21ab967e1, type: 3}
-  _javelinPowerupPrefab: {fileID: 8806764661194659718, guid: b0cb747a209e1114c8a3cc111a359633, type: 3}
+  _powerupPrefabs:
+  - {fileID: 8806764661194659718, guid: b0cb747a209e1114c8a3cc111a359633, type: 3}
+  - {fileID: 8806764661194659718, guid: c85505da6314e4e4581377b293f7ba05, type: 3}
 --- !u!4 &1961646041
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 _startPos;
     [SerializeField] float _normalMoveSpeed = 3f;
     float _curMoveSpeed, _dodgeMoveSpeed;
+    bool _dodging;
     float _canDodgeTime = -1; 
     bool DodgeCooldownFinished()
     {
@@ -26,8 +27,11 @@ public class PlayerMovement : MonoBehaviour
             return true;
         return false;
     }
-    [SerializeField] float _dodgeDuration = 0.3f, _dodgeCooldown = 2f, _dodgeSpeedMultiplier = 1.1f;
-    bool _dodging;
+    [SerializeField] float _dodgeDuration = 0.3f, _dodgeSpeedMultiplier = 1.1f;
+    [SerializeField] float _defDodgeCooldown = 0.7f, _pwrDodgeCooldown;
+    float _curDodgeCooldown;
+    Coroutine _resetDodgeCooldownRtn;
+    [SerializeField] float _dodgeCooldownPowerupActiveTime = 5;
 
     float _xInput, _yInput;
     Vector2 _curMoveDirection = Vector2.zero;
@@ -37,9 +41,19 @@ public class PlayerMovement : MonoBehaviour
 #endregion
 #region Base Methods
 
+    void OnEnable()
+    {
+        Events.OnPowerupCollected += LowerDodgeCooldown;
+    }
+    void OnDisable()
+    {
+        Events.OnPowerupCollected -= LowerDodgeCooldown;
+    }
+
     void Start() 
     {
         _curMoveSpeed = _normalMoveSpeed;
+        _curDodgeCooldown = _defDodgeCooldown;
         transform.position = _startPos;
 	}
 
@@ -105,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void SetDodgeLocalValues()
     {
-        _canDodgeTime = Time.time + _dodgeCooldown;
+        _canDodgeTime = Time.time + _curDodgeCooldown;
         _dodging = true;
         _curMoveSpeed = _dodgeMoveSpeed;
     }
@@ -130,6 +144,24 @@ public class PlayerMovement : MonoBehaviour
         _animStateChanger.DodgeFinished();
         transform.localScale = Vector2.one;
         _heart.DisableDeathless();
+    }
+
+    public void LowerDodgeCooldown(PowerupType powerupCollected)
+    {
+        if (powerupCollected == PowerupType.DodgeCooldown)
+        {
+            _curDodgeCooldown = _pwrDodgeCooldown;
+            if (_resetDodgeCooldownRtn != null) 
+            { 
+                StopCoroutine(_resetDodgeCooldownRtn); 
+            }
+            _resetDodgeCooldownRtn = StartCoroutine(ResetDodgeCooldownRtn());
+        }
+    }
+    IEnumerator ResetDodgeCooldownRtn()
+    {
+        yield return HM.WaitTime(_dodgeCooldownPowerupActiveTime);
+        _curDodgeCooldown = _defDodgeCooldown;
     }
 
     #endregion

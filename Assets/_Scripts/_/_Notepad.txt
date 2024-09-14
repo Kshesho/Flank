@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented shield powerup; added damage cooldown to player so that they can't be damaged multiple times simultaneously
+moved player sprite sheets into their own folder; Imported TMP Essentials; Set up Kills UI text that updates when enemies die; Created GameManaher and UIManager and Flank.Management assembly definition
 
 last - 
-implemented dpdge cooldown powerup
+implemented shield powerup; added damage cooldown to player so that they can't be damaged multiple times simultaneously
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -35,3 +35,5 @@ Heights (rooftops, clouds)   <--- Highest
 - added shield to player that gives a check for whether it's active or not
 - gave player some invulnerability after they get damaged.
 - Used animation layers for the flash animation to play on top of player movement animations.
+- added kills text
+- created managers using pre-build monosingleton class

@@ -26,7 +26,7 @@ namespace Narzioth.Utilities
     #endregion
     #region Unity Methods
 
-        void Awake()
+        protected void Awake()
         {
             _instance = this as T;
             Initialize();

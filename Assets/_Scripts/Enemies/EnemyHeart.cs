@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Narzioth.Utilities;
+using UnityEditor.Build.Content;
 #endregion
 
 /// <summary>
@@ -39,6 +40,7 @@ public class EnemyHeart : MonoBehaviour
         _health -= damage;
         if (_health < 1)
         {
+            GameManager.Instance.IncrementScore();
             Destroy(_enemyContainer);
         }
     }

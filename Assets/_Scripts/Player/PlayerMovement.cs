@@ -16,45 +16,84 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
     [SerializeField] PlayerHeart _heart;
 
-    [SerializeField] Vector2 _startPos;
-    [SerializeField] float _normalMoveSpeed = 3f;
-    float _curMoveSpeed, _dodgeMoveSpeed;
-    bool _dodging;
-    float _canDodgeTime = -1; 
-    bool DodgeCooldownFinished()
-    {
-        if (_canDodgeTime < Time.time)
-            return true;
-        return false;
-    }
-    [SerializeField] float _dodgeDuration = 0.3f, _dodgeSpeedMultiplier = 1.1f;
-    [SerializeField] float _defDodgeCooldown = 0.7f, _pwrDodgeCooldown;
-    float _curDodgeCooldown;
-    Coroutine _resetDodgeCooldownRtn;
-    [SerializeField] float _dodgeCooldownPowerupActiveTime = 5;
-
     float _xInput, _yInput;
     Vector2 _curMoveDirection = Vector2.zero;
-
     [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
+    [SerializeField] Vector2 _startPos;
+    [SerializeField] float _normalMoveSpeed = 3f;
+    float _curMoveSpeed;
+
+    //----Dodge
+    float _dodgeMoveSpeed;
+    bool _dodging;
+    float _canDodgeTime = -1; 
+    /// <summary>
+    /// Returns false if stamina is too low or dodge is still happening.
+    /// </summary>
+    /// <returns></returns>
+    bool CanDodge()
+    {
+        if (_canDodgeTime > Time.time)
+            return false;
+        if (CurStamina < _dodgeStaminaCost)
+            return false;
+        
+        return true;
+    }
+    [SerializeField] float _dodgeDuration = 0.3f, _dodgeSpeedMultiplier = 1.1f;
+    [SerializeField] float _dodgeCooldown = 0.3f;
+    Coroutine _resetDodgeCooldownRtn;
+    [SerializeField] float _dodgeCooldownPowerupActiveTime = 5;
+    
+    //----Stamina
+    float _curStamina_DONTALTER;
+    float CurStamina 
+    { 
+        get
+        {
+            return _curStamina_DONTALTER;
+        }
+        set
+        {
+            _curStamina_DONTALTER = value;
+            if (_curStamina_DONTALTER < 0)
+                _curStamina_DONTALTER = 0;
+            else if (_curStamina_DONTALTER > _maxStamina)
+                _curStamina_DONTALTER = _maxStamina;
+        }
+    } 
+    /// <summary>
+    /// Takes away dodge stamina cost from Stamina and updates UI.
+    /// </summary>
+    void DecrementStamina()
+    {
+        CurStamina -= _dodgeStaminaCost;
+        UIManager.Instance.SetStaminaBarFill(CurStamina / _maxStamina);
+    }
+    float _dodgeStaminaCost = 0.35f;
+    float _maxStamina = 1;
+    float _defStaminaGain = 0.25f, _powerStaminaGain = 0.4f;
+    float _staminaGainPerSecond;
+    //dodge powerup doesn't change the cooldown but the stamina gained per second
 
 #endregion
 #region Base Methods
 
     void OnEnable()
     {
-        Events.OnPowerupCollected += LowerDodgeCooldown;
+        Events.OnPowerupCollected += CollectDodgePowerup;
     }
     void OnDisable()
     {
-        Events.OnPowerupCollected -= LowerDodgeCooldown;
+        Events.OnPowerupCollected -= CollectDodgePowerup;
     }
 
     void Start() 
     {
         _curMoveSpeed = _normalMoveSpeed;
-        _curDodgeCooldown = _defDodgeCooldown;
+        _staminaGainPerSecond = _defStaminaGain;
         transform.position = _startPos;
+        CurStamina = _maxStamina;
 	}
 
     void Update()
@@ -64,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
         _dodgeMoveSpeed = _normalMoveSpeed * _dodgeSpeedMultiplier;
         CheckForDodgeInput();
+        RefillStamina();
     }
 
     void FixedUpdate() 
@@ -77,7 +117,9 @@ public class PlayerMovement : MonoBehaviour
         ConstrainPosition();
 	}
 
-#endregion
+    #endregion
+
+    #region Movement
 
     void Move()
     {
@@ -96,13 +138,15 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector2(clampedX, clampedY);
     }
 
+    #endregion
+
     #region Dodge
 
     void CheckForDodgeInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
-            if (DodgeCooldownFinished())
+            if (CanDodge())
             {
                 Dodge();
             }
@@ -119,10 +163,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void SetDodgeLocalValues()
     {
-        _canDodgeTime = Time.time + _curDodgeCooldown;
+        _canDodgeTime = Time.time + _dodgeCooldown;
         _dodging = true;
         _curMoveSpeed = _dodgeMoveSpeed;
+        DecrementStamina();
     }
+    
     /// <summary>
     /// Sets the values outside this class that are part of the dodge mechanic.
     /// </summary>
@@ -146,11 +192,11 @@ public class PlayerMovement : MonoBehaviour
         _heart.DisableDodgeInvulnerability();
     }
 
-    public void LowerDodgeCooldown(PowerupType powerupCollected)
+    public void CollectDodgePowerup(PowerupType powerupCollected)
     {
         if (powerupCollected == PowerupType.DodgeCooldown)
         {
-            _curDodgeCooldown = _pwrDodgeCooldown;
+            _staminaGainPerSecond = _powerStaminaGain;
             if (_resetDodgeCooldownRtn != null) 
             { 
                 StopCoroutine(_resetDodgeCooldownRtn); 
@@ -161,7 +207,22 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator ResetDodgeCooldownRtn()
     {
         yield return HM.WaitTime(_dodgeCooldownPowerupActiveTime);
-        _curDodgeCooldown = _defDodgeCooldown;
+        _staminaGainPerSecond = _defStaminaGain;
+    }
+
+    /// <summary>
+    /// Refills the stamina amount at a constant rate and updates the UI as well.
+    /// </summary>
+    void RefillStamina()
+    {
+        if (CurStamina >= _maxStamina)
+            return;
+
+        CurStamina += _staminaGainPerSecond * Time.deltaTime;
+        //the 0-1 ratio (fill amount)
+        float curStaminaRatio = CurStamina / _maxStamina;
+
+        UIManager.Instance.SetStaminaBarFill(curStaminaRatio);
     }
 
     #endregion

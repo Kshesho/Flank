@@ -1,9 +1,10 @@
 COMMIT
 cur - 
-moved player sprite sheets into their own folder; Imported TMP Essentials; Set up Kills UI text that updates when enemies die; Created GameManaher and UIManager and Flank.Management assembly definition
+
 
 last - 
-implemented shield powerup; added damage cooldown to player so that they can't be damaged multiple times simultaneously
+implemented HP and stamina bars; updated dodge and dodge powerup to work with stamina bar
+
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -32,8 +33,9 @@ Heights (rooftops, clouds)   <--- Highest
 - was able to not touch powerup pickup code because of event. 
 - Implemented what dodge cooldown powerup does in actual PlayerMovement class
 - Changed SpawnManager to pick a random powerup and spawn it, using a return type to look nice
-- added shield to player that gives a check for whether it's active or not
+- added shield to player that gives a check for whether it's active or not (https://opengameart.org/node/109387)
 - gave player some invulnerability after they get damaged.
 - Used animation layers for the flash animation to play on top of player movement animations.
 - added kills text
 - created managers using pre-build monosingleton class
+- added health display (https://opengameart.org/content/health-staminamana-bar)

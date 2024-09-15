@@ -14,7 +14,7 @@ public class PlayerHeart : MonoBehaviour
 
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
 
-    int _maxHealth = 10;
+    int _maxHealth = 100;
     int _currentHealth;
     bool _dodgeInvulnerability;
     public int CurrentHealth { get { return _currentHealth; } }
@@ -30,10 +30,6 @@ public class PlayerHeart : MonoBehaviour
 #endregion
 #region Base Methods
 
-    void Awake()
-    {
-        InitHealth();
-    }
     void OnEnable()
     {
         Events.OnCollide += TakeDamage;
@@ -47,7 +43,7 @@ public class PlayerHeart : MonoBehaviour
 
     void Start () 
     {
-		
+        InitHealth();
 	}
 	
 	void Update () 
@@ -61,6 +57,7 @@ public class PlayerHeart : MonoBehaviour
     void InitHealth()
     {
         _currentHealth = _maxHealth;
+        UIManager.Instance.UpdateHealthUI(_maxHealth, _maxHealth);
     }
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)
@@ -77,8 +74,8 @@ public class PlayerHeart : MonoBehaviour
         }
 
         _currentHealth -= damage;
+        UIManager.Instance.UpdateHealthUI(_currentHealth, _maxHealth);
         StartCoroutine(DamageCooldownRtn());
-        Debug.Log("Health: " +  _currentHealth);
         // TODO: update UI
         if (_currentHealth < 1)
         {
@@ -96,7 +93,6 @@ public class PlayerHeart : MonoBehaviour
         _damageCooldownActive = true;
         _animStateChanger.PlayDamageFlash();
         yield return HM.WaitTime(_damageCooldown);
-        print("done");
         _damageCooldownActive = false;
     }
 

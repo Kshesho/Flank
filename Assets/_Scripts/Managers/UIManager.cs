@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Narzioth.Utilities;
 using UnityEngine.UI;
+using UnityEditor.PackageManager;
 #endregion
 
 /// <summary>
@@ -21,17 +22,19 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] Image _staminaBarImage;
 
+    [SerializeField] GameObject _gameOverScreen;
+
 #endregion
 #region Base Methods
 
-    void Start () 
+    void OnEnable () 
     {
-		
+        Events.OnPlayerDeath += GameOverUI;
 	}
 	
-	void Update () 
+	void OnDisable () 
     {
-		
+		Events.OnPlayerDeath -= GameOverUI;
 	}
 
 #endregion
@@ -49,21 +52,6 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     /// <summary>
-    /// Lerps the stamina bar fill from <paramref name="curStamina"/> to <paramref name="maxStamina"/>.
-    /// </summary>
-    /// <param name="curStamina"></param>
-    /// <param name="maxStamina"></param>
-    public void RefillStaminaBar(int curStamina, int maxStamina, float staminaGainPerSecond)
-    {
-        float newFill = (float)curStamina / (float)maxStamina;
-        //convert stamina/s to 0-1 fill amount
-        float fillSpeed = staminaGainPerSecond * 0.1f;
-        float lerpedFill = Mathf.Lerp(_staminaBarImage.fillAmount, newFill, fillSpeed * Time.deltaTime);
-        // Do I need to check if the fill amount is less than current, so it doesn't lerp backwards?
-        _staminaBarImage.fillAmount = lerpedFill;
-        //Set stamina text (convert float to int)
-    }
-    /// <summary>
     /// Hard-sets the stamina bar fill based on <paramref name="curStamina"/> and <paramref name="maxStamina"/>.
     /// Best used for when player consumes stamina. 
     /// </summary>
@@ -72,6 +60,11 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetStaminaBarFill(float curStaminaRatio)
     {
         _staminaBarImage.fillAmount = curStaminaRatio;
+    }
+
+    void GameOverUI()
+    {
+        _gameOverScreen.SetActive(true);
     }
 
 

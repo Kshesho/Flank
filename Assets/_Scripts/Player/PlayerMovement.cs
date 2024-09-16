@@ -74,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
     float _maxStamina = 1;
     float _defStaminaGain = 0.25f, _powerStaminaGain = 0.4f;
     float _staminaGainPerSecond;
-    //dodge powerup doesn't change the cooldown but the stamina gained per second
 
 #endregion
 #region Base Methods

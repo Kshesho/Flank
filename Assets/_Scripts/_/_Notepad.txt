@@ -1,6 +1,6 @@
 COMMIT
 cur - 
-
+[Log V] implemented a game over screen
 
 last - 
 implemented HP and stamina bars; updated dodge and dodge powerup to work with stamina bar

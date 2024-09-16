@@ -14,7 +14,7 @@ public class PlayerHeart : MonoBehaviour
 
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
 
-    int _maxHealth = 100;
+    [SerializeField] int _maxHealth = 100;
     int _currentHealth;
     bool _dodgeInvulnerability;
     public int CurrentHealth { get { return _currentHealth; } }
@@ -98,8 +98,8 @@ public class PlayerHeart : MonoBehaviour
 
     void Death()
     {
-        Destroy(_playerContainer);
         Events.OnPlayerDeath?.Invoke();
+        Destroy(_playerContainer);
     }
 
     public void EnableDodgeInvulnerability()

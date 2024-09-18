@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[Log V] implemented a game over screen
+implemented scene loading, a main menu, and restarting the game when player dies
 
 last - 
-implemented HP and stamina bars; updated dodge and dodge powerup to work with stamina bar
+implemented a game over screen
 
 
 ------------------------------------------------------------------------------------

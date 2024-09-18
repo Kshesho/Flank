@@ -3,6 +3,7 @@ using Narzioth.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 #endregion
 
 /// <summary>
@@ -15,20 +16,34 @@ public class GameManager : MonoSingleton<GameManager>
     int _score;
     public int Score {  get { return _score; } }
 
+    bool _gameOver;
+    public bool GameOver { get { return _gameOver; } }
+
 #endregion
 #region Base Methods
 
-    void Start () 
+    void OnEnable() 
     {
-		
+        Events.OnPlayerDeath += () => _gameOver = true;
 	}
 	
-	void Update () 
+	void OnDisable() 
     {
-		
+		Events.OnPlayerDeath -= () => _gameOver = true;
 	}
 
-#endregion
+    void Update()
+    {
+        if (_gameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+    }
+
+    #endregion
 
     /// <summary>
     /// Adds 1 to the score, then updates the UI.

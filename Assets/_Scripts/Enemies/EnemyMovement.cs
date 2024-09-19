@@ -40,6 +40,10 @@ public class EnemyMovement : MonoBehaviour
 
 #endregion
 
+    public void StopMoving()
+    {
+        _moveSpeed = 0;
+    }
 
 
 }

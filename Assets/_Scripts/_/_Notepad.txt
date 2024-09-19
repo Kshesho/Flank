@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented scene loading, a main menu, and restarting the game when player dies
+[LOG 5] implemented enemy death animation
 
 last - 
-implemented a game over screen
+implemented scene loading, a main menu, and restarting the game when player dies
 
 
 ------------------------------------------------------------------------------------

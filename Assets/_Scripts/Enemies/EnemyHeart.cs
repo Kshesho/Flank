@@ -13,6 +13,9 @@ public class EnemyHeart : MonoBehaviour
 {
 #region Variables
 
+    [SerializeField] EnemyMovement _enemyMovement;
+    [SerializeField] EnemyAnimStateChanger _animStateChanger;
+
     [SerializeField] int _health = 10;
     [SerializeField] GameObject _enemyContainer;
     [SerializeField] Collider2D _thisCollider;
@@ -40,9 +43,22 @@ public class EnemyHeart : MonoBehaviour
         _health -= damage;
         if (_health < 1)
         {
-            GameManager.Instance.IncrementScore();
-            Destroy(_enemyContainer);
+            Death();
         }
+    }
+
+    void Death()
+    {
+        _enemyMovement.StopMoving();
+        _animStateChanger.PlayDeathAnimation();
+        GameManager.Instance.IncrementScore();
+        StartCoroutine(WaitForDeathAnimToFinishRtn());
+    }
+    IEnumerator WaitForDeathAnimToFinishRtn()
+    {
+        float clipLength = _animStateChanger.DeathAnimClipLength();
+        yield return HM.WaitTime(clipLength);
+        Destroy(_enemyContainer);
     }
 
 

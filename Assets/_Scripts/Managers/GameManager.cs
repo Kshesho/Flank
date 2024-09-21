@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 #endregion
 
 /// <summary>
-/// Holds important global values and functions.
+/// Holds important global values, functions, and game state data.
 /// </summary>
 public class GameManager : MonoSingleton<GameManager> 
 {
@@ -15,6 +15,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     int _score;
     public int Score {  get { return _score; } }
+
+    bool _gameStarted;
+    bool GameStarted { get { return _gameStarted; } }
 
     bool _gameOver;
     public bool GameOver { get { return _gameOver; } }
@@ -43,7 +46,13 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    #endregion
+#endregion
+
+    public void StartGame()
+    {
+        _gameStarted = true;
+        SpawnManager.Instance.StartSpawning();
+    }
 
     /// <summary>
     /// Adds 1 to the score, then updates the UI.

@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[LOG 5] implemented enemy death animation
+implemented treasure chest with intro sequence that starts the game; fixed null reference on enemy; made the SpawnManager a monosingleton
 
 last - 
-implemented scene loading, a main menu, and restarting the game when player dies
+[LOG 5] implemented enemy death animation
 
 
 ------------------------------------------------------------------------------------

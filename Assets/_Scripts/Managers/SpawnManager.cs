@@ -8,7 +8,7 @@ using UnityEngine;
 /// <summary>
 /// (responsibility of this class)
 /// </summary>
-public class SpawnManager : MonoBehaviour 
+public class SpawnManager : MonoSingleton<SpawnManager> 
 {
 #region Variables
 
@@ -31,13 +31,14 @@ public class SpawnManager : MonoBehaviour
         Events.OnPlayerDeath -= StopSpawning;
     }
 
-    void Start () 
+
+#endregion
+
+    public void StartSpawning()
     {
 	    StartCoroutine(SpawnEnemiesRtn());
         StartCoroutine(SpawnPowerupsRtn());
 	}
-
-#endregion
 
     IEnumerator SpawnEnemiesRtn()
     {

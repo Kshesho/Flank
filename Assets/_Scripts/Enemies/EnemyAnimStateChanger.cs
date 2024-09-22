@@ -25,5 +25,4 @@ public class EnemyAnimStateChanger : MonoBehaviour
         _anim.SetTrigger("death");
     }
 
-
 }

@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented treasure chest with intro sequence that starts the game; fixed null reference on enemy; made the SpawnManager a monosingleton
+Reconstructed all canvas elements to try and fix bug where they were all moved and disappeared; Implemented player damaged animation; fixed a bug where enemies would damage player during their death
 
 last - 
-[LOG 5] implemented enemy death animation
+implemented treasure chest with intro sequence that starts the game; fixed null reference on enemy; made the SpawnManager a monosingleton
 
 
 ------------------------------------------------------------------------------------

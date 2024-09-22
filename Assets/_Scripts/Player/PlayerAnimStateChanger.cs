@@ -61,5 +61,10 @@ public class PlayerAnimStateChanger : MonoBehaviour
         _anim.Play("Damaged_flash");
     }
 
+    public void Hit()
+    {
+        _anim.SetTrigger("hit");
+    }
+
 
 }

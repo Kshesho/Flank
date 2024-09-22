@@ -74,6 +74,7 @@ public class PlayerHeart : MonoBehaviour
         }
 
         _currentHealth -= damage;
+        _animStateChanger.Hit();
         UIManager.Instance.UpdateHealthUI(_currentHealth, _maxHealth);
         StartCoroutine(DamageCooldownRtn());
         // TODO: update UI

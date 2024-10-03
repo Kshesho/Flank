@@ -52,6 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _gameStarted = true;
         SpawnManager.Instance.StartSpawning();
+        AudioManager.Instance.PlayMainTheme();
     }
 
     /// <summary>

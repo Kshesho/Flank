@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-installed the Post Processing package and implemented post-processing
+Added a music track and Audio Manager
 
 last - 
-Reconstructed all canvas elements to try and fix bug where they were all moved and disappeared; Implemented player damaged animation; fixed a bug where enemies would damage player during their death
+installed the Post Processing package and implemented post-processing
 
 
 ------------------------------------------------------------------------------------

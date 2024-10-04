@@ -78,14 +78,20 @@ public class PlayerWeaponController : MonoBehaviour
         {
             if (SwordCooldownFinished())
             {
-                _canSwingTime = Time.time + _swordCooldownTime;
-                _swordAnim.SetTrigger("swing");
-                _playerAnimChanger.Attack();
+                SwingSword();
             }
         }
 	}
 
 #endregion
+
+    void SwingSword()
+    {
+        _canSwingTime = Time.time + _swordCooldownTime;
+        _swordAnim.SetTrigger("swing");
+        _playerAnimChanger.Attack();
+        AudioManager.Instance.PlaySwordSwing();
+    }
 
     void ThrowNinjaStar()
     {

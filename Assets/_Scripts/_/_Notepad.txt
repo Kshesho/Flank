@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-Added a music track and Audio Manager
+implemented powerup pickup, sword swing, and enemy death sound effects
 
 last - 
-installed the Post Processing package and implemented post-processing
+Added a music track and Audio Manager
 
 
 ------------------------------------------------------------------------------------

@@ -1,9 +1,7 @@
 #region Using Statements
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Narzioth.Utilities;
-using UnityEditor.Build.Content;
 #endregion
 
 /// <summary>

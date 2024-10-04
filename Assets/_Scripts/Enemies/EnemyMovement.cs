@@ -1,6 +1,4 @@
 #region Using Statements
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 #endregion
 
@@ -16,16 +14,6 @@ public class EnemyMovement : MonoBehaviour
 
 #endregion
 #region Base Methods
-
-    void Awake()
-    {
-        
-    }
-
-    void Start () 
-    {
-		
-	}
 	
 	void Update () 
     {

@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented powerup pickup, sword swing, and enemy death sound effects
+created PC and WebGL builds; got rid of unneeded namespaces in scripts; set Filebase Import Settings to exclude all platforms except the editor to prevent build failure 
 
 last - 
-Added a music track and Audio Manager
+implemented powerup pickup, sword swing, and enemy death sound effects
 
 
 ------------------------------------------------------------------------------------

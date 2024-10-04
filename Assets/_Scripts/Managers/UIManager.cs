@@ -5,7 +5,6 @@ using UnityEngine;
 using TMPro;
 using Narzioth.Utilities;
 using UnityEngine.UI;
-using UnityEditor.PackageManager;
 #endregion
 
 /// <summary>

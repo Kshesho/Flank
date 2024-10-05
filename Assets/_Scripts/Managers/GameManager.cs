@@ -22,6 +22,8 @@ public class GameManager : MonoSingleton<GameManager>
     bool _gameOver;
     public bool GameOver { get { return _gameOver; } }
 
+    bool _gamePaused;
+
 #endregion
 #region Base Methods
 
@@ -44,9 +46,21 @@ public class GameManager : MonoSingleton<GameManager>
                 SceneManager.LoadScene(0);
             }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!_gamePaused)
+                    PauseGame();
+                else ResumeGame();
+                
+            }
+        }
     }
 
 #endregion
+
+    #region Game State
 
     public void StartGame()
     {
@@ -54,6 +68,26 @@ public class GameManager : MonoSingleton<GameManager>
         SpawnManager.Instance.StartSpawning();
         AudioManager.Instance.PlayMainTheme();
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.EnablePauseMenu();
+        _gamePaused = true;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        UIManager.Instance.DisablePauseMenu();
+        _gamePaused = false;
+    }
+
+    public void TERMINATE()
+    {
+        Application.Quit();
+    }
+
+    #endregion
 
     /// <summary>
     /// Adds 1 to the score, then updates the UI.

@@ -1,14 +1,15 @@
 COMMIT
 cur - 
-created PC and WebGL builds; got rid of unneeded namespaces in scripts; set Filebase Import Settings to exclude all platforms except the editor to prevent build failure 
+implemented a pause menu, pause functionality, and quit functionality; lowered music volume
 
 last - 
-implemented powerup pickup, sword swing, and enemy death sound effects
+created PC and WebGL builds; got rid of unneeded namespaces in scripts; set Filebase Import Settings to exclude all platforms except the editor to prevent build failure 
 
 
 ------------------------------------------------------------------------------------
 TODO: 
 - Implement melee attack for enemy
+- BUG: player still animates when the game is paused.
 - Have enemies NOT reappear at the top of the screen after player dies
 - Blend torso and legs player animations so the legs keep running when player attacks
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)

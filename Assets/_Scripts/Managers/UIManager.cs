@@ -23,6 +23,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] GameObject _gameOverScreen;
 
+    [SerializeField] GameObject _pauseMenu;
+
 #endregion
 #region Base Methods
 
@@ -64,6 +66,16 @@ public class UIManager : MonoSingleton<UIManager>
     void GameOverUI()
     {
         _gameOverScreen.SetActive(true);
+    }
+
+    
+    public void EnablePauseMenu()
+    {
+        _pauseMenu.SetActive(true);
+    }
+    public void DisablePauseMenu()
+    {
+        _pauseMenu.SetActive(false);
     }
 
 

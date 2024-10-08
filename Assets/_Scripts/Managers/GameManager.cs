@@ -23,6 +23,7 @@ public class GameManager : MonoSingleton<GameManager>
     public bool GameOver { get { return _gameOver; } }
 
     bool _gamePaused;
+    public bool GamePaused { get { return _gamePaused; } }
 
 #endregion
 #region Base Methods

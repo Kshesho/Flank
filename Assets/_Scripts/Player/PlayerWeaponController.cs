@@ -65,6 +65,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update () 
     {
+        if (GameManager.Instance.GamePaused)
+            return;
+
         if (Input.GetMouseButtonDown(1))
         {
             if (_ninjaStarActive)

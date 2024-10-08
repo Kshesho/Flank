@@ -18,6 +18,9 @@ public class PlayerAnimStateChanger : MonoBehaviour
 	
 	void Update () 
     {
+        if (GameManager.Instance.GamePaused)
+            return;
+
         float hInput = Input.GetAxisRaw("Horizontal");
         float vInput = Input.GetAxisRaw("Vertical");
 
@@ -52,6 +55,15 @@ public class PlayerAnimStateChanger : MonoBehaviour
     {
         _dodging = false;
         _anim.SetBool("dodge", false);
+    }
+
+    public void SprintStarted()
+    {
+        _anim.SetBool("sprint", true);
+    }
+    public void SprintStopped()
+    {
+        _anim.SetBool("sprint", false);
     }
 
     public void PlayDamageFlash()

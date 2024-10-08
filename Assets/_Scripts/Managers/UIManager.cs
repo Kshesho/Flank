@@ -20,6 +20,8 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] Image _hpBarImage;
 
     [SerializeField] Image _staminaBarImage;
+    [SerializeField] GameObject _staminaBarBorderImage;
+    Color _halfAlpha = new Color(1, 1, 1, 0.5f);
 
     [SerializeField] GameObject _gameOverScreen;
 
@@ -61,6 +63,16 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetStaminaBarFill(float curStaminaRatio)
     {
         _staminaBarImage.fillAmount = curStaminaRatio;
+    }
+    public void StaminaCooldownVisual_On()
+    {
+        _staminaBarBorderImage.SetActive(true);
+        _staminaBarImage.color = _halfAlpha;
+    }
+    public void StaminaCooldownVisual_Off()
+    {
+        _staminaBarBorderImage.SetActive(false);
+        _staminaBarImage.color = Color.white;
     }
 
     void GameOverUI()

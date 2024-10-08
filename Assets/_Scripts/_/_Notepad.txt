@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-implemented a pause menu, pause functionality, and quit functionality; lowered music volume
+[Framework - 'Thrusters'] moved dodge to the space key; Implemented sprinting and walking for the player; stamina now has cooldown when it hits 0
 
 last - 
-created PC and WebGL builds; got rid of unneeded namespaces in scripts; set Filebase Import Settings to exclude all platforms except the editor to prevent build failure 
+implemented a pause menu, pause functionality, and quit functionality; lowered music volume
 
 
 ------------------------------------------------------------------------------------
@@ -29,14 +29,115 @@ Heights (rooftops, clouds)   <--- Highest
 
 
 -------------------------------------------------------------------------------------
-[Log 4]
-- duplicated javelin powerup
-- was able to not touch powerup pickup code because of event. 
-- Implemented what dodge cooldown powerup does in actual PlayerMovement class
-- Changed SpawnManager to pick a random powerup and spawn it, using a return type to look nice
-- added shield to player that gives a check for whether it's active or not (https://opengameart.org/node/109387)
-- gave player some invulnerability after they get damaged.
-- Used animation layers for the flash animation to play on top of player movement animations.
-- added kills text
-- created managers using pre-build monosingleton class
-- added health display (https://opengameart.org/content/health-staminamana-bar)
+[FRAMEWORK]
+
+"Thrusters"
+- Sprint mechanic that makes the player move faster when LShift is held
+- Stamina is drained while sprinting
+- move dodge to the space key
+- dodging also drains stamina
+- create walk animation and use run animation for sprint
+
+"Thruster: Scaling Bar UI"
+- Ask Thom: does a constant refilling stamina bar count as a cooldown system? Does it have to drain completely?
+- Stamina bar constantly refills at a slow rate
+- Change dodge cooldown powerup to stamina powerup that drasitcally increases stamina fill rate
+
+"Shield Strength"
+- player can collect up to 3 shield powerups at a time
+- each new shield appears in front of the last
+- when player is damaged, take away only the frontmost shield
+
+"Ammo Count"
+- player can only throw 15 ninja stars
+- make ninja stars more noticable, faster
+- ninja stars make sound when hitting an enemy
+- UI icon with 'x15' to display ammo count
+
+"Ammo Collectible"
+- circle sprite with 3 ninja stars inside and a 'x15' icon to indicate that it refills that many ninja stars
+- ammo collectible spawn is separate from other powerups
+
+"Health Collectible"
+- health powerup that gives the player 20HP
+- red potion sprite
+- secondary BG HP bar fills ahead of the main one
+
+"Secondary Fire Powerup"
+- a whip that the player sweeps in front of them
+- javelin[80% chance to spawn], whip[20% chance]
+- kills pirates in 2 hits
+- pretty fast attack speed
+- use sprite shape to animate
+
+
+"Camera Shake"
+- camera shakes when player gets damaged
+- play damaged sound as well
+
+
+
+[CORE PROGRAMMING]
+"New Enemy Movement"
+- enemies sometimes move diagonally, changing directions if they hit the edge of the screen or move a certain distance
+
+"Wave System"
+- several enemies are spawned in quick succession
+- next wave starts when last enemy from current wave is killed, or wave timer expiers (so player can't farm powerups)
+
+"Negative Powerup"
+- broken potion that damages player
+- something that slows player movement
+- debuff icon for slowing
+
+"New Enemy Type"
+- moves, then stops and fires at player
+- fires a shotgun-like volley after a short chargeup
+
+"Balanced Spawning"
+- revamp spawning with a weight table
+- determine which things need to be spawned together, and which spawn independently
+- ammo is frequent & health is rare
+
+"Enemy Shields"
+- After a certain number of waves, some enemies (or new enemy) spawn with shields that give them 1 extra hit
+- no matter how much damage the player does, these enemies can take at least 2 hits
+
+"Aggressive Enemy Type"
+- enemies will swing swords or try and ram the player if player gets too close
+- short 'tell' before they hit the player, giving player time to dodge
+
+"Smart Enemy"
+- enemy that fires a net when behind the player
+- net moves pretty slowly
+- if this net hits player, they're movement is halted, and they have to rapidly press a button to break free
+
+"Enemy Pickup Behavior"
+- pickups move slower than enemies
+- if enemey detects pickup close to them, they attack it (but prioritize attacking player)
+- pickups will be destroyed in 2 hits from enemies
+
+"Pickup Collect"
+- if player is close enough to pickup, they can press 'C' to 'magnetize' pickup to them
+- visual indicator for when player is close enough to do this
+- player uses harpoon-whip to grab it
+- harpoon whip has a cooldown, indicated on the HUD
+
+"Enemy Avoid Shot"
+- enemy that holds a shield
+- this enemy blocks all melee attacks
+- player must use ranged attacks to hit them
+OR
+- enemy that is very quick
+- dodges all ranged attacks
+- player can only hit the enemy with melee attacks
+
+"Homing Projectile"
+- rare powerup that give player homing boomerang
+- boomerang returns to player after hitting enemy, or if there are no enemies to hit, after a certain distance
+- boomerang cracks with each enemy hit, disappearing after 5 hits (and after a timer?)
+
+"Boss AI"
+- waves culminate into a final boss wave
+- boss moves to the center of the screen and throws many ninja stars with unique attacks
+- boss health bar

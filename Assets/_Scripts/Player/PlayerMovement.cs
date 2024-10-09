@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 _curMoveDirection = Vector2.zero;
     [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
     [SerializeField] Vector2 _startPos;
-    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _dodgeMoveSpeed;
+    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _dodgeSpeed = 220;
     float _curSpeed;
     bool _sprinting;
 
@@ -31,10 +31,8 @@ public class PlayerMovement : MonoBehaviour
     bool _dodging;
     float _canDodgeTime = -1;
 
-    [SerializeField] float _dodgeDuration = 0.3f, _dodgeSpeedMultiplier = 1.1f;
+    [SerializeField] float _dodgeDuration = 0.3f;
     [SerializeField] float _dodgeCooldown = 0.3f;
-    Coroutine _resetDodgeCooldownRtn;
-    [SerializeField] float _dodgeCooldownPowerupActiveTime = 5;
 
     //----Stamina
     bool _staminaOnCooldown;
@@ -56,19 +54,23 @@ public class PlayerMovement : MonoBehaviour
     }
     float _dodgeStaminaCost = 0.35f, _sprintStaminaCostPerSec = 0.25f;
     float _maxStamina = 1;
-    float _defStaminaGain = 0.25f, _powerStaminaGain = 0.4f;
+    float _defStaminaGain = 0.25f;
     float _staminaGainPerSecond;
+    //Stamina Gain powerup
+    float _boostedStaminaGain = 0.4f;
+    Coroutine _disableStaminaBoostRtn;
+    [SerializeField] float _staminaBoostPowerupActiveTime = 5;
 
 #endregion
 #region Base Methods
 
     void OnEnable()
     {
-        Events.OnPowerupCollected += CollectDodgePowerup;
+        Events.OnPowerupCollected += CollectStaminaBoostPowerup;
     }
     void OnDisable()
     {
-        Events.OnPowerupCollected -= CollectDodgePowerup;
+        Events.OnPowerupCollected -= CollectStaminaBoostPowerup;
     }
 
     void Start()
@@ -87,10 +89,8 @@ public class PlayerMovement : MonoBehaviour
         _xInput = Input.GetAxisRaw("Horizontal");
         _yInput = Input.GetAxisRaw("Vertical");
 
-        _dodgeMoveSpeed = _sprintSpeed * _dodgeSpeedMultiplier;
         CheckForSprintInput();
         CheckForDodgeInput();
-
         UpdateStamina();
     }
 
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_dodging)
         {
-            _rBody.velocity = _curMoveDirection * _curSpeed * Time.fixedDeltaTime;
+            Move_LockedDirection();
         }
         else Move();
 
@@ -120,6 +120,14 @@ public class PlayerMovement : MonoBehaviour
         _curMoveDirection.x = _xInput;
         _curMoveDirection.y = _yInput;
         _curMoveDirection.Normalize();
+        _rBody.velocity = _curMoveDirection * _curSpeed * Time.fixedDeltaTime;
+    }
+
+    /// <summary>
+    /// Moves the player at current speed without changing the direction.
+    /// </summary>
+    void Move_LockedDirection()
+    {
         _rBody.velocity = _curMoveDirection * _curSpeed * Time.fixedDeltaTime;
     }
 
@@ -156,9 +164,7 @@ public class PlayerMovement : MonoBehaviour
         _sprinting = false;
         _animStateChanger.SprintStopped();
         if (!_dodging)
-        {
             _curSpeed = _walkSpeed;
-        }
     }
 
     #endregion
@@ -188,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _canDodgeTime = Time.time + _dodgeCooldown;
         _dodging = true;
-        _curSpeed = _dodgeMoveSpeed;
+        _curSpeed = _dodgeSpeed;
         DecrementStamina();
     }
 
@@ -198,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
     void SetDodgeForeignValues()
     {
         _animStateChanger.DodgeStarted();
-        transform.localScale = Vector2.one * 1.1f;
+        UIManager.Instance.DodgeIcon_Fade(_dodgeCooldown);
         _heart.EnableDodgeInvulnerability();
     }
     /// <summary>
@@ -220,25 +226,10 @@ public class PlayerMovement : MonoBehaviour
         _heart.DisableDodgeInvulnerability();
     }
 
-    public void CollectDodgePowerup(PowerupType powerupCollected)
+    IEnumerator DodgeCooldownRtn()
     {
-        if (powerupCollected == PowerupType.DodgeCooldown)
-        {
-            _staminaGainPerSecond = _powerStaminaGain;
-            if (_resetDodgeCooldownRtn != null)
-            {
-                StopCoroutine(_resetDodgeCooldownRtn);
-            }
-            _resetDodgeCooldownRtn = StartCoroutine(ResetDodgeCooldownRtn());
-        }
+        yield return HM.WaitTime(_dodgeCooldown);
     }
-    IEnumerator ResetDodgeCooldownRtn()
-    {
-        yield return HM.WaitTime(_dodgeCooldownPowerupActiveTime);
-        _staminaGainPerSecond = _defStaminaGain;
-    }
-
-
 
     #endregion
 
@@ -246,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateStamina()
     {
-        if (_sprinting)
+        if (PlayerIsMoving() && _sprinting)
         {
             DrainStamina();
         }
@@ -318,8 +309,32 @@ public class PlayerMovement : MonoBehaviour
             yield return waitForEndOfFrame;
         }
 
+        EndStaminaCooldown();
+    }
+    void EndStaminaCooldown()
+    {
         UIManager.Instance.StaminaCooldownVisual_Off();
         _staminaOnCooldown = false;
+    }
+
+    public void CollectStaminaBoostPowerup(PowerupType powerupCollected)
+    {
+        if (powerupCollected == PowerupType.StaminaBoost)
+        {
+            _staminaGainPerSecond = _boostedStaminaGain;
+            if (_disableStaminaBoostRtn != null)
+            {
+                StopCoroutine(_disableStaminaBoostRtn);
+            }
+            _disableStaminaBoostRtn = StartCoroutine(DisableStaminaBoostRtn());
+            UIManager.Instance.StaminaBoostIcon_Restore();
+        }
+    }
+    IEnumerator DisableStaminaBoostRtn()
+    {
+        yield return HM.WaitTime(_staminaBoostPowerupActiveTime);
+        _staminaGainPerSecond = _defStaminaGain;
+        UIManager.Instance.StaminaBoostIcon_Fade();
     }
 
     #endregion

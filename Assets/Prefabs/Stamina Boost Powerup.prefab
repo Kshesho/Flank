@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 2019705863
   m_SortingLayer: 3
   m_SortingOrder: 9
-  m_Sprite: {fileID: -1446054107, guid: d33a2ff402df1d64fb91b7a55c939690, type: 3}
-  m_Color: {r: 0.04221201, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 1659276538, guid: 135df8d91f415ae41a25bc0fcc67ef4f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2988766138204623012}
   - component: {fileID: 2607685160587126349}
   m_Layer: 0
-  m_Name: Dodge Cooldown Powerup
+  m_Name: Stamina Boost Powerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ Transform:
   m_Children:
   - {fileID: 1847745798697502623}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3692477694924684074
 MonoBehaviour:

@@ -61,7 +61,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 			case PowerupType.Shield:
 				_shieldPickupAuSrc.Play();
 				break;
-			case PowerupType.DodgeCooldown:
+			case PowerupType.StaminaBoost:
 				_dodgeCooldownAuSrc.Play();
 				break;
 			default:

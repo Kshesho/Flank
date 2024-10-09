@@ -1,15 +1,15 @@
 COMMIT
 cur - 
-[Framework - 'Thrusters'] moved dodge to the space key; Implemented sprinting and walking for the player; stamina now has cooldown when it hits 0
+[Framework - 'Thruster: Scaling Bar UI'] changed 'dodge cooldown' powerup to 'stamina boost' powerup that increases stamina fill rate. Also added new sprite for stamina boost powerup; Added 8-directional animations for dodge, walk, and run; added dodge and stamina boost icons on the HUD; fixed a bug where stamina would drain even if the player isn't moving; 
 
 last - 
-implemented a pause menu, pause functionality, and quit functionality; lowered music volume
+[Framework - 'Thrusters'] moved dodge to the space key; Implemented sprinting and walking for the player; stamina now has cooldown when it hits 0; renamed animations
 
 
 ------------------------------------------------------------------------------------
 TODO: 
 - Implement melee attack for enemy
-- BUG: player still animates when the game is paused.
+- BUG: player doesn't start sprinting when holding shift when the stamina cooldown ends
 - Have enemies NOT reappear at the top of the screen after player dies
 - Blend torso and legs player animations so the legs keep running when player attacks
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
@@ -39,9 +39,10 @@ Heights (rooftops, clouds)   <--- Highest
 - create walk animation and use run animation for sprint
 
 "Thruster: Scaling Bar UI"
-- Ask Thom: does a constant refilling stamina bar count as a cooldown system? Does it have to drain completely?
 - Stamina bar constantly refills at a slow rate
 - Change dodge cooldown powerup to stamina powerup that drasitcally increases stamina fill rate
+- sprite for stamina boost powerup - potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
+- sprite on HUD for dodge
 
 "Shield Strength"
 - player can collect up to 3 shield powerups at a time

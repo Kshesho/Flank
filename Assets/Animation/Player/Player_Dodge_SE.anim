@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Dodge_E
+  m_Name: Player_Dodge_SE
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1029913037, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
+      value: {fileID: 1653139687, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
     - time: 0.13333334
-      value: {fileID: 1029913037, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
+      value: {fileID: 1653139687, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1029913037, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
-    - {fileID: 1029913037, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
+    - {fileID: 1653139687, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
+    - {fileID: 1653139687, guid: de1f8e1cacd6c364fa335aba818c821d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

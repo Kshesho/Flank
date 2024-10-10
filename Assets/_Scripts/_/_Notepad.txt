@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[Framework - 'Thruster: Scaling Bar UI'] changed 'dodge cooldown' powerup to 'stamina boost' powerup that increases stamina fill rate. Also added new sprite for stamina boost powerup; Added 8-directional animations for dodge, walk, and run; added dodge and stamina boost icons on the HUD; fixed a bug where stamina would drain even if the player isn't moving; 
+[Framework - 'Shield Strength'] player now gets up to 3 shields that rotate around them; fixed (possibly temporarily) UI elements anchored to the corner moving when the project is closed and reopened
 
 last - 
-[Framework - 'Thrusters'] moved dodge to the space key; Implemented sprinting and walking for the player; stamina now has cooldown when it hits 0; renamed animations
+[Framework - 'Thruster: Scaling Bar UI'] changed 'dodge cooldown' powerup to 'stamina boost' powerup that increases stamina fill rate. Also added new sprite for stamina boost powerup; Added 8-directional animations for dodge, walk, and run; added dodge and stamina boost icons on the HUD; fixed a bug where stamina would drain even if the player isn't moving; 
 
 
 ------------------------------------------------------------------------------------
@@ -31,23 +31,11 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [FRAMEWORK]
 
-"Thrusters"
-- Sprint mechanic that makes the player move faster when LShift is held
-- Stamina is drained while sprinting
-- move dodge to the space key
-- dodging also drains stamina
-- create walk animation and use run animation for sprint
-
-"Thruster: Scaling Bar UI"
-- Stamina bar constantly refills at a slow rate
-- Change dodge cooldown powerup to stamina powerup that drasitcally increases stamina fill rate
-- sprite for stamina boost powerup - potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
-- sprite on HUD for dodge
-
 "Shield Strength"
 - player can collect up to 3 shield powerups at a time
-- each new shield appears in front of the last
-- when player is damaged, take away only the frontmost shield
+- up to 3 shields rotate around player
+- each new shield gets a random sprite
+- when player is damaged, take away only the last one
 
 "Ammo Count"
 - player can only throw 15 ninja stars
@@ -142,3 +130,11 @@ OR
 - waves culminate into a final boss wave
 - boss moves to the center of the screen and throws many ninja stars with unique attacks
 - boss health bar
+
+
+
+
+
+Credits:
+Character sprites by Chasersgaming [link]
+potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]

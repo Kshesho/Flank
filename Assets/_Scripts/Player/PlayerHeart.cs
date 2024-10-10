@@ -13,6 +13,7 @@ public class PlayerHeart : MonoBehaviour
 #region Variables
 
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
+    [SerializeField] PlayerShields _shields;
 
     [SerializeField] int _maxHealth = 100;
     int _currentHealth;
@@ -21,8 +22,25 @@ public class PlayerHeart : MonoBehaviour
     [SerializeField] GameObject _playerContainer;
     [SerializeField] Collider2D _thisCollider;
 
-    [SerializeField] GameObject _shield;
-    bool _shieldActive;
+    bool _shieldsActive;
+    int _shieldCount_DONTALTER;
+    int ShieldCount 
+    { 
+        get
+        {
+            return _shieldCount_DONTALTER;
+        }
+        set 
+        {
+            if (value < 0)
+                _shieldCount_DONTALTER = 0;
+
+            else if (value > 3)
+                _shieldCount_DONTALTER = 3;
+
+            else _shieldCount_DONTALTER = value;
+        } 
+    }
 
     bool _damageCooldownActive;
     float _damageCooldown = 0.8f;//This must match the time of the "Damaged_Flash" animation
@@ -33,12 +51,12 @@ public class PlayerHeart : MonoBehaviour
     void OnEnable()
     {
         Events.OnCollide += TakeDamage;
-        Events.OnPowerupCollected += ActivateShield;
+        Events.OnPowerupCollected += AddAShield;
     }
     void OnDisable()
     {
         Events.OnCollide -= TakeDamage;   
-        Events.OnPowerupCollected -= ActivateShield;
+        Events.OnPowerupCollected -= AddAShield;
     }
 
     void Start () 
@@ -66,9 +84,9 @@ public class PlayerHeart : MonoBehaviour
             _dodgeInvulnerability || _damageCooldownActive)
             return;
 
-        if (_shieldActive)
+        if (_shieldsActive)
         {
-            DisableShield();
+            RemoveAShield();
             StartCoroutine(DamageCooldownRtn());
             return;
         }
@@ -82,11 +100,6 @@ public class PlayerHeart : MonoBehaviour
         {
             Death();
         }
-    }
-    void DisableShield()
-    {
-        _shieldActive = false;
-        _shield.SetActive(false);
     }
 
     IEnumerator DamageCooldownRtn()
@@ -112,14 +125,21 @@ public class PlayerHeart : MonoBehaviour
         _dodgeInvulnerability = false;
     }
 
-    void ActivateShield(PowerupType powerupCollected)
+    void AddAShield(PowerupType powerupCollected)
     {
         if (powerupCollected == PowerupType.Shield)
         {
-            _shieldActive = true;
-            if (!_shield.activeSelf)
-                _shield.SetActive(true);
+            _shields.AddAShield();
+            ShieldCount++;
+            _shieldsActive = true;
         }
+    }
+    void RemoveAShield()
+    {
+        _shields.RemoveAShield();
+        ShieldCount--;
+        if (ShieldCount == 0)
+            _shieldsActive = false;
     }
 
 

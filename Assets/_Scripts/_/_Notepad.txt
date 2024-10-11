@@ -1,13 +1,14 @@
-COMMIT
+﻿COMMIT
 cur - 
-[Framework - 'Ammo Count'] Separated all 3 weapon types from PlayerWeaponController into their own classes; 
+[Framework - 'Ammo Collectible'] Capped shuriken ammo at 15; created ammo crate powerup that spawns separate from other powerups; changed the damage and health scale for everything to match better
 
 last - 
-added functionality to ensure all player's shield sprites are different; updated shields powerup sprite; gave player sprite a fade when player dodges; removed dodge UI icon and lowered dodge cooldown
+[Framework - 'Ammo Count'] Separated all 3 weapon types from PlayerWeaponController into their own classes
 
 
 ------------------------------------------------------------------------------------
 TODO: 
+- player actually attacks in the direction they're facing
 - Implement melee attack for enemy
 - BUG: player doesn't start sprinting when holding shift when the stamina cooldown ends
 - Have enemies NOT reappear at the top of the screen after player dies
@@ -15,6 +16,7 @@ TODO:
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
 - Import object pooling asset? (write article about it)
 - Make sure player can only open the treasure chest with melee
+- stamina boost powerup instantly completes cooldown
 
 
 COLLISION
@@ -33,15 +35,17 @@ Heights (rooftops, clouds)   <--- Highest
 [FRAMEWORK]
 
 "Ammo Count"
-- player can only throw 15 ninja stars
-- make ninja stars more noticable, faster
+✔️ player can only throw 15 ninja stars
+✔️ make ninja stars more noticable, faster
 - ninja stars make sound when hitting an enemy
-- UI icon with 'x15' to display ammo count
+✔️ UI icon with 'x15' to display ammo count
+- when javelin gets collected, HUD ammo icon changes
 
 "Ammo Collectible"
-- circle sprite with 3 ninja stars inside and a 'x15' icon to indicate that it refills that many ninja stars
-- ammo collectible spawn is separate from other powerups
+✔️ circle sprite with 3 ninja stars inside and a 'x15' icon to indicate that it refills that many ninja stars
+✔️ ammo collectible spawn is separate from other powerups
 - Throwing animation
+- ammo pickup audio in AudioManager
 
 "Health Collectible"
 - health powerup that gives the player 20HP

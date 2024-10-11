@@ -15,6 +15,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     [SerializeField] float _spawnCooldown = 2;
     [SerializeField] GameObject _enemyPrefab;
     [SerializeField] GameObject[] _powerupPrefabs;
+    [SerializeField] GameObject _ammoCratePref;
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
 
@@ -38,6 +39,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
 	    StartCoroutine(SpawnEnemiesRtn());
         StartCoroutine(SpawnPowerupsRtn());
+        StartCoroutine(SpawnAmmoCratesRtn());
 	}
 
     IEnumerator SpawnEnemiesRtn()
@@ -65,6 +67,18 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         int rand = Random.Range(0, _powerupPrefabs.Length);
         return _powerupPrefabs[rand];
+    }
+
+    IEnumerator SpawnAmmoCratesRtn()
+    {
+        while (_spawning)
+        {
+            float rand = Random.Range(8f, 14f);
+            yield return HM.WaitTime(rand);
+            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+
+            Instantiate(_ammoCratePref, spawnPos, Quaternion.identity);
+        }
     }
 
     void StopSpawning()

@@ -22547,6 +22547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911c712a88794a0419f749d55cb55e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 100
 --- !u!1 &256222295
 GameObject:
   m_ObjectHideFlags: 0
@@ -22595,7 +22596,7 @@ MonoBehaviour:
   _animStateChanger: {fileID: 464631658}
   _shieldsVisual: {fileID: 994193051}
   _playerSpriteRend: {fileID: 464631656}
-  _maxHealth: 10
+  _maxHealth: 100
   _playerContainer: {fileID: 464631650}
   _thisCollider: {fileID: 256222299}
 --- !u!61 &256222299
@@ -124209,7 +124210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownTime: 0.25
-  _shurikenProjectilePref: {fileID: 5577562111785511575, guid: c30b94fc91856d14cb89cbae36b967c6, type: 3}
+  _shurikenProjectilePref: {fileID: 5577562111785511575, guid: 94126ca117f6b7242b5e0eefa319fbb7, type: 3}
 --- !u!1 &851112163
 GameObject:
   m_ObjectHideFlags: 0
@@ -124333,13 +124334,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32974562805ad8b41ae428e3835da257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreTxt: {fileID: 2087213807}
+  _killsTxt: {fileID: 2087213807}
   _hpTxt: {fileID: 712864385}
   _hpBarImage: {fileID: 1307028000}
+  _ammoTxt: {fileID: 473235432}
   _staminaBarImage: {fileID: 88208652}
   _staminaBarBorderImage: {fileID: 1900591210}
-  _dodgeIconBg: {fileID: 0}
-  _dodgeIcon: {fileID: 0}
   _staminaBoostIcon1: {fileID: 2084717979}
   _staminaBoostIcon2: {fileID: 1798658493}
   _staminaBoostIconBG: {fileID: 76486645}
@@ -150677,6 +150677,7 @@ MonoBehaviour:
   - {fileID: 8806764661194659718, guid: b0cb747a209e1114c8a3cc111a359633, type: 3}
   - {fileID: 8806764661194659718, guid: ae7bda8db09ea634aadd034a690e7b80, type: 3}
   - {fileID: 8806764661194659718, guid: d6d39d3e679455346bede418f5657a41, type: 3}
+  _ammoCratePref: {fileID: 8806764661194659718, guid: 6d2f6308d88f02646b514d3ce6030c32, type: 3}
 --- !u!4 &1961646041
 Transform:
   m_ObjectHideFlags: 0

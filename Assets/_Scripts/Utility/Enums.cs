@@ -4,6 +4,7 @@ public enum PowerupType
 {
     Javelin,
     Shield,
-    StaminaBoost
+    StaminaBoost,
+    Ammo
 }
 

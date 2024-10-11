@@ -14,17 +14,19 @@ public class UIManager : MonoSingleton<UIManager>
 {
 #region Variables
 
-    [SerializeField] TextMeshProUGUI _scoreTxt;
+    [SerializeField] TextMeshProUGUI _killsTxt;
 
     [SerializeField] TextMeshProUGUI _hpTxt;
     [SerializeField] Image _hpBarImage;
+
+    [SerializeField] TextMeshProUGUI _ammoTxt;
 
     [SerializeField] Image _staminaBarImage;
     [SerializeField] GameObject _staminaBarBorderImage;
     Color _halfAlpha = new Color(1, 1, 1, 0.5f);
 
     //Abilities
-    [SerializeField] Image _dodgeIconBg, _dodgeIcon, _staminaBoostIcon1, _staminaBoostIcon2, _staminaBoostIconBG;
+    [SerializeField] Image _staminaBoostIcon1, _staminaBoostIcon2, _staminaBoostIconBG;
     Color _fadedGreen = new Color(0, 0.502f, 0.09449412f, 1);
 
     [SerializeField] GameObject _gameOverScreen;
@@ -48,7 +50,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void UpdateScoreText(int score)
     {
-        _scoreTxt.text = "Kills: " + score;
+        _killsTxt.text = "Kills: " + score;
     }
 
     public void UpdateHealthUI(int curHealth, int totalHealth)
@@ -77,6 +79,11 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _staminaBarBorderImage.SetActive(false);
         _staminaBarImage.color = Color.white;
+    }
+
+    public void UpdateAmmoCount(int count)
+    {
+        _ammoTxt.text = count.ToString();
     }
 
     //Abilities

@@ -15,18 +15,46 @@ public class Shurikens : Weapon
     [SerializeField] GameObject _shurikenProjectilePref;
     Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
+    int _ammo = 15;
+
 #endregion
+
+    private void OnEnable()
+    {
+        Events.OnPowerupCollected += FillAmmo;
+    }
+    private void OnDisable()
+    {
+        Events.OnPowerupCollected -= FillAmmo;
+    }
 
     public override void Attack()
     {
         if (CooldownFinished())
         {
-            //check for and deduct ammo
-            Instantiate(_shurikenProjectilePref, transform.position + _spawnOffset, Quaternion.identity);
-            StartCooldown();
-            //player throw animation
-            //sound effect
+            if (_ammo > 0)
+            {
+                DeductAmmo();
+                Instantiate(_shurikenProjectilePref, transform.position + _spawnOffset, Quaternion.identity);
+                StartCooldown();
+                //player throw animation
+                //sound effect
+            }
         }
+    }
+
+    public void FillAmmo(PowerupType powerupType)
+    {
+        if (powerupType == PowerupType.Ammo)
+        {
+            _ammo = 15;
+            UIManager.Instance.UpdateAmmoCount(_ammo);
+        }
+    }
+    void DeductAmmo()
+    {
+        _ammo--;
+        UIManager.Instance.UpdateAmmoCount(_ammo);
     }
 
 

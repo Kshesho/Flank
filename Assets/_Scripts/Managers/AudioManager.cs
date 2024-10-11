@@ -64,6 +64,9 @@ public class AudioManager : MonoSingleton<AudioManager>
 			case PowerupType.StaminaBoost:
 				_dodgeCooldownAuSrc.Play();
 				break;
+			case PowerupType.Ammo:
+				
+				break;
 			default:
 				Debug.LogError($"No audio functionality assigned for [{powerupType}] powerup type!");
 				break;

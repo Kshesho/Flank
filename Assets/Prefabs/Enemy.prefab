@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyMovement: {fileID: 7171967419205868428}
   _animStateChanger: {fileID: 3479727073672173237}
-  _health: 10
+  _health: 50
   _enemyContainer: {fileID: 541813928304913277}
   _thisCollider: {fileID: 2744672957695426269}
 --- !u!61 &2744672957695426269
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a413989244919498a23fd698aa30c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 2
+  _damage: 20
 --- !u!61 &8472701223970630552
 BoxCollider2D:
   m_ObjectHideFlags: 0

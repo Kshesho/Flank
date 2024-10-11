@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -1706072055
   m_SortingLayer: 2
   m_SortingOrder: 10
-  m_Sprite: {fileID: -338259902, guid: f5926fce59ea4a0468fb39ee8222bd4b, type: 3}
+  m_Sprite: {fileID: -1216449190, guid: f5926fce59ea4a0468fb39ee8222bd4b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5254664130666719034}
   - component: {fileID: 2654065200456353664}
   m_Layer: 0
-  m_Name: Ninja Star
+  m_Name: Shuriken Projectile
   m_TagString: PWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,12 +114,12 @@ Transform:
   m_GameObject: {fileID: 5577562111785511575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8703850426678134456}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6833021039667414617
 MonoBehaviour:
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61084eec430ec784a8382a580c506b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _damage: 2
+  _moveSpeed: 10
+  _damage: 25
 --- !u!114 &3805673163220935855
 MonoBehaviour:
   m_ObjectHideFlags: 0

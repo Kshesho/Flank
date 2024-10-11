@@ -1,58 +1,33 @@
 #region Using Statements
 using Narzioth.Utilities;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 #endregion
 
 /// <summary>
-/// Handles input and activating player's weapons when appropriate.
+/// Handles input and toggling player's weapons.
 /// </summary>
 public class PlayerWeaponController : MonoBehaviour 
 {
 #region Variables
 
-    [SerializeField] PlayerAnimStateChanger _playerAnimChanger;
-
-    bool _ninjaStarActive = true, _javelinActive;
-
-    [SerializeField] GameObject _ninjaStarPref;
-    [SerializeField] float _nsCooldownTime = 0.25f;
-    float _canThrowNSTime = -1;
-    bool NinjaStarCooldownFinished()
-    {
-        if (_canThrowNSTime < Time.time)
-            return true;
-        return false;
-    }
-    Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
-
-    //----Javelin
-    [SerializeField] GameObject _javelinPref;
-    [SerializeField] float _javelinCooldownTime = 0.7f;
-    float _canThrowJavTime = -1;
-    bool JavelinCooldownFinished()
-    {
-        if (_canThrowJavTime < Time.time)
-            return true;
-        return false;
-    }
     Coroutine _disableJavelinRtn;
-    float _javelinActiveTime = 5;
+    float _javelinActiveTime = 6;
 
+    Weapon _primaryActiveWeapon;
+    [SerializeField] Weapon _sword;
 
-    float _swordCooldownTime = 0.5f;
-    [SerializeField] Animator _swordAnim;
-    float _canSwingTime = -1;
-    bool SwordCooldownFinished()
-    {
-        if (_canSwingTime < Time.time)
-            return true;
-        return false;
-    }
+    Weapon _secondaryActiveWeapon;
+    [SerializeField] Weapon _shurikens, _javelins;
 
 #endregion
 #region Base Methods
+
+    void Start()
+    {
+        _primaryActiveWeapon = _sword;
+        _secondaryActiveWeapon = _shurikens;
+    }
 
     void OnEnable()
     {
@@ -68,58 +43,24 @@ public class PlayerWeaponController : MonoBehaviour
         if (GameManager.Instance.GamePaused)
             return;
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (_ninjaStarActive)
-                ThrowNinjaStar();
-            else if (_javelinActive)
-                ThrowJavelin();
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
-            if (SwordCooldownFinished())
-            {
-                SwingSword();
-            }
+            _primaryActiveWeapon.Attack();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            _secondaryActiveWeapon.Attack();
         }
 	}
 
 #endregion
 
-    void SwingSword()
-    {
-        _canSwingTime = Time.time + _swordCooldownTime;
-        _swordAnim.SetTrigger("swing");
-        _playerAnimChanger.Attack();
-        AudioManager.Instance.PlaySwordSwing();
-    }
-
-    void ThrowNinjaStar()
-    {
-        if (NinjaStarCooldownFinished())
-        {
-            Instantiate(_ninjaStarPref, transform.position + _spawnOffset, Quaternion.identity);
-            _canThrowNSTime = Time.time + _nsCooldownTime;
-        }
-    }
-
-    void ThrowJavelin()
-    {
-        if (JavelinCooldownFinished())
-        {
-            Instantiate(_javelinPref, transform.position, Quaternion.identity);
-            _canThrowJavTime = Time.time + _javelinCooldownTime;
-        }
-    }
-
-
     void CollectPowerup(PowerupType powerupType)
     {
         if (powerupType == PowerupType.Javelin) 
         {
-            _ninjaStarActive = false;
-            _javelinActive = true;
+            _secondaryActiveWeapon = _javelins;
             if (_disableJavelinRtn != null) StopCoroutine(_disableJavelinRtn);
             _disableJavelinRtn = StartCoroutine(DisableJevelinRtn());
         }
@@ -127,8 +68,7 @@ public class PlayerWeaponController : MonoBehaviour
     IEnumerator DisableJevelinRtn()
     {
         yield return HM.WaitTime(_javelinActiveTime);
-        _javelinActive = false;
-        _ninjaStarActive = true;
+        _secondaryActiveWeapon = _shurikens;
     }
 
 

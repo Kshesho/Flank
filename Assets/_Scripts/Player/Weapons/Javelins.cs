@@ -7,12 +7,11 @@ using UnityEngine;
 /// <summary>
 /// (responsibility of this class)
 /// </summary>
-public class Sword : Weapon 
+public class Javelins : Weapon 
 {
 #region Variables
 
-    [SerializeField] PlayerAnimStateChanger _playerAnimChanger;
-    [SerializeField] Animator _swordAnim;
+    [SerializeField] GameObject _javelinProjectilePref;
 
 #endregion
 #region Base Methods
@@ -38,10 +37,10 @@ public class Sword : Weapon
     {
         if (CooldownFinished())
         {
+            Instantiate(_javelinProjectilePref, transform.position, Quaternion.identity);
             StartCooldown();
-            _swordAnim.SetTrigger("swing");
-            _playerAnimChanger.Attack();
-            AudioManager.Instance.PlaySwordSwing();
+            //player throw animatino
+            //sound effect
         }
     }
 

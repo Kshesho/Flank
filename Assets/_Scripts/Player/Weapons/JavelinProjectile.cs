@@ -5,9 +5,9 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// Handles the Javelin weapon's behavior
+/// Handles the Javelin projectile's behavior
 /// </summary>
-public class Javelin : MonoBehaviour 
+public class JavelinProjectile : MonoBehaviour 
 {
 #region Variables
 

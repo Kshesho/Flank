@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-added functionality to ensure all player's shield sprites are different; updated shields powerup sprite; gave player sprite a fade when player dodges; removed dodge UI icon and lowered dodge cooldown
+[Framework - 'Ammo Count'] Separated all 3 weapon types from PlayerWeaponController into their own classes; 
 
 last - 
-[Framework - 'Shield Strength'] player now gets up to 3 shields that rotate around them; fixed (possibly temporarily) UI elements anchored to the corner moving when the project is closed and reopened
+added functionality to ensure all player's shield sprites are different; updated shields powerup sprite; gave player sprite a fade when player dodges; removed dodge UI icon and lowered dodge cooldown
 
 
 ------------------------------------------------------------------------------------
@@ -41,6 +41,7 @@ Heights (rooftops, clouds)   <--- Highest
 "Ammo Collectible"
 - circle sprite with 3 ninja stars inside and a 'x15' icon to indicate that it refills that many ninja stars
 - ammo collectible spawn is separate from other powerups
+- Throwing animation
 
 "Health Collectible"
 - health powerup that gives the player 20HP

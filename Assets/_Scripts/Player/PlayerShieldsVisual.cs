@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Handles changing the visual state of the player's shields.
 /// </summary>
-public class PlayerShields : MonoBehaviour 
+public class PlayerShieldsVisual : MonoBehaviour 
 {
 #region Variables
 
@@ -17,6 +17,7 @@ public class PlayerShields : MonoBehaviour
     [SerializeField] SpriteRenderer _shieldSpriteRend1, _shieldSpriteRend2, _shieldSpriteRend3;
 
     [SerializeField] Sprite[] _shieldSprites;
+    List<Sprite> _activeShieldSprites = new List<Sprite>();
 
 #endregion
 
@@ -46,30 +47,50 @@ public class PlayerShields : MonoBehaviour
         if (_shield3.activeSelf)
         {
             _shield3.SetActive(false);
+            RemoveActiveShieldSprite(_shieldSpriteRend3);
             return;
         }
         if (_shield2.activeSelf)
         {
             _shield2.SetActive(false);
+            RemoveActiveShieldSprite(_shieldSpriteRend2);
             return;
         }
         if (_shield1.activeSelf)
         {
             _shield1.SetActive(false);
+            RemoveActiveShieldSprite(_shieldSpriteRend1);
             ToggleRotatingShields(false);
         }
+    }
+
+    /// <summary>
+    /// Returns a random shield sprite and adds it to the active shield sprites list.
+    /// </summary>
+    /// <returns></returns>
+    Sprite RandomShieldSprite()
+    {
+        int rand = Random.Range(0, _shieldSprites.Length);
+        Sprite chosenSprite = _shieldSprites[rand];
+
+        while (_activeShieldSprites.Contains(chosenSprite))
+        {
+            rand = Random.Range(0, _shieldSprites.Length);
+            chosenSprite = _shieldSprites[rand];
+        }
+
+        _activeShieldSprites.Add(chosenSprite);
+        return chosenSprite;
+    }
+
+    void RemoveActiveShieldSprite(SpriteRenderer shieldSpriteRend)
+    {
+        _activeShieldSprites.Remove(shieldSpriteRend.sprite);
     }
 
     void ToggleRotatingShields(bool toggle)
     {
         _rotateZAxis.enabled = toggle;
-    }
-
-    Sprite RandomShieldSprite()
-    {
-        int rand = Random.Range(0, _shieldSprites.Length);
-        return _shieldSprites[rand];
-        // how do I make sure only unique sprites get picked? call recursively?
     }
 
 

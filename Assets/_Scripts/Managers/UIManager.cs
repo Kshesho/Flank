@@ -80,18 +80,6 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     //Abilities
-    public void DodgeIcon_Fade(float dodgeCooldown)
-    {
-        _dodgeIcon.color = Color.gray;
-        _dodgeIconBg.color = Color.gray;
-        StartCoroutine(DodgeIconRestoreRtn(dodgeCooldown));
-    }
-    IEnumerator DodgeIconRestoreRtn(float dodgeCooldown)
-    {
-        yield return HM.WaitTime(dodgeCooldown);
-        _dodgeIcon.color = Color.white;
-        _dodgeIconBg.color = Color.white;
-    }
     public void StaminaBoostIcon_Fade()
     {
         _staminaBoostIconBG.color = Color.gray;

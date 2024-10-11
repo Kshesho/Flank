@@ -1,9 +1,9 @@
 COMMIT
 cur - 
-[Framework - 'Shield Strength'] player now gets up to 3 shields that rotate around them; fixed (possibly temporarily) UI elements anchored to the corner moving when the project is closed and reopened
+added functionality to ensure all player's shield sprites are different; updated shields powerup sprite; gave player sprite a fade when player dodges; removed dodge UI icon and lowered dodge cooldown
 
 last - 
-[Framework - 'Thruster: Scaling Bar UI'] changed 'dodge cooldown' powerup to 'stamina boost' powerup that increases stamina fill rate. Also added new sprite for stamina boost powerup; Added 8-directional animations for dodge, walk, and run; added dodge and stamina boost icons on the HUD; fixed a bug where stamina would drain even if the player isn't moving; 
+[Framework - 'Shield Strength'] player now gets up to 3 shields that rotate around them; fixed (possibly temporarily) UI elements anchored to the corner moving when the project is closed and reopened
 
 
 ------------------------------------------------------------------------------------
@@ -14,6 +14,7 @@ TODO:
 - Blend torso and legs player animations so the legs keep running when player attacks
 - custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
 - Import object pooling asset? (write article about it)
+- Make sure player can only open the treasure chest with melee
 
 
 COLLISION
@@ -30,12 +31,6 @@ Heights (rooftops, clouds)   <--- Highest
 
 -------------------------------------------------------------------------------------
 [FRAMEWORK]
-
-"Shield Strength"
-- player can collect up to 3 shield powerups at a time
-- up to 3 shields rotate around player
-- each new shield gets a random sprite
-- when player is damaged, take away only the last one
 
 "Ammo Count"
 - player can only throw 15 ninja stars
@@ -59,10 +54,10 @@ Heights (rooftops, clouds)   <--- Highest
 - pretty fast attack speed
 - use sprite shape to animate
 
-
 "Camera Shake"
 - camera shakes when player gets damaged
 - play damaged sound as well
+- add player death animations, sfx, and blood spatter particle sys
 
 
 

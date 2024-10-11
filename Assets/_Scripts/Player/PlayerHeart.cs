@@ -13,7 +13,10 @@ public class PlayerHeart : MonoBehaviour
 #region Variables
 
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
-    [SerializeField] PlayerShields _shields;
+    [SerializeField] PlayerShieldsVisual _shieldsVisual;
+    [SerializeField] SpriteRenderer _playerSpriteRend;
+
+    Color _fadedAlpha = new Color(1f, 1f, 1f, 0.3f);
 
     [SerializeField] int _maxHealth = 100;
     int _currentHealth;
@@ -95,7 +98,6 @@ public class PlayerHeart : MonoBehaviour
         _animStateChanger.Hit();
         UIManager.Instance.UpdateHealthUI(_currentHealth, _maxHealth);
         StartCoroutine(DamageCooldownRtn());
-        // TODO: update UI
         if (_currentHealth < 1)
         {
             Death();
@@ -105,8 +107,9 @@ public class PlayerHeart : MonoBehaviour
     IEnumerator DamageCooldownRtn()
     {
         _damageCooldownActive = true;
-        _animStateChanger.PlayDamageFlash();
+        _playerSpriteRend.color = _fadedAlpha;
         yield return HM.WaitTime(_damageCooldown);
+        _playerSpriteRend.color = Color.white;
         _damageCooldownActive = false;
     }
 
@@ -129,14 +132,14 @@ public class PlayerHeart : MonoBehaviour
     {
         if (powerupCollected == PowerupType.Shield)
         {
-            _shields.AddAShield();
+            _shieldsVisual.AddAShield();
             ShieldCount++;
             _shieldsActive = true;
         }
     }
     void RemoveAShield()
     {
-        _shields.RemoveAShield();
+        _shieldsVisual.RemoveAShield();
         ShieldCount--;
         if (ShieldCount == 0)
             _shieldsActive = false;

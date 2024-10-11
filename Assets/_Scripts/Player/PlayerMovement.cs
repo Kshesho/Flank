@@ -17,20 +17,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D _rBody;
     [SerializeField] PlayerAnimStateChanger _animStateChanger;
     [SerializeField] PlayerHeart _heart;
-
+    [SerializeField] SpriteRenderer _playerSpriteRend;
+    
     //----Movement
     float _xInput, _yInput;
     Vector2 _curMoveDirection = Vector2.zero;
-    [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
+    [Space(15)]
     [SerializeField] Vector2 _startPos;
-    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _dodgeSpeed = 220;
+    [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
+    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200;
     float _curSpeed;
     bool _sprinting;
 
     //----Dodge
     bool _dodging;
     float _canDodgeTime = -1;
+    Color _fadedAlpha = new Color(1, 1, 1, 0.3f);
 
+    [Space(15)]
+    [SerializeField] float _dodgeSpeed = 220;
     [SerializeField] float _dodgeDuration = 0.3f;
     [SerializeField] float _dodgeCooldown = 0.3f;
 
@@ -52,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
                 _curStamina_DONTALTER = _maxStamina;
         }
     }
-    float _dodgeStaminaCost = 0.35f, _sprintStaminaCostPerSec = 0.25f;
+    [SerializeField][Range(0f, 1f)] float _dodgeStaminaCost = 0.35f, _sprintStaminaCostPerSec = 0.25f;
     float _maxStamina = 1;
     float _defStaminaGain = 0.25f;
     float _staminaGainPerSecond;
@@ -184,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
     void Dodge()
     {
         SetDodgeLocalValues();
-        SetDodgeForeignValues();
+        SetDodgeForeignValues(true);
         StartCoroutine(EndDodgeRtn());
     }
     /// <summary>
@@ -201,11 +206,20 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Sets the values outside this class that are part of the dodge mechanic.
     /// </summary>
-    void SetDodgeForeignValues()
+    void SetDodgeForeignValues(bool dodgeActive)
     {
-        _animStateChanger.DodgeStarted();
-        UIManager.Instance.DodgeIcon_Fade(_dodgeCooldown);
-        _heart.EnableDodgeInvulnerability();
+        if (dodgeActive)
+        {
+            _animStateChanger.DodgeStarted();
+            _playerSpriteRend.color = _fadedAlpha;
+            _heart.EnableDodgeInvulnerability();
+        }
+        else
+        {
+            _animStateChanger.DodgeFinished();
+            _playerSpriteRend.color = Color.white;
+            _heart.DisableDodgeInvulnerability();
+        }
     }
     /// <summary>
     /// Ends the dodge after dodge duration.
@@ -221,9 +235,7 @@ public class PlayerMovement : MonoBehaviour
         else
             _curSpeed = _walkSpeed;
 
-        _animStateChanger.DodgeFinished();
-        transform.localScale = Vector2.one;
-        _heart.DisableDodgeInvulnerability();
+        SetDodgeForeignValues(false);
     }
 
     IEnumerator DodgeCooldownRtn()

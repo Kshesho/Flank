@@ -19,7 +19,9 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] TextMeshProUGUI _hpTxt;
     [SerializeField] Image _hpBarImage;
 
+    [SerializeField] GameObject _shurikenImage, _javelinImage;
     [SerializeField] TextMeshProUGUI _ammoTxt;
+    Coroutine _timerRtn;
 
     [SerializeField] Image _staminaBarImage;
     [SerializeField] GameObject _staminaBarBorderImage;
@@ -84,6 +86,43 @@ public class UIManager : MonoSingleton<UIManager>
     public void UpdateAmmoCount(int count)
     {
         _ammoTxt.text = count.ToString();
+    }
+    public void ChangeWeaponIcon(RangedWeaponType weaponType, int ammo)
+    {
+        switch (weaponType)
+        {
+            case RangedWeaponType.Shuriken:
+                _javelinImage.SetActive(false);
+                _shurikenImage.SetActive(true);
+
+                _ammoTxt.text = ammo.ToString();
+                break;
+            case RangedWeaponType.Javelin:
+                _shurikenImage.SetActive(false);
+                _javelinImage.SetActive(true);
+
+                if (_timerRtn != null)
+                {
+                    StopCoroutine(_timerRtn);
+                    //in case the text was turned red by the stopped coroutine
+                    _ammoTxt.color = Color.white;
+                }
+                _timerRtn = StartCoroutine(TimerRtn(ammo));
+
+                break;
+        }
+    }
+    IEnumerator TimerRtn(int activeTime)
+    {
+        for (int i = activeTime; i > 0; i--)
+        {
+            _ammoTxt.text = $"{i}s";
+            if (i < 3)
+                _ammoTxt.color = Color.red;
+
+            yield return HM.WaitTime(1);
+        }
+        _ammoTxt.color = Color.white;
     }
 
     //Abilities

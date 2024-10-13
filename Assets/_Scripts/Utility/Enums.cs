@@ -8,3 +8,8 @@ public enum PowerupType
     Ammo
 }
 
+public enum RangedWeaponType
+{
+    Shuriken,
+    Javelin
+}

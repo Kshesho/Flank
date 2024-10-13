@@ -46,6 +46,11 @@ public class PlayerAnimStateChanger : MonoBehaviour
         _anim.SetTrigger("attack");
     }
 
+    public void Throw()
+    {
+        _anim.SetTrigger("throw");
+    }
+
     public void DodgeStarted()
     {
         _dodging = true;

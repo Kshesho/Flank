@@ -12,13 +12,15 @@ public class PlayerWeaponController : MonoBehaviour
 #region Variables
 
     Coroutine _disableJavelinRtn;
-    float _javelinActiveTime = 6;
+    int _javelinActiveTime = 6;
 
     Weapon _primaryActiveWeapon;
     [SerializeField] Weapon _sword;
 
     Weapon _secondaryActiveWeapon;
     [SerializeField] Weapon _shurikens, _javelins;
+    // TODO: when using GetComponent again, remove this reference. OR have a different base type for ranged weapons
+    [SerializeField] Shurikens _shurikensSpecificReference;
 
 #endregion
 #region Base Methods
@@ -40,9 +42,17 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update () 
     {
-        if (GameManager.Instance.GamePaused)
-            return;
+        if (!GameManager.Instance.GamePaused && 
+            !PlayerStateManager.Instance.PlayerIsBusy())
+        {
+            HandleAttackInput();
+        }
+	}
 
+#endregion
+
+    void HandleAttackInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             _primaryActiveWeapon.Attack();
@@ -52,15 +62,14 @@ public class PlayerWeaponController : MonoBehaviour
         {
             _secondaryActiveWeapon.Attack();
         }
-	}
-
-#endregion
+    }
 
     void CollectPowerup(PowerupType powerupType)
     {
         if (powerupType == PowerupType.Javelin) 
         {
             _secondaryActiveWeapon = _javelins;
+            UIManager.Instance.ChangeWeaponIcon(RangedWeaponType.Javelin, _javelinActiveTime);
             if (_disableJavelinRtn != null) StopCoroutine(_disableJavelinRtn);
             _disableJavelinRtn = StartCoroutine(DisableJevelinRtn());
         }
@@ -69,6 +78,8 @@ public class PlayerWeaponController : MonoBehaviour
     {
         yield return HM.WaitTime(_javelinActiveTime);
         _secondaryActiveWeapon = _shurikens;
+        // TDOD: instead of changing back to Shuriken, change back to whichever weapon is equipped
+        UIManager.Instance.ChangeWeaponIcon(RangedWeaponType.Shuriken, _shurikensSpecificReference.Ammo);
     }
 
 

@@ -18,11 +18,13 @@ public class AudioManager : MonoSingleton<AudioManager>
 	[SerializeField] AudioSource _swordSwingAuSrc;
 	[SerializeField] AudioClip[] _swordSwingAuClips;
 
-	[SerializeField] AudioSource _javelinPickupAuSrc, _shieldPickupAuSrc, _dodgeCooldownAuSrc;
+	[SerializeField] AudioSource _javelinPickupAuSrc, _shieldPickupAuSrc, _staminaBoostAuSrc;
+	[SerializeField] AudioSource _ammoPickupAuSrc;
 
 	[Header("Enemy SFX")]
 	[SerializeField] AudioSource _enemyDeathAuSrc;
 	[SerializeField] AudioClip[] _enemyDeathAuClips;
+	[SerializeField] AudioSource _enemyImpactAuSrc;
 
 #endregion
 #region Base Methods
@@ -62,15 +64,20 @@ public class AudioManager : MonoSingleton<AudioManager>
 				_shieldPickupAuSrc.Play();
 				break;
 			case PowerupType.StaminaBoost:
-				_dodgeCooldownAuSrc.Play();
+				_staminaBoostAuSrc.Play();
 				break;
 			case PowerupType.Ammo:
-				
+				PlayAmmoPickup();
 				break;
 			default:
 				Debug.LogError($"No audio functionality assigned for [{powerupType}] powerup type!");
 				break;
 		}
+	}
+	void PlayAmmoPickup()
+	{
+		_ammoPickupAuSrc.pitch = Random.Range(0.9f, 1.1f);
+		_ammoPickupAuSrc.Play();
 	}
 
 	public void PlayEnemyDeath()
@@ -78,6 +85,11 @@ public class AudioManager : MonoSingleton<AudioManager>
 		_enemyDeathAuSrc.pitch = Random.Range(0.9f, 1.1f);
 		int rand = Random.Range(0, _enemyDeathAuClips.Length);
 		_enemyDeathAuSrc.PlayOneShot(_enemyDeathAuClips[rand]);
+	}
+
+	public void PlayEnemyImpact()
+	{
+		_enemyImpactAuSrc.Play();
 	}
 
 

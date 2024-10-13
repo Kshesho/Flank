@@ -11,6 +11,7 @@ public class Javelins : Weapon
 {
 #region Variables
 
+    [SerializeField] PlayerAnimStateChanger _playerAnimStateChanger;
     [SerializeField] GameObject _javelinProjectilePref;
 
 #endregion
@@ -39,7 +40,7 @@ public class Javelins : Weapon
         {
             Instantiate(_javelinProjectilePref, transform.position, Quaternion.identity);
             StartCooldown();
-            //player throw animatino
+            _playerAnimStateChanger.Throw();
             //sound effect
         }
     }

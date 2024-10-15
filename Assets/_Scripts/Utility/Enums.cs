@@ -5,7 +5,8 @@ public enum PowerupType
     Javelin,
     Shield,
     StaminaBoost,
-    Ammo
+    Ammo,
+    HealthPotion
 }
 
 public enum RangedWeaponType

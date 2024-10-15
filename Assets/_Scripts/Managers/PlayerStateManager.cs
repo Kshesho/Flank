@@ -24,7 +24,6 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
         if (PlayerIsAttacking || PlayerIsDodging || PlayerIsBeingHit)
             return true;
 
-        
         return false;
     }
 

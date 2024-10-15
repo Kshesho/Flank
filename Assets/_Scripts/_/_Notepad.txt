@@ -1,10 +1,9 @@
 ﻿COMMIT
 cur - 
-gave player throwing animation; player can no longer attack while dodging, attacking, or being hit; HUD ammo icon changes based on which ranged weapon you're using; added projectile impact and ammo pickup sfx
+[Framework - 'Health Collectible'] implemented health potion powerup; added a tail to the health bar; improved the HUD
 
 last - 
-[Framework - 'Ammo Collectible'] Capped shuriken ammo at 15; created ammo crate powerup that spawns separate from other powerups; changed the damage and health scale for everything to match better
-
+gave player throwing animation; player can no longer attack while dodging, attacking, or being hit; HUD ammo icon changes based on which ranged weapon you're using; added projectile impact and ammo pickup sfx
 
 
 ------------------------------------------------------------------------------------
@@ -35,23 +34,11 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [FRAMEWORK]
 
-"Ammo Count"
-✔️ player can only throw 15 ninja stars
-✔️ make ninja stars more noticable, faster
-✔️ ninja stars make sound when hitting an enemy
-✔️ UI icon with 'x15' to display ammo count
-✔️ when javelin gets collected, HUD ammo icon changes
-
-"Ammo Collectible"
-✔️ circle sprite with 3 ninja stars inside and a 'x15' icon to indicate that it refills that many ninja stars
-✔️ ammo collectible spawn is separate from other powerups
-✔️ Throwing animation
-✔️ ammo pickup audio in AudioManager
-
 "Health Collectible"
-- health powerup that gives the player 20HP
-- red potion sprite
-- secondary BG HP bar fills ahead of the main one
+♠ health powerup that gives the player 20HP
+♠ red potion sprite
+♠ secondary BG HP bar fills ahead of the main one
+♠ improvee look of HUD
 
 "Secondary Fire Powerup"
 - a whip that the player sweeps in front of them

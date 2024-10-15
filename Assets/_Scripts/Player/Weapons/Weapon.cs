@@ -15,24 +15,6 @@ public abstract class Weapon : MonoBehaviour
     protected float _canAtkTime;
 
 #endregion
-#region Base Methods
-
-    void Awake()
-    {
-        
-    }
-
-    void Start () 
-    {
-		
-	}
-	
-	void Update () 
-    {
-		
-	}
-
-#endregion
 
     public abstract void Attack();
 

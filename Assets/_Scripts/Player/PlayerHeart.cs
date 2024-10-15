@@ -55,21 +55,18 @@ public class PlayerHeart : MonoBehaviour
     {
         Events.OnCollide += TakeDamage;
         Events.OnPowerupCollected += AddAShield;
+        Events.OnPowerupCollected += Heal;
     }
     void OnDisable()
     {
         Events.OnCollide -= TakeDamage;   
         Events.OnPowerupCollected -= AddAShield;
+        Events.OnPowerupCollected -= Heal;
     }
 
     void Start () 
     {
         InitHealth();
-	}
-	
-	void Update () 
-    {
-		
 	}
 
 
@@ -78,7 +75,7 @@ public class PlayerHeart : MonoBehaviour
     void InitHealth()
     {
         _currentHealth = _maxHealth;
-        UIManager.Instance.UpdateHealthUI(_maxHealth, _maxHealth);
+        UIManager.Instance.UpdateHealthUI(0, _maxHealth, _maxHealth);
     }
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)
@@ -94,9 +91,10 @@ public class PlayerHeart : MonoBehaviour
             return;
         }
 
+        int previousHealth = _currentHealth;
         _currentHealth -= damage;
         _animStateChanger.Hit();
-        UIManager.Instance.UpdateHealthUI(_currentHealth, _maxHealth);
+        UIManager.Instance.UpdateHealthUI(previousHealth, _currentHealth, _maxHealth);
         StartCoroutine(DamageCooldownRtn());
         if (_currentHealth < 1)
         {
@@ -111,6 +109,19 @@ public class PlayerHeart : MonoBehaviour
         yield return HM.WaitTime(_damageCooldown);
         _playerSpriteRend.color = Color.white;
         _damageCooldownActive = false;
+    }
+
+    void Heal(PowerupType powerupCollected)
+    {
+        if (powerupCollected == PowerupType.HealthPotion)
+        {
+            int previousHealth = _currentHealth;
+            _currentHealth += 50;
+            if (_currentHealth > _maxHealth)
+                _currentHealth = _maxHealth;
+            
+            UIManager.Instance.UpdateHealthUI(previousHealth, _currentHealth, _maxHealth);
+        }
     }
 
     void Death()

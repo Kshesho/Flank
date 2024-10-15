@@ -18,6 +18,12 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] TextMeshProUGUI _hpTxt;
     [SerializeField] Image _hpBarImage;
+    //tail
+    [SerializeField] Image _hpTailImage;
+    Coroutine _hpTailRtn;
+    bool _hpTailRtnRunning;
+    bool _hpTailMoving;
+    [SerializeField] float _hpTailLerpSpeed = 1;
 
     [SerializeField] GameObject _shurikenImage, _javelinImage;
     [SerializeField] TextMeshProUGUI _ammoTxt;
@@ -29,7 +35,9 @@ public class UIManager : MonoSingleton<UIManager>
 
     //Abilities
     [SerializeField] Image _staminaBoostIcon1, _staminaBoostIcon2, _staminaBoostIconBG;
-    Color _fadedGreen = new Color(0, 0.502f, 0.09449412f, 1);
+    Color _green = new Color(0, 0.502f, 0.09449412f, 1);
+    Color _fadedGreen = new Color(0, 0.502f, 0.09449412f, 0.33f);
+    Color _tenthAlpha = new Color(1, 1, 1, 0.1f);
 
     [SerializeField] GameObject _gameOverScreen;
 
@@ -48,18 +56,67 @@ public class UIManager : MonoSingleton<UIManager>
 		Events.OnPlayerDeath -= GameOverUI;
 	}
 
-#endregion
-
-    public void UpdateScoreText(int score)
+    void Update()
     {
-        _killsTxt.text = "Kills: " + score;
+        HealthTailFollow();
     }
 
-    public void UpdateHealthUI(int curHealth, int totalHealth)
+#endregion
+
+    /// <summary>
+    /// Updates the health bar on the HUD, showing a trailing health bar if <paramref name="curHealth"/> is less than <paramref name="previousHealth"/>.
+    /// </summary>
+    /// <param name="previousHealth"></param>
+    /// <param name="curHealth"></param>
+    /// <param name="totalHealth"></param>
+    public void UpdateHealthUI(int previousHealth, int curHealth, int totalHealth)
     {
+        bool losingHealth = curHealth < previousHealth ? true : false;
+
+        // TODO:
+        ///let's say I lose 80 HP
+        ///then I gain 50
+        ///How do I make sure the lerp doesn't stop until it's caught up with the current fill?
+
         _hpTxt.text = $"{curHealth} / {totalHealth}";
         float fillAmount = (float)curHealth / (float)totalHealth;
         _hpBarImage.fillAmount = fillAmount;
+
+        if (losingHealth)
+        {
+            if (!_hpTailRtnRunning)
+                _hpTailRtn = StartCoroutine(HpTailRtn());
+        }
+        else
+        {
+            if (_hpTailRtn != null) StopCoroutine(_hpTailRtn);
+            _hpTailMoving = false;
+            _hpTailImage.fillAmount = _hpBarImage.fillAmount - 0.01f;
+        }
+    }
+    IEnumerator HpTailRtn()
+    {
+        _hpTailRtnRunning = true;
+
+        yield return HM.WaitTime(1.1f);
+        _hpTailMoving = true;
+
+        _hpTailRtnRunning = false;
+    }
+    void HealthTailFollow()
+    {
+        if (_hpTailMoving)
+        {
+            if (_hpTailImage.fillAmount > _hpBarImage.fillAmount)
+            {
+                _hpTailImage.fillAmount -= _hpTailLerpSpeed * Time.deltaTime;
+            }
+            else
+            {
+                _hpTailMoving = false;
+                _hpTailImage.fillAmount = _hpBarImage.fillAmount - 0.01f;
+            }
+        }
     }
 
     /// <summary>
@@ -125,18 +182,23 @@ public class UIManager : MonoSingleton<UIManager>
         _ammoTxt.color = Color.white;
     }
 
+    public void UpdateScoreText(int score)
+    {
+        _killsTxt.text = "Kills: " + score;
+    }
+
     //Abilities
     public void StaminaBoostIcon_Fade()
     {
-        _staminaBoostIconBG.color = Color.gray;
+        _staminaBoostIconBG.color = _tenthAlpha;
         _staminaBoostIcon1.color = _fadedGreen;
         _staminaBoostIcon2.color = _fadedGreen;
     }
     public void StaminaBoostIcon_Restore()
     {
          _staminaBoostIconBG.color = Color.white;
-        _staminaBoostIcon1.color = Color.green;
-        _staminaBoostIcon2.color = Color.green;
+        _staminaBoostIcon1.color = _green;
+        _staminaBoostIcon2.color = _green;
     }
 
 

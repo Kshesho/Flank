@@ -46,6 +46,11 @@ public class PlayerAnimStateChanger : MonoBehaviour
         _anim.SetTrigger("attack");
     }
 
+    public void AttackGeneric()
+    {
+        _anim.SetTrigger("attack_g");
+    }
+
     public void Throw()
     {
         _anim.SetTrigger("throw");

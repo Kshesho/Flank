@@ -15,7 +15,7 @@ public class PlayerWeaponController : MonoBehaviour
     int _javelinActiveTime = 6;
 
     Weapon _primaryActiveWeapon;
-    [SerializeField] Weapon _sword;
+    [SerializeField] Weapon _sword, _whip;
 
     Weapon _secondaryActiveWeapon;
     [SerializeField] Weapon _shurikens, _javelins;
@@ -27,7 +27,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Start()
     {
-        _primaryActiveWeapon = _sword;
+        _primaryActiveWeapon = _whip;
         _secondaryActiveWeapon = _shurikens;
     }
 

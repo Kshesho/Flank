@@ -7,12 +7,12 @@ using UnityEngine;
 /// <summary>
 /// (responsibility of this class)
 /// </summary>
-public class Sword : Weapon 
+public class Whip : Weapon 
 {
 #region Variables
 
-    [SerializeField] PlayerAnimStateChanger _playerAnimChanger;
-    [SerializeField] Animator _swordAnim;
+    [SerializeField] Animator _whipAnim;
+    [SerializeField] PlayerAnimStateChanger _playerAnimStateChanger;
 
 #endregion
 
@@ -21,9 +21,9 @@ public class Sword : Weapon
         if (CooldownFinished())
         {
             StartCooldown();
-            _swordAnim.SetTrigger("swing");
-            _playerAnimChanger.Attack();
-            AudioManager.Instance.PlaySwordSwing();
+            _whipAnim.SetTrigger("whip");
+            _playerAnimStateChanger.AttackGeneric();
+            //sound effect(s)
         }
     }
 

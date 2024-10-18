@@ -3,9 +3,9 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// Handles the collision for the sword weapon
+/// Handles the collision for player's weapons.
 /// </summary>
-public class SwordCollision : MonoBehaviour 
+public class PlayerWeaponCollision : MonoBehaviour 
 {
     [SerializeField] int _damage = 100;
 

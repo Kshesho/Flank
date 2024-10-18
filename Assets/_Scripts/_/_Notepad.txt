@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Framework - 'Health Collectible'] implemented health potion powerup; added a tail to the health bar; improved the HUD
+[Framework - 'Secondary Fire Powerup'] created a whip weapon that is rigged with a Sprite Skin. Player animations and whip attack animation still need to be tweaked and a powerup needs to be created for it.
 
 last - 
-gave player throwing animation; player can no longer attack while dodging, attacking, or being hit; HUD ammo icon changes based on which ranged weapon you're using; added projectile impact and ammo pickup sfx
+[Framework - 'Health Collectible'] implemented health potion powerup; added a tail to the health bar; improved the HUD
 
 
 ------------------------------------------------------------------------------------
@@ -34,18 +34,13 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [FRAMEWORK]
 
-"Health Collectible"
-♠ health powerup that gives the player 20HP
-♠ red potion sprite
-♠ secondary BG HP bar fills ahead of the main one
-♠ improvee look of HUD
 
 "Secondary Fire Powerup"
-- a whip that the player sweeps in front of them
+♠ a whip that the player sweeps in front of them
 - javelin[80% chance to spawn], whip[20% chance]
-- kills pirates in 2 hits
-- pretty fast attack speed
-- use sprite shape to animate
+- kills pirates in 1 hit
+- slow attack speed
+♠ use sprite shape to animate
 
 "Camera Shake"
 - camera shakes when player gets damaged
@@ -126,3 +121,4 @@ OR
 Credits:
 Character sprites by Chasersgaming [link]
 potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
+weapon sprites by Bennyboi_hack [https://opengameart.org/content/16x16-weapon-sprites-free]

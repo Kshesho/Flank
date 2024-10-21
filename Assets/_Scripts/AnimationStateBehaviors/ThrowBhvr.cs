@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBhvr : StateMachineBehaviour
+public class ThrowBhvr : StateMachineBehaviour
 {
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerStateManager.Instance.HitFinished();
+        PlayerStateManager.Instance.ThrowFinished();
     }
 
 }

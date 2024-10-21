@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
 
     //--references
     [SerializeField] Rigidbody2D _rBody;
-    [SerializeField] PlayerAnimStateChanger _animStateChanger;
     [SerializeField] PlayerHeart _heart;
     [SerializeField] SpriteRenderer _playerSpriteRend;
     
@@ -25,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(15)]
     [SerializeField] Vector2 _startPos;
     [SerializeField] float _xBounds = 9.37f, _yBounds = 5;
-    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200;
+    [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _heavyAtkMoveSpeed = 50;
     float _curSpeed;
     bool _sprinting;
 
@@ -72,10 +71,14 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         Events.OnPowerupCollected += CollectStaminaBoostPowerup;
+        Events.OnPlayerHeavyAttackStarted += SetHeavyAttackSpeed;
+        Events.OnPlayerHeavyAttackFinished += ResetSpeed;
     }
     void OnDisable()
     {
         Events.OnPowerupCollected -= CollectStaminaBoostPowerup;
+        Events.OnPlayerHeavyAttackStarted -= SetHeavyAttackSpeed;
+        Events.OnPlayerHeavyAttackFinished -= ResetSpeed;
     }
 
     void Start()
@@ -91,8 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (GameManager.Instance.GamePaused)
             return;
 
-        _xInput = Input.GetAxisRaw("Horizontal");
-        _yInput = Input.GetAxisRaw("Vertical");
+        HandleMovementInput();
 
         CheckForSprintInput();
         CheckForDodgeInput();
@@ -116,6 +118,18 @@ public class PlayerMovement : MonoBehaviour
 #endregion
 
     #region Movement
+
+    void HandleMovementInput()
+    {
+        _xInput = Input.GetAxisRaw("Horizontal");
+        _yInput = Input.GetAxisRaw("Vertical");
+
+        if (_xInput != 0 || _yInput != 0)
+            PlayerStateManager.Instance.MovementStarted();
+        else
+            PlayerStateManager.Instance.MovementStopped();
+        
+    }
 
     /// <summary>
     /// Moves the player at walk or run speed, based on the current move speed.
@@ -160,16 +174,16 @@ public class PlayerMovement : MonoBehaviour
     void StartSprinting()
     {
         _sprinting = true;
-        _animStateChanger.SprintStarted();
+        PlayerStateManager.Instance.SprintStarted();
+
         if (!_dodging)
             _curSpeed = _sprintSpeed;
     }
     void StopSprinting()
     {
         _sprinting = false;
-        _animStateChanger.SprintStopped();
-        if (!_dodging)
-            _curSpeed = _walkSpeed;
+        PlayerStateManager.Instance.SprintStopped();
+        ResetSpeed();
     }
 
     #endregion
@@ -210,13 +224,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dodgeActive)
         {
-            _animStateChanger.DodgeStarted();
+            PlayerStateManager.Instance.DodgeStarted();
+
             _playerSpriteRend.color = _fadedAlpha;
             _heart.EnableDodgeInvulnerability();
         }
         else
         {
-            _animStateChanger.DodgeFinished();
             _playerSpriteRend.color = Color.white;
             _heart.DisableDodgeInvulnerability();
         }
@@ -229,12 +243,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return HM.WaitTime(_dodgeDuration);
         _dodging = false;
-
-        if (_sprinting)
-            _curSpeed = _sprintSpeed;
-        else
-            _curSpeed = _walkSpeed;
-
+        ResetSpeed();
         SetDodgeForeignValues(false);
     }
 
@@ -392,6 +401,29 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    void SetHeavyAttackSpeed()
+    {
+        _curSpeed = _heavyAtkMoveSpeed;
+    }
+    /// <summary>
+    /// Sets current speed based on whether the player is sprinting, dodging, or neither.
+    /// </summary>
+    void ResetSpeed()
+    {
+        if (_sprinting)
+        {
+            _curSpeed = _sprintSpeed;
+        }
+        else if (_dodging)
+        {
+            _curSpeed = _dodgeSpeed;
+        }
+        else
+        {
+            _curSpeed = _walkSpeed;
+        }
+    }
 
 
 }

@@ -22,7 +22,7 @@ public class Sword : Weapon
         {
             StartCooldown();
             _swordAnim.SetTrigger("swing");
-            _playerAnimChanger.Attack();
+            PlayerStateManager.Instance.AttackStarted();
             AudioManager.Instance.PlaySwordSwing();
         }
     }

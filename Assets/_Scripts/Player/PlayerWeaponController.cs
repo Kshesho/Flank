@@ -11,8 +11,8 @@ public class PlayerWeaponController : MonoBehaviour
 {
 #region Variables
 
-    Coroutine _disableJavelinRtn;
-    int _javelinActiveTime = 6;
+    Coroutine _disableJavelinRtn, _disableWhipRtn;
+    int _javelinActiveTime = 6, _whipActiveTime = 15;
 
     Weapon _primaryActiveWeapon;
     [SerializeField] Weapon _sword, _whip;
@@ -27,7 +27,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Start()
     {
-        _primaryActiveWeapon = _whip;
+        _primaryActiveWeapon = _sword;
         _secondaryActiveWeapon = _shurikens;
     }
 
@@ -42,8 +42,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     void Update () 
     {
-        if (!GameManager.Instance.GamePaused && 
-            !PlayerStateManager.Instance.PlayerIsBusy())
+        if (!GameManager.Instance.GamePaused)
         {
             HandleAttackInput();
         }
@@ -53,12 +52,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     void HandleAttackInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PlayerStateManager.Instance.PlayerCanPrimaryAttack())
         {
             _primaryActiveWeapon.Attack();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && PlayerStateManager.Instance.PlayerCanSecondaryAttack())
         {
             _secondaryActiveWeapon.Attack();
         }
@@ -73,6 +72,13 @@ public class PlayerWeaponController : MonoBehaviour
             if (_disableJavelinRtn != null) StopCoroutine(_disableJavelinRtn);
             _disableJavelinRtn = StartCoroutine(DisableJevelinRtn());
         }
+        else if (powerupType == PowerupType.Whip)
+        {
+            _primaryActiveWeapon = _whip;
+            //show weapon icon on the HUD?
+            if (_disableWhipRtn != null) StopCoroutine(_disableWhipRtn);
+            _disableWhipRtn = StartCoroutine(DisableWhipRtn());
+        }
     }
     IEnumerator DisableJevelinRtn()
     {
@@ -80,6 +86,11 @@ public class PlayerWeaponController : MonoBehaviour
         _secondaryActiveWeapon = _shurikens;
         // TDOD: instead of changing back to Shuriken, change back to whichever weapon is equipped
         UIManager.Instance.ChangeWeaponIcon(RangedWeaponType.Shuriken, _shurikensSpecificReference.Ammo);
+    }
+    IEnumerator DisableWhipRtn()
+    {
+        yield return HM.WaitTime(_whipActiveTime);
+        _primaryActiveWeapon = _sword;
     }
 
 

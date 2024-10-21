@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Attack_N
+  m_Name: Player_Attack-Whip_N
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -390722095, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - time: 0.1
-      value: {fileID: 1899078544, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - time: 0.31666666
-      value: {fileID: -2067716783, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - time: 0.41666666
-      value: {fileID: -247137902, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
+      value: {fileID: -494674562, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
+    - time: 0.71666664
+      value: {fileID: -2055064833, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
+    - time: 1.1666666
+      value: {fileID: -1006852330, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,16 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -390722095, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - {fileID: 1899078544, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - {fileID: -2067716783, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
-    - {fileID: -247137902, guid: 475c5905fd8e2b24297be23956f86d72, type: 3}
+    - {fileID: -494674562, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
+    - {fileID: -2055064833, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
+    - {fileID: -1006852330, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.43333334
+    m_StopTime: 1.1833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

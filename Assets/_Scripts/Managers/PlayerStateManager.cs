@@ -12,29 +12,71 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
 {
 #region Variables
 
-    public bool PlayerIsAttacking { get; private set; }
+    public bool PlayerIsMoving {  get; private set; }
+    public bool PlayerIsSprinting { get; private set; }
     public bool PlayerIsDodging { get; private set; }
+    public bool PlayerIsAttacking { get; private set; }
+    public bool PlayerIsAttacking_Heavy { get; private set; }
+    public bool PlayerIsThrowing { get; private set; }
     public bool PlayerIsBeingHit { get; private set; }
     /// <summary>
     /// Returns true if player is currently attacking, dodging, or being hit.
     /// </summary>
     /// <returns></returns>
-    public bool PlayerIsBusy()
+    public bool PlayerCanPrimaryAttack()
     {
-        if (PlayerIsAttacking || PlayerIsDodging || PlayerIsBeingHit)
-            return true;
+        //Don't need to check if attacking here because of attack cooldown time
+        if (PlayerIsDodging || PlayerIsThrowing)
+            return false;
 
-        return false;
+        return true;
+    }
+    public bool PlayerCanSecondaryAttack()
+    {// TODO: if attacking, cancel attack to throw. If dodging, throw without animation
+        //Don't need to check if throwing here becuase of throw cooldown
+        if (PlayerIsDodging || PlayerIsAttacking || PlayerIsAttacking_Heavy)
+            return false;
+        
+        return true;
     }
 
 #endregion
 
-    void ResetStateVariables()
+    public void MovementStarted()
     {
-        PlayerIsAttacking = false;
-        PlayerIsDodging = false;
-        PlayerIsBeingHit = false;
+        PlayerIsMoving = true;
     }
+    public void MovementStopped()
+    {
+        PlayerIsMoving = false;
+    }
+
+    public void SprintStarted()
+    {
+        PlayerIsSprinting = true;
+
+        //Sprint interrupts heavy attack
+        if (PlayerIsAttacking_Heavy) HeavyAttackFinished(false);
+    }
+    public void SprintStopped()
+    {
+        PlayerIsSprinting = false;
+    }
+
+    public void DodgeStarted()
+    {
+        PlayerIsDodging = true;
+
+        //Dodge interrupts all attacks
+        if (PlayerIsAttacking) AttackFinished();
+        if (PlayerIsAttacking_Heavy) HeavyAttackFinished(false);
+        if (PlayerIsThrowing) ThrowFinished();
+    }
+    public void DodgeFinished()
+    {
+        PlayerIsDodging = false;
+    }
+
 
     public void AttackStarted()
     {
@@ -44,15 +86,31 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     {
         PlayerIsAttacking = false;
     }
+    public void HeavyAttackStarted()
+    {
+        PlayerIsAttacking_Heavy = true;
+        Events.OnPlayerHeavyAttackStarted?.Invoke();
+    }
+    public void HeavyAttackFinished(bool attackCompleted)
+    {
+        PlayerIsAttacking_Heavy = false;
 
-    public void DodgeStarted()
-    {
-        PlayerIsDodging = true;
+        if (attackCompleted)
+        {
+            Events.OnPlayerHeavyAttackFinished?.Invoke();
+        }
+        else Events.OnPlayerHeavyAttackCancelled?.Invoke();
     }
-    public void DodgeFinished()
+
+    public void ThrowStarted()
     {
-        PlayerIsDodging = false;
+        PlayerIsThrowing = true;
     }
+    public void ThrowFinished()
+    {
+        PlayerIsThrowing = false;
+    }
+ 
 
     public void HitStarted()
     {

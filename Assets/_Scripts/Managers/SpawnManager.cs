@@ -15,6 +15,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     [SerializeField] float _spawnCooldown = 2;
     [SerializeField] GameObject _enemyPrefab;
     [SerializeField] GameObject[] _powerupPrefabs;
+    [SerializeField] int[] _powerupSpawnWeights;
     [SerializeField] GameObject _ammoCratePref, _healthPotionPref;
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
@@ -64,10 +65,28 @@ public class SpawnManager : MonoSingleton<SpawnManager>
             Instantiate(RandomPowerup(), spawnPos, Quaternion.identity);
         }
     }
+    /// <summary>
+    /// </summary>
+    /// <returns>A random powerup, selected by drop chance.</returns>
     GameObject RandomPowerup()
     {
-        int rand = Random.Range(0, _powerupPrefabs.Length);
-        return _powerupPrefabs[rand];
+        int total = 0;
+        foreach(var weight in _powerupSpawnWeights)
+        {
+            total += weight;
+        }
+        int randomWeight = Random.Range(1, total);
+
+        for (int i = 0; i < _powerupPrefabs.Length; i++)
+        {
+            if (randomWeight <= _powerupSpawnWeights[i])
+            {
+                return _powerupPrefabs[i];
+            }
+            else randomWeight -= _powerupSpawnWeights[i];
+        }
+
+        return null;
     }
 
     IEnumerator SpawnAmmoCratesRtn()

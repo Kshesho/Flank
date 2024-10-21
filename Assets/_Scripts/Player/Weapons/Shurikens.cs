@@ -12,8 +12,6 @@ public class Shurikens : Weapon
 
 #region Variables
 
-    [SerializeField] PlayerAnimStateChanger _playerAnimStateChanger;
-
     [SerializeField] GameObject _shurikenProjectilePref;
     Vector3 _spawnOffset = new Vector3(0, 0.72f, 0);
 
@@ -40,7 +38,7 @@ public class Shurikens : Weapon
                 DeductAmmo();
                 Instantiate(_shurikenProjectilePref, transform.position + _spawnOffset, Quaternion.identity);
                 StartCooldown();
-                _playerAnimStateChanger.Throw();
+                PlayerStateManager.Instance.ThrowStarted();
                 //sound effect
             }
         }

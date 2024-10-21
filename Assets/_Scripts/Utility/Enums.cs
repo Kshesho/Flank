@@ -2,6 +2,7 @@
 
 public enum PowerupType
 {
+    Whip,
     Javelin,
     Shield,
     StaminaBoost,

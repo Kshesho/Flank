@@ -40,7 +40,7 @@ public class Javelins : Weapon
         {
             Instantiate(_javelinProjectilePref, transform.position, Quaternion.identity);
             StartCooldown();
-            _playerAnimStateChanger.Throw();
+            PlayerStateManager.Instance.ThrowStarted();
             //sound effect
         }
     }

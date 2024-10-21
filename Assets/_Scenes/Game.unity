@@ -22664,7 +22664,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57914e3a6cd8dda449fef38c7227dda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animStateChanger: {fileID: 464631658}
   _shieldsVisual: {fileID: 994193051}
   _playerSpriteRend: {fileID: 464631656}
   _maxHealth: 100
@@ -23128,7 +23127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rBody: {fileID: 464631660}
-  _animStateChanger: {fileID: 464631658}
   _heart: {fileID: 256222298}
   _playerSpriteRend: {fileID: 464631656}
   _startPos: {x: 0, y: -1}
@@ -23136,6 +23134,7 @@ MonoBehaviour:
   _yBounds: 5
   _walkSpeed: 100
   _sprintSpeed: 200
+  _heavyAtkMoveSpeed: 50
   _dodgeSpeed: 220
   _dodgeDuration: 0.3
   _dodgeCooldown: 0.7
@@ -23183,7 +23182,7 @@ SpriteRenderer:
   m_SortingLayerID: 2019705863
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2055064833, guid: 44eec6334e7444d42845d9a7b65b6574, type: 3}
+  m_Sprite: {fileID: -1751311458, guid: 41de851e50484de40a251db096bd02c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23264,7 +23263,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.125}
-    oldSize: {x: 0.8, y: 0.8}
+    oldSize: {x: 0.53333336, y: 0.8}
     newSize: {x: 0.16, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23600,77 +23599,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 762395193}
-    m_ColliderPaths:
-    - - X: 1219152
-        Y: -815775
-      - X: 920888
-        Y: -414479
-      - X: -1085592
-        Y: -1905801
-      - X: -787328
-        Y: -2307097
-  - m_Collider: {fileID: 832565405}
-    m_ColliderPaths:
-    - - X: 3655355
-        Y: -1614239
-      - X: 3189849
-        Y: -1431742
-      - X: 2277367
-        Y: -3759268
-      - X: 2742872
-        Y: -3941765
-  - m_Collider: {fileID: 898403571}
-    m_ColliderPaths:
-    - - X: 2693273
-        Y: -4077557
-      - X: 2623684
-        Y: -3582424
-      - X: 148015
-        Y: -3930369
-      - X: 217604
-        Y: -4425503
-  - m_Collider: {fileID: 1076768203}
-    m_ColliderPaths:
-    - - X: 433601
-        Y: -4219129
-      - X: -579556
-        Y: -1933627
-      - X: -1036656
-        Y: -2136259
-      - X: -23498
-        Y: -4421760
-  - m_Collider: {fileID: 1450855848}
-    m_ColliderPaths:
-    - - X: 2581109
-        Y: -2429018
-      - X: 1159831
-        Y: -372328
-      - X: 748493
-        Y: -656584
-      - X: 2169771
-        Y: -2713274
-  - m_Collider: {fileID: 1516631637}
-    m_ColliderPaths:
-    - - X: 2495156
-        Y: -2833768
-      - X: 2477996
-        Y: -2334062
-      - X: 179349
-        Y: -2412996
-      - X: 196509
-        Y: -2912702
-  - m_Collider: {fileID: 362529823}
-    m_ColliderPaths:
-    - - X: 3559504
-        Y: -1500932
-      - X: 1807222
-        Y: 282184
-      - X: 1450598
-        Y: -68271
-      - X: 3202881
-        Y: -1851389
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 0.0217564, y: -0.4425214}
@@ -124653,7 +124582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownTime: 0.25
-  _playerAnimStateChanger: {fileID: 464631658}
   _shurikenProjectilePref: {fileID: 5577562111785511575, guid: 94126ca117f6b7242b5e0eefa319fbb7, type: 3}
 --- !u!1 &832565403
 GameObject:
@@ -125415,7 +125343,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 42}
 --- !u!1 &1015544106
 GameObject:
@@ -150644,7 +150572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1886762291
 Transform:
   m_ObjectHideFlags: 0
@@ -152074,9 +152002,11 @@ MonoBehaviour:
   _spawnCooldown: 2
   _enemyPrefab: {fileID: 541813928304913277, guid: 9bc81f1adb677f84db317bf21ab967e1, type: 3}
   _powerupPrefabs:
+  - {fileID: 8806764661194659718, guid: d511b8e24173e0344a0b2191fe2a09af, type: 3}
   - {fileID: 8806764661194659718, guid: b0cb747a209e1114c8a3cc111a359633, type: 3}
   - {fileID: 8806764661194659718, guid: ae7bda8db09ea634aadd034a690e7b80, type: 3}
   - {fileID: 8806764661194659718, guid: d6d39d3e679455346bede418f5657a41, type: 3}
+  _powerupSpawnWeights: 14000000280000002800000028000000
   _ammoCratePref: {fileID: 8806764661194659718, guid: 6d2f6308d88f02646b514d3ce6030c32, type: 3}
   _healthPotionPref: {fileID: 8806764661194659718, guid: 6d7a986543b7f15418b5531468322d14, type: 3}
 --- !u!4 &1961646041
@@ -152092,7 +152022,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968183418
 GameObject:

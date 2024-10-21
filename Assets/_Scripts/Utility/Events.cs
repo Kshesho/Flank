@@ -23,4 +23,17 @@ public class Events
     /// </summary>
     public static Action OnPlayerDeath;
 
+    /// <summary>
+    /// Event for when the player starts a heavy attack.
+    /// </summary>
+    public static Action OnPlayerHeavyAttackStarted;
+    /// <summary>
+    /// Event for when the player's heavy attack is cancelled.
+    /// </summary>
+    public static Action OnPlayerHeavyAttackCancelled;
+    /// <summary>
+    /// Event for when the player's heavy attack fully finishes.
+    /// </summary>
+    public static Action OnPlayerHeavyAttackFinished;
+
 }

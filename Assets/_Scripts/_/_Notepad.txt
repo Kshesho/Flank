@@ -1,9 +1,9 @@
 ﻿COMMIT
-cur - 
-[Framework - 'Secondary Fire Powerup'] created a whip weapon that is rigged with a Sprite Skin. Player animations and whip attack animation still need to be tweaked and a powerup needs to be created for it.
+cur - replaced animator transitions with custom logic in PlayerAnimStateChanger that uses PlayerStateManager values to handle animator transitions; renamed default attack animations to Attack-Sword; player movement is now slowed while performing a heavy attack
+
 
 last - 
-[Framework - 'Health Collectible'] implemented health potion powerup; added a tail to the health bar; improved the HUD
+[Framework - 'Secondary Fire Powerup'] created a whip weapon that is rigged with a Sprite Skin. Player animations and whip attack animation still need to be tweaked and a powerup needs to be created for it.
 
 
 ------------------------------------------------------------------------------------
@@ -38,8 +38,8 @@ Heights (rooftops, clouds)   <--- Highest
 "Secondary Fire Powerup"
 ♠ a whip that the player sweeps in front of them
 - javelin[80% chance to spawn], whip[20% chance]
-- kills pirates in 1 hit
-- slow attack speed
+♠ kills pirates in 1 hit
+♠ slow attack speed
 ♠ use sprite shape to animate
 
 "Camera Shake"

@@ -12,7 +12,6 @@ public class PlayerHeart : MonoBehaviour
 {
 #region Variables
 
-    [SerializeField] PlayerAnimStateChanger _animStateChanger;
     [SerializeField] PlayerShieldsVisual _shieldsVisual;
     [SerializeField] SpriteRenderer _playerSpriteRend;
 
@@ -93,7 +92,7 @@ public class PlayerHeart : MonoBehaviour
 
         int previousHealth = _currentHealth;
         _currentHealth -= damage;
-        _animStateChanger.Hit();
+        PlayerStateManager.Instance.HitStarted();
         UIManager.Instance.UpdateHealthUI(previousHealth, _currentHealth, _maxHealth);
         StartCoroutine(DamageCooldownRtn());
         if (_currentHealth < 1)

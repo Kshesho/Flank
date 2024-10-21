@@ -16,15 +16,32 @@ public class Whip : Weapon
 
 #endregion
 
+    private void OnEnable()
+    {
+        Events.OnPlayerHeavyAttackCancelled += CancelAttack;
+    }
+    private void OnDisable()
+    {
+        Events.OnPlayerHeavyAttackCancelled -= CancelAttack;
+    }
+
     public override void Attack()
     {
         if (CooldownFinished())
         {
             StartCooldown();
+            PlayerStateManager.Instance.HeavyAttackStarted();
             _whipAnim.SetTrigger("whip");
-            _playerAnimStateChanger.AttackGeneric();
             //sound effect(s)
         }
+    }
+
+    /// <summary>
+    /// Called when PlayerStateManager.HeavyAttackFinished is called with a cancelled state.
+    /// </summary>
+    void CancelAttack()
+    {
+        _whipAnim.SetTrigger("cancelAttack");
     }
 
 

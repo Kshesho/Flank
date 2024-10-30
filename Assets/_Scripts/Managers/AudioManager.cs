@@ -17,6 +17,9 @@ public class AudioManager : MonoSingleton<AudioManager>
 	[Header("Player SFX")]
 	[SerializeField] AudioSource _swordSwingAuSrc;
 	[SerializeField] AudioClip[] _swordSwingAuClips;
+	[SerializeField] AudioSource _playerDamagedAuSrc;
+	[SerializeField] AudioClip[] _playerDamagedAuClips;
+	[SerializeField] AudioClip _playerDeathClip;
 
 	[SerializeField] AudioSource _javelinPickupAuSrc, _shieldPickupAuSrc, _staminaBoostAuSrc;
 	[SerializeField] AudioSource _ammoPickupAuSrc;
@@ -32,10 +35,12 @@ public class AudioManager : MonoSingleton<AudioManager>
     void OnEnable()
 	{
 		Events.OnPowerupCollected += PlayPowerupPickup;
+		Events.OnPlayerDeath += PlayPlayerDeath;
 	}
 	void OnDisable()
 	{
 		Events.OnPowerupCollected -= PlayPowerupPickup;
+		Events.OnPlayerDeath -= PlayPlayerDeath;
 	}
 
 #endregion
@@ -45,10 +50,20 @@ public class AudioManager : MonoSingleton<AudioManager>
 		_musicAuSrc.Play();
 	}
 
+	public void PlayPlayerHurt()
+	{
+		_playerDamagedAuSrc.clip = RandomClip(_playerDamagedAuClips);
+		_playerDamagedAuSrc.Play();
+	}
+	void PlayPlayerDeath()
+	{
+		_playerDamagedAuSrc.clip = _playerDeathClip;
+		_playerDamagedAuSrc.Play();
+	}
+
 	public void PlaySwordSwing()
 	{
-		int rand = Random.Range(0, _swordSwingAuClips.Length);
-		_swordSwingAuSrc.clip = _swordSwingAuClips[rand];
+		_swordSwingAuSrc.clip = RandomClip(_swordSwingAuClips);
 		_swordSwingAuSrc.pitch = Random.Range(0.9f, 1.1f);
 		_swordSwingAuSrc.Play();
 	}
@@ -83,14 +98,28 @@ public class AudioManager : MonoSingleton<AudioManager>
 	public void PlayEnemyDeath()
 	{
 		_enemyDeathAuSrc.pitch = Random.Range(0.9f, 1.1f);
-		int rand = Random.Range(0, _enemyDeathAuClips.Length);
-		_enemyDeathAuSrc.PlayOneShot(_enemyDeathAuClips[rand]);
+		_enemyDeathAuSrc.PlayOneShot(RandomClip(_enemyDeathAuClips));
 	}
 
 	public void PlayEnemyImpact()
 	{
 		_enemyImpactAuSrc.Play();
 	}
+
+    #region Return Types
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="_clips"></param>
+	/// <returns>A random clip from <paramref name="_clips"/></returns>
+	AudioClip RandomClip(AudioClip[] _clips)
+	{
+		int rand = Random.Range(0, _clips.Length);
+		return _clips[rand];
+	}
+
+    #endregion
 
 
 }

@@ -13,16 +13,19 @@ public class PlayerAnimStateChanger : MonoBehaviour
     [SerializeField] Animator _anim;
     string _currentState;
 
+    float _horizontalInput, _verticalInput;
+
     //State Names
     const string IDLE = "Idle_Blend Tree";//interrupted by everything but DODGE
     const string WALK = "Walk_Blend Tree";//interrupted by everything
     const string SPRINT = "Sprint_Blend Tree";//interrupted by everything except IDLE
-    const string DODGE = "Dodge_Blend Tree";//will always finish
+    const string DODGE = "Dodge_Blend Tree";//will always finish, unless DEATH
 
-    const string HIT = "Hit_Blend Tree";//interrupted by DODGE
+    const string HIT = "Hit_Blend Tree";//interrupted by DODGE, DEATH
+    const string DEATH = "Death_Blend Tree";//will always finish
 
-    const string ATTACK_SWORD = "Attack-Sword_Blend Tree";//interrupted by DODGE
-    const string ATTACK_WHIP = "Player_Attack-Whip_N";//interrupted by DODGE, SPRINT
+    const string ATTACK_SWORD = "Attack-Sword_Blend Tree";//interrupted by DODGE, DEATH
+    const string ATTACK_WHIP = "Player_Attack-Whip_N";//interrupted by DODGE, SPRINT, DEATH
     const string THROW = "Player_Throw_N";
 
 #endregion
@@ -38,8 +41,14 @@ public class PlayerAnimStateChanger : MonoBehaviour
         if (GameManager.Instance.GamePaused)
             return;
 
-        float hInput = Input.GetAxisRaw("Horizontal");
-        float vInput = Input.GetAxisRaw("Vertical");
+        if (_psm.PlayerIsDead)
+        {
+            ChangeAnimState(DEATH);
+            return;
+        }
+
+        _horizontalInput = Input.GetAxisRaw("Horizontal");
+        _verticalInput = Input.GetAxisRaw("Vertical");
 
         ExitAnimations();
 
@@ -51,10 +60,10 @@ public class PlayerAnimStateChanger : MonoBehaviour
         }
 
         //Change the direction the player is facing (animation direction) based on the movement direction (input axes)
-        if (hInput != 0 || vInput != 0)
+        if (_horizontalInput != 0 || _verticalInput != 0)
         {
-            _anim.SetFloat("Horizontal", hInput);
-            _anim.SetFloat("Vertical", vInput);
+            _anim.SetFloat("Horizontal", _horizontalInput);
+            _anim.SetFloat("Vertical", _verticalInput);
         }
 
         UpdateAnimState();
@@ -141,9 +150,6 @@ public class PlayerAnimStateChanger : MonoBehaviour
             }
         }
     }
-
-    // Promblem: 
-    // Solution: 
 
 
 }

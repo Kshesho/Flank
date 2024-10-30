@@ -92,12 +92,17 @@ public class PlayerHeart : MonoBehaviour
 
         int previousHealth = _currentHealth;
         _currentHealth -= damage;
-        PlayerStateManager.Instance.HitStarted();
         UIManager.Instance.UpdateHealthUI(previousHealth, _currentHealth, _maxHealth);
-        StartCoroutine(DamageCooldownRtn());
+        
         if (_currentHealth < 1)
         {
             Death();
+        }
+        else
+        {
+            PlayerStateManager.Instance.HitStarted();
+            StartCoroutine(DamageCooldownRtn());
+            AudioManager.Instance.PlayPlayerHurt();
         }
     }
 
@@ -125,8 +130,8 @@ public class PlayerHeart : MonoBehaviour
 
     void Death()
     {
-        Events.OnPlayerDeath?.Invoke();
-        Destroy(_playerContainer);
+        PlayerStateManager.Instance.PlayerDied();
+        this.gameObject.SetActive(false);
     }
 
     public void EnableDodgeInvulnerability()

@@ -1,10 +1,9 @@
 ﻿COMMIT
-cur - replaced animator transitions with custom logic in PlayerAnimStateChanger that uses PlayerStateManager values to handle animator transitions; renamed default attack animations to Attack-Sword; player movement is now slowed while performing a heavy attack
-
+cur - 
+[Framework - 'Camera Shake'] Added player death animations and logic; Added player death & damaged sfx and camera shake; deleted last 2 animationStateBehaviours
 
 last - 
-[Framework - 'Secondary Fire Powerup'] created a whip weapon that is rigged with a Sprite Skin. Player animations and whip attack animation still need to be tweaked and a powerup needs to be created for it.
-
+replaced animator transitions with custom logic in PlayerAnimStateChanger that uses PlayerStateManager values to handle animator transitions; renamed default attack animations to Attack-Sword; player movement is now slowed while performing a heavy attack
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -34,18 +33,10 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [FRAMEWORK]
 
-
-"Secondary Fire Powerup"
-♠ a whip that the player sweeps in front of them
-- javelin[80% chance to spawn], whip[20% chance]
-♠ kills pirates in 1 hit
-♠ slow attack speed
-♠ use sprite shape to animate
-
 "Camera Shake"
-- camera shakes when player gets damaged
-- play damaged sound as well
-- add player death animations, sfx, and blood spatter particle sys
+♠ camera shakes when player gets damaged
+♠ play damaged sound as well
+♠ add player death animations
 
 
 

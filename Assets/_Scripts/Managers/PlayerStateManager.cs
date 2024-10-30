@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     public bool PlayerIsAttacking_Heavy { get; private set; }
     public bool PlayerIsThrowing { get; private set; }
     public bool PlayerIsBeingHit { get; private set; }
+    public bool PlayerIsDead { get; private set; }
     /// <summary>
     /// Returns true if player is currently attacking, dodging, or being hit.
     /// </summary>
@@ -41,6 +42,17 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     }
 
 #endregion
+
+    void CancelAllStates_ButDeath()
+    {
+        PlayerIsMoving = false;
+        PlayerIsSprinting = false;
+        PlayerIsDodging = false;
+        PlayerIsAttacking = false;
+        PlayerIsAttacking_Heavy = false;
+        PlayerIsThrowing = false;
+        PlayerIsBeingHit = false;
+    }
 
     public void MovementStarted()
     {
@@ -115,10 +127,20 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     public void HitStarted()
     {
         PlayerIsBeingHit = true;
+        Events.OnPlayerDamaged?.Invoke();
     }
     public void HitFinished()
     {
         PlayerIsBeingHit = false;
+    }
+
+
+    public void PlayerDied()
+    {
+        CancelAllStates_ButDeath();
+
+        PlayerIsDead = true;
+        Events.OnPlayerDeath?.Invoke();
     }
 
 

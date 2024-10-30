@@ -19,6 +19,10 @@ public class Events
     public static Action<PowerupType> OnPowerupCollected;
 
     /// <summary>
+    /// Event for when the player gets damaged.
+    /// </summary>
+    public static Action OnPlayerDamaged;
+    /// <summary>
     /// Event for when the player dies.
     /// </summary>
     public static Action OnPlayerDeath;

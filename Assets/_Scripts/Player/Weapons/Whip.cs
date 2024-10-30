@@ -5,14 +5,13 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// (responsibility of this class)
+/// Handles the whip's behavior.
 /// </summary>
 public class Whip : Weapon 
 {
 #region Variables
 
     [SerializeField] Animator _whipAnim;
-    [SerializeField] PlayerAnimStateChanger _playerAnimStateChanger;
 
 #endregion
 

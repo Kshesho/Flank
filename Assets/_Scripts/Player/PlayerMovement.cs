@@ -73,12 +73,14 @@ public class PlayerMovement : MonoBehaviour
         Events.OnPowerupCollected += CollectStaminaBoostPowerup;
         Events.OnPlayerHeavyAttackStarted += SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished += ResetSpeed;
+        Events.OnPlayerDeath += StopMovement;
     }
     void OnDisable()
     {
         Events.OnPowerupCollected -= CollectStaminaBoostPowerup;
         Events.OnPlayerHeavyAttackStarted -= SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished -= ResetSpeed;
+        Events.OnPlayerDeath -= StopMovement;
     }
 
     void Start()
@@ -184,6 +186,13 @@ public class PlayerMovement : MonoBehaviour
         _sprinting = false;
         PlayerStateManager.Instance.SprintStopped();
         ResetSpeed();
+    }
+
+    void StopMovement()
+    {
+        _rBody.velocity = Vector2.zero;
+        _curSpeed = 0;
+        this.enabled = false;
     }
 
     #endregion

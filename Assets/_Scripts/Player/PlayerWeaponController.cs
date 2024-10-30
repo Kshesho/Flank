@@ -34,10 +34,12 @@ public class PlayerWeaponController : MonoBehaviour
     void OnEnable()
     {
         Events.OnPowerupCollected += CollectPowerup;
+        Events.OnPlayerDeath += TurnOffAllWeapons;
     }
     void OnDisable()
     {
         Events.OnPowerupCollected -= CollectPowerup;
+        Events.OnPlayerDeath -= TurnOffAllWeapons;
     }
 
     void Update () 
@@ -91,6 +93,14 @@ public class PlayerWeaponController : MonoBehaviour
     {
         yield return HM.WaitTime(_whipActiveTime);
         _primaryActiveWeapon = _sword;
+    }
+
+    /// <summary>
+    /// Disables this gameObject and all of its child weapons. Called when OnPlayerDeath is raised.
+    /// </summary>
+    void TurnOffAllWeapons()
+    {
+        this.gameObject.SetActive(false);
     }
 
 

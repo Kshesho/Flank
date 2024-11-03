@@ -23,4 +23,14 @@ public class EnemyAnimStateChanger : MonoBehaviour
         _anim.SetTrigger("death");
     }
 
+    /// <summary>
+    /// 0 = S, -1 = SW, 1 = SE
+    /// </summary>
+    /// <param name="direction"></param>
+    public void ChageRunDirection(float direction)
+    {
+        _anim.SetFloat("Diagonal", direction);
+
+    }
+
 }

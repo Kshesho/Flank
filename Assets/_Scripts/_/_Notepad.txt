@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Framework - 'Camera Shake'] Added player death animations and logic; Added player death & damaged sfx and camera shake; deleted last 2 animationStateBehaviours
+[Core Programming - 'New Enemy Movement'] enemies now have a 10% chance to move diagonally upon spawning
 
 last - 
-replaced animator transitions with custom logic in PlayerAnimStateChanger that uses PlayerStateManager values to handle animator transitions; renamed default attack animations to Attack-Sword; player movement is now slowed while performing a heavy attack
+[Framework - 'Camera Shake'] Added player death animations and logic; Added player death & damaged sfx and camera shake; deleted last 2 animationStateBehaviours
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -31,16 +31,8 @@ Heights (rooftops, clouds)   <--- Highest
 
 
 -------------------------------------------------------------------------------------
-[FRAMEWORK]
-
-"Camera Shake"
-♠ camera shakes when player gets damaged
-♠ play damaged sound as well
-♠ add player death animations
-
-
-
 [CORE PROGRAMMING]
+
 "New Enemy Movement"
 - enemies sometimes move diagonally, changing directions if they hit the edge of the screen or move a certain distance
 

@@ -37,7 +37,7 @@ Transform:
   - {fileID: 781431098154329402}
   - {fileID: 3492711211189797967}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7171967419205868428
 MonoBehaviour:
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa76a94b1174c249925d8739baaa0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animStateChanger: {fileID: 3479727073672173237}
   _moveSpeed: 3
   _yOffScreenPoint: -7
   _yResetPoint: 6.5

@@ -1,9 +1,7 @@
-#region Using Statements
 using Narzioth.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#endregion
 
 /// <summary>
 /// (responsibility of this class)
@@ -20,6 +18,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
 
+    [SerializeField] WaveSO[] _enemyWaves;
+    int _wave = 0;
+    [SerializeField] Transform _enemyContainer;
+
 #endregion
 #region Base Methods
 
@@ -33,24 +35,49 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         Events.OnPlayerDeath -= StopSpawning;
     }
 
+    void Update()
+    {
+
+    }
 
 #endregion
 
     public void StartSpawning()
     {
-	    StartCoroutine(SpawnEnemiesRtn());
         StartCoroutine(SpawnPowerupsRtn());
         StartCoroutine(SpawnAmmoCratesRtn());
         StartCoroutine(SpawnHealthPotionsRtn());
+	    
+        //Start spawning the first wave of enemies
+        //spawn them into a container 
+        //when that container is empty, start the next wave
+        StartCoroutine(SpawnEnemyWavesRtn());
 	}
 
-    IEnumerator SpawnEnemiesRtn()
+    IEnumerator SpawnEnemyWavesRtn()
     {
-        while (_spawning)
+        //break out of this if player dies
+
+        foreach(var wave in _enemyWaves)
         {
-            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-            Instantiate(_enemyPrefab, spawnPos, Quaternion.identity);
-            yield return HM.WaitTime(_spawnCooldown);
+            //start wave timer, increment wave #
+            _wave++;
+            print("Wave " + _wave);
+
+            //for each enemy to spawn...
+            for (int i = 0; i < wave.enemies; i++)
+            {
+                Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+                Instantiate(_enemyPrefab, spawnPos, Quaternion.identity, _enemyContainer);
+                yield return HM.WaitTime(wave.timeBetweenEnemies);
+            }
+
+            //After wave has finished spawning, wait until all enemies are dead
+            while (!WaveFinished())
+            {
+                print("waiting for wave to finish...");
+                yield return null;
+            }
         }
     }
 
@@ -116,6 +143,18 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         _spawning = false;
         //could also stop coroutine here
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>true if the enemy container is empty</returns>
+    bool WaveFinished()
+    {
+        if (_enemyContainer.transform.childCount < 1)
+            return true;
+
+        return false;
     }
 
 

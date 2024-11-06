@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Core Programming - 'New Enemy Movement'] enemies now have a 10% chance to move diagonally upon spawning
+[Core Programming - 'Wave System'] started implementing enemy wave system. Still need to get proper wave transition functionality in place and HUD wave info
 
 last - 
-[Framework - 'Camera Shake'] Added player death animations and logic; Added player death & damaged sfx and camera shake; deleted last 2 animationStateBehaviours
+[Core Programming - 'New Enemy Movement'] enemies now have a 10% chance to move diagonally upon spawning
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -33,12 +33,10 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"New Enemy Movement"
-- enemies sometimes move diagonally, changing directions if they hit the edge of the screen or move a certain distance
-
 "Wave System"
 - several enemies are spawned in quick succession
 - next wave starts when last enemy from current wave is killed, or wave timer expiers (so player can't farm powerups)
+- wave number on the HUD
 
 "Negative Powerup"
 - broken potion that damages player

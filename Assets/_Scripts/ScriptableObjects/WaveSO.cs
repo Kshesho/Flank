@@ -9,6 +9,10 @@ using UnityEngine;
 public class WaveSO : ScriptableObject 
 {
     public int enemies = 1;
-    public float timeBetweenEnemies;
+    public float timeBetweenEnemies = 0.1f;
+    /// <summary>
+    /// How much time until the wave ends after it starts.
+    /// </summary>
+    public int waveTime;
 
 }

@@ -10,17 +10,19 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 {
 #region Variables
 
+    [SerializeField] PowerupSpawner _powerupSpawner;
+
     [SerializeField] float _spawnCooldown = 2;
     [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] GameObject[] _powerupPrefabs;
-    [SerializeField] int[] _powerupSpawnWeights;
-    [SerializeField] GameObject _ammoCratePref, _healthPotionPref;
+
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
 
     [SerializeField] WaveSO[] _enemyWaves;
     int _wave = 0;
     [SerializeField] Transform _enemyContainer;
+    int _waveTimer;
+    Coroutine _waveTimerRtn;
 
 #endregion
 #region Base Methods
@@ -35,22 +37,11 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         Events.OnPlayerDeath -= StopSpawning;
     }
 
-    void Update()
-    {
-
-    }
-
 #endregion
 
     public void StartSpawning()
     {
-        StartCoroutine(SpawnPowerupsRtn());
-        StartCoroutine(SpawnAmmoCratesRtn());
-        StartCoroutine(SpawnHealthPotionsRtn());
-	    
-        //Start spawning the first wave of enemies
-        //spawn them into a container 
-        //when that container is empty, start the next wave
+        _powerupSpawner.StartSpawningPowerups();
         StartCoroutine(SpawnEnemyWavesRtn());
 	}
 
@@ -62,9 +53,11 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         {
             //start wave timer, increment wave #
             _wave++;
-            print("Wave " + _wave);
+            _waveTimer = wave.waveTime;
+            StartWaveTimer(_waveTimer);
+            UIManager.Instance.NewWaveUI(_wave, wave.waveTime);
 
-            //for each enemy to spawn...
+            //Spawn each enemy
             for (int i = 0; i < wave.enemies; i++)
             {
                 Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
@@ -72,77 +65,48 @@ public class SpawnManager : MonoSingleton<SpawnManager>
                 yield return HM.WaitTime(wave.timeBetweenEnemies);
             }
 
-            //After wave has finished spawning, wait until all enemies are dead
+            //Wait until the wave is finished...
             while (!WaveFinished())
             {
-                print("waiting for wave to finish...");
                 yield return null;
             }
+
+            //Turn off countdown if it's still running. Then pre-wave countdown
+            if (_waveTimerRtn != null) StopCoroutine(_waveTimerRtn);
+            yield return StartCoroutine(CountdownToNextWaveRtn());
         }
     }
-
-    IEnumerator SpawnPowerupsRtn()
+    void StartWaveTimer(int waveTime)
     {
-        while (_spawning)
-        {
-            float rand = Random.Range(4f, 10f);
-            yield return HM.WaitTime(rand);
-            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-            
-            Instantiate(RandomPowerup(), spawnPos, Quaternion.identity);
-        }
+        if (_waveTimerRtn != null)
+            StopCoroutine(WaveTimerRtn(waveTime));
+        _waveTimerRtn = StartCoroutine(WaveTimerRtn(waveTime));
     }
-    /// <summary>
-    /// </summary>
-    /// <returns>A random powerup, selected by drop chance.</returns>
-    GameObject RandomPowerup()
+    IEnumerator WaveTimerRtn(int waveTime)
     {
-        int total = 0;
-        foreach(var weight in _powerupSpawnWeights)
+        for (int i = waveTime; i > 0; i--)
         {
-            total += weight;
+            yield return HM.WaitTime(1);
+            _waveTimer--;
+            UIManager.Instance.UpdateWaveTimer(_waveTimer);
         }
-        int randomWeight = Random.Range(1, total);
-
-        for (int i = 0; i < _powerupPrefabs.Length; i++)
-        {
-            if (randomWeight <= _powerupSpawnWeights[i])
-            {
-                return _powerupPrefabs[i];
-            }
-            else randomWeight -= _powerupSpawnWeights[i];
-        }
-
-        return null;
+        //set to null to track when this coroutine has stopped
+        _waveTimerRtn = null;
     }
-
-    IEnumerator SpawnAmmoCratesRtn()
+    IEnumerator CountdownToNextWaveRtn()
     {
-        while (_spawning)
-        {
-            float rand = Random.Range(8f, 14f);
-            yield return HM.WaitTime(rand);
-            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-
-            Instantiate(_ammoCratePref, spawnPos, Quaternion.identity);
-        }
-    }
-
-    IEnumerator SpawnHealthPotionsRtn()
-    {
-        while (_spawning)
-        {
-            yield return HM.WaitTime(40);
-            Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-
-            Instantiate(_healthPotionPref, spawnPos, Quaternion.identity);
-        }
+        UIManager.Instance.NextWaveCountdown("3...");
+        yield return HM.WaitTime(1);
+        UIManager.Instance.NextWaveCountdown("2...");
+        yield return HM.WaitTime(1);
+        UIManager.Instance.NextWaveCountdown("1...");
+        yield return HM.WaitTime(1);
     }
 
     void StopSpawning()
     {
         _spawning = false;
-        //could also stop coroutine here
+        _powerupSpawner.StopSpawningPowerups();
     }
 
     /// <summary>
@@ -151,7 +115,8 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     /// <returns>true if the enemy container is empty</returns>
     bool WaveFinished()
     {
-        if (_enemyContainer.transform.childCount < 1)
+        if (_enemyContainer.transform.childCount < 1 ||
+            _waveTimer <= 0)
             return true;
 
         return false;

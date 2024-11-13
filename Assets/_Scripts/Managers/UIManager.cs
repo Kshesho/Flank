@@ -1,6 +1,5 @@
 #region Using Statements
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Narzioth.Utilities;
@@ -13,6 +12,8 @@ using UnityEngine.UI;
 public class UIManager : MonoSingleton<UIManager>
 {
 #region Variables
+
+    [SerializeField] WaveUI _waveUI;
 
     [SerializeField] TextMeshProUGUI _killsTxt;
 
@@ -182,6 +183,7 @@ public class UIManager : MonoSingleton<UIManager>
         _ammoTxt.color = Color.white;
     }
 
+
     public void UpdateScoreText(int score)
     {
         _killsTxt.text = "Kills: " + score;
@@ -216,5 +218,18 @@ public class UIManager : MonoSingleton<UIManager>
         _pauseMenu.SetActive(false);
     }
 
+    //Enemy Wave UI
+    public void NewWaveUI(int wave, int WaveTime)
+    {
+        _waveUI.NewWaveUI(wave, WaveTime);
+    }
+    public void UpdateWaveTimer(int time)
+    {
+        _waveUI.UpdateWaveTimer(time);
+    }
+    public void NextWaveCountdown(string text)
+    {
+        _waveUI.NextWaveCountdown(text);
+    }
 
 }

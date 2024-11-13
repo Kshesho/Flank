@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Core Programming - 'Wave System'] started implementing enemy wave system. Still need to get proper wave transition functionality in place and HUD wave info
+wave system finished. Enemies spawn in waves and there is HUD info that coincides; separated powerup spawning into its own class; separated wave UI logic into its own class
 
 last - 
-[Core Programming - 'New Enemy Movement'] enemies now have a 10% chance to move diagonally upon spawning
+[Core Programming - 'Wave System'] started implementing enemy wave system. Still need to get proper wave transition functionality in place and HUD wave info
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -34,9 +34,9 @@ Heights (rooftops, clouds)   <--- Highest
 [CORE PROGRAMMING]
 
 "Wave System"
-- several enemies are spawned in quick succession
-- next wave starts when last enemy from current wave is killed, or wave timer expiers (so player can't farm powerups)
-- wave number on the HUD
+♠ several enemies are spawned in quick succession
+♠ next wave starts when last enemy from current wave is killed, or wave timer expiers (so player can't farm powerups)
+♠ wave number on the HUD
 
 "Negative Powerup"
 - broken potion that damages player

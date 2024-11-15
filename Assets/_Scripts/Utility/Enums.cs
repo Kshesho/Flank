@@ -7,7 +7,9 @@ public enum PowerupType
     Shield,
     StaminaBoost,
     Ammo,
-    HealthPotion
+    HealthPotion,
+    Negative_Damage,
+    Negative_Slow
 }
 
 public enum RangedWeaponType

@@ -4839,7 +4839,7 @@ GameObject:
   - component: {fileID: 1847745798697502623}
   - component: {fileID: 4682019085277837619}
   m_Layer: 0
-  m_Name: Shuriken 1_sprite
+  m_Name: Potion_sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

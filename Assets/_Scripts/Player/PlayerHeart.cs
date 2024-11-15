@@ -55,12 +55,14 @@ public class PlayerHeart : MonoBehaviour
         Events.OnCollide += TakeDamage;
         Events.OnPowerupCollected += AddAShield;
         Events.OnPowerupCollected += Heal;
+        //Events.OnPowerupCollected += SomeDamaeMethod
     }
     void OnDisable()
     {
         Events.OnCollide -= TakeDamage;   
         Events.OnPowerupCollected -= AddAShield;
         Events.OnPowerupCollected -= Heal;
+        //Events.OnPowerupCollected -= ??
     }
 
     void Start () 

@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         Events.OnPowerupCollected += CollectStaminaBoostPowerup;
+        //Events.OnPowerupCollected += Slow;
         Events.OnPlayerHeavyAttackStarted += SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished += ResetSpeed;
         Events.OnPlayerDeath += StopMovement;
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable()
     {
         Events.OnPowerupCollected -= CollectStaminaBoostPowerup;
+        //Events.OnPowerupCollected -= Slow;
         Events.OnPlayerHeavyAttackStarted -= SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished -= ResetSpeed;
         Events.OnPlayerDeath -= StopMovement;

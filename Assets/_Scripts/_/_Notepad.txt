@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Core Programming - 'Negative Powerup'] started implementing the negative powerups Damage and Slow
+finished implementing Slow and Damage negative powerups; Changed HUD icons to simple activate and deactivate instead of fading
 
 last - 
-wave system finished. Enemies spawn in waves and there is HUD info that coincides; separated powerup spawning into its own class; separated wave UI logic into its own class
+[Core Programming - 'Negative Powerup'] started implementing the negative powerups Damage and Slow
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -34,9 +34,9 @@ Heights (rooftops, clouds)   <--- Highest
 [CORE PROGRAMMING]
 
 "Negative Powerup"
-- broken potion that damages player
-- something that slows player movement
-- debuff icon for slowing
+♠ broken potion that damages player
+♠ something that slows player movement
+♠ debuff icon for slowing
 
 "New Enemy Type"
 - moves, then stops and fires at player

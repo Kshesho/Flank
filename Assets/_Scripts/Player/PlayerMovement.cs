@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _heavyAtkMoveSpeed = 50;
     float _curSpeed;
     bool _sprinting;
+    
+    //speed is multiplied by this to slow the player when slow powerup is collected
+    float _slowedMovementPrct = 1f;
+    Coroutine _removeSlowRtn;
+    float _slowDuration = 3f;
 
     //----Dodge
     bool _dodging;
@@ -71,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         Events.OnPowerupCollected += CollectStaminaBoostPowerup;
-        //Events.OnPowerupCollected += Slow;
+        Events.OnPowerupCollected += CollectSlowPowerup;
         Events.OnPlayerHeavyAttackStarted += SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished += ResetSpeed;
         Events.OnPlayerDeath += StopMovement;
@@ -79,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     void OnDisable()
     {
         Events.OnPowerupCollected -= CollectStaminaBoostPowerup;
-        //Events.OnPowerupCollected -= Slow;
+        Events.OnPowerupCollected -= CollectSlowPowerup;
         Events.OnPlayerHeavyAttackStarted -= SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished -= ResetSpeed;
         Events.OnPlayerDeath -= StopMovement;
@@ -143,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         _curMoveDirection.x = _xInput;
         _curMoveDirection.y = _yInput;
         _curMoveDirection.Normalize();
-        _rBody.velocity = _curMoveDirection * _curSpeed * Time.fixedDeltaTime;
+        _rBody.velocity = _curMoveDirection * (_curSpeed * _slowedMovementPrct) * Time.fixedDeltaTime;
     }
 
     /// <summary>
@@ -151,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Move_LockedDirection()
     {
-        _rBody.velocity = _curMoveDirection * _curSpeed * Time.fixedDeltaTime;
+        _rBody.velocity = _curMoveDirection * (_curSpeed * _slowedMovementPrct) * Time.fixedDeltaTime;
     }
 
     void ConstrainPosition()
@@ -353,20 +358,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (powerupCollected == PowerupType.StaminaBoost)
         {
+            RemoveSlowPowerupEffect();
+
             _staminaGainPerSecond = _boostedStaminaGain;
-            if (_disableStaminaBoostRtn != null)
-            {
-                StopCoroutine(_disableStaminaBoostRtn);
-            }
+
+            if (_disableStaminaBoostRtn != null) StopCoroutine(_disableStaminaBoostRtn);
             _disableStaminaBoostRtn = StartCoroutine(DisableStaminaBoostRtn());
-            UIManager.Instance.StaminaBoostIcon_Restore();
+
+            UIManager.Instance.Enable_StaminaBoostIcon();
         }
     }
     IEnumerator DisableStaminaBoostRtn()
     {
         yield return HM.WaitTime(_staminaBoostPowerupActiveTime);
+        RemoveStaminaBoostEffect();
+    }
+    void RemoveStaminaBoostEffect()
+    {
+        if (_disableStaminaBoostRtn != null) StopCoroutine(_disableStaminaBoostRtn);
+
         _staminaGainPerSecond = _defStaminaGain;
-        UIManager.Instance.StaminaBoostIcon_Fade();
+        UIManager.Instance.Disable_StaminaBoostIcon();
     }
 
     #endregion
@@ -434,6 +446,32 @@ public class PlayerMovement : MonoBehaviour
         {
             _curSpeed = _walkSpeed;
         }
+    }
+
+    void CollectSlowPowerup(PowerupType powerupCollected)
+    {
+        if (powerupCollected == PowerupType.Negative_Slow)
+        {
+            RemoveStaminaBoostEffect();
+
+            _slowedMovementPrct = 0.6f;
+            UIManager.Instance.Enable_SlowedIcon();
+
+            if (_removeSlowRtn != null) StopCoroutine(_removeSlowRtn);
+            _removeSlowRtn = StartCoroutine(RemoveSlowRtn());
+        }
+    }
+    IEnumerator RemoveSlowRtn()
+    {
+        yield return HM.WaitTime(_slowDuration);
+        RemoveSlowPowerupEffect();
+    }
+    void RemoveSlowPowerupEffect()
+    {
+        if (_removeSlowRtn != null) StopCoroutine(_removeSlowRtn);
+
+        _slowedMovementPrct = 1;
+        UIManager.Instance.Disable_SlowedIcon();
     }
 
 

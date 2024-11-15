@@ -55,14 +55,14 @@ public class PlayerHeart : MonoBehaviour
         Events.OnCollide += TakeDamage;
         Events.OnPowerupCollected += AddAShield;
         Events.OnPowerupCollected += Heal;
-        //Events.OnPowerupCollected += SomeDamaeMethod
+        Events.OnPowerupCollected += CollectDamagePowerup;
     }
     void OnDisable()
     {
         Events.OnCollide -= TakeDamage;   
         Events.OnPowerupCollected -= AddAShield;
         Events.OnPowerupCollected -= Heal;
-        //Events.OnPowerupCollected -= ??
+        Events.OnPowerupCollected -= CollectDamagePowerup;
     }
 
     void Start () 
@@ -105,6 +105,14 @@ public class PlayerHeart : MonoBehaviour
             PlayerStateManager.Instance.HitStarted();
             StartCoroutine(DamageCooldownRtn());
             AudioManager.Instance.PlayPlayerHurt();
+        }
+    }
+
+    void CollectDamagePowerup(PowerupType powerupCollected)
+    {
+        if (powerupCollected == PowerupType.Negative_Damage)
+        {
+            TakeDamage(_thisCollider, 20);
         }
     }
 

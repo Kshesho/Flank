@@ -35,10 +35,7 @@ public class UIManager : MonoSingleton<UIManager>
     Color _halfAlpha = new Color(1, 1, 1, 0.5f);
 
     //Abilities
-    [SerializeField] Image _staminaBoostIcon1, _staminaBoostIcon2, _staminaBoostIconBG;
-    Color _green = new Color(0, 0.502f, 0.09449412f, 1);
-    Color _fadedGreen = new Color(0, 0.502f, 0.09449412f, 0.33f);
-    Color _tenthAlpha = new Color(1, 1, 1, 0.1f);
+    [SerializeField] GameObject _staminaBoostIcon, _slowedIcon;
 
     [SerializeField] GameObject _gameOverScreen;
 
@@ -190,17 +187,22 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     //Abilities
-    public void StaminaBoostIcon_Fade()
+    public void Enable_StaminaBoostIcon()
     {
-        _staminaBoostIconBG.color = _tenthAlpha;
-        _staminaBoostIcon1.color = _fadedGreen;
-        _staminaBoostIcon2.color = _fadedGreen;
+        _staminaBoostIcon.SetActive(true);
     }
-    public void StaminaBoostIcon_Restore()
+    public void Disable_StaminaBoostIcon()
     {
-         _staminaBoostIconBG.color = Color.white;
-        _staminaBoostIcon1.color = _green;
-        _staminaBoostIcon2.color = _green;
+        _staminaBoostIcon.SetActive(false);
+    }
+
+    public void Enable_SlowedIcon()
+    {
+        _slowedIcon.SetActive(true);
+    }
+    public void Disable_SlowedIcon()
+    {
+        _slowedIcon.SetActive(false);
     }
 
 

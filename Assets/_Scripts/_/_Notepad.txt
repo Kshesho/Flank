@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-finished implementing Slow and Damage negative powerups; Changed HUD icons to simple activate and deactivate instead of fading
+[Core Programming - 'New Enemy Type'] Started creating Knight enemy. Created projectile and set up enemy sprites
 
 last - 
-[Core Programming - 'Negative Powerup'] started implementing the negative powerups Damage and Slow
+finished implementing Slow and Damage negative powerups; Changed HUD icons to simple activate and deactivate instead of fading
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -33,13 +33,8 @@ Heights (rooftops, clouds)   <--- Highest
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Negative Powerup"
-♠ broken potion that damages player
-♠ something that slows player movement
-♠ debuff icon for slowing
-
 "New Enemy Type"
-- moves, then stops and fires at player
+- moves, then stops and throws a knife at player
 - fires a shotgun-like volley after a short chargeup
 
 "Balanced Spawning"

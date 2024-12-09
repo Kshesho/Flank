@@ -1,3 +1,4 @@
+using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer.Explorer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,34 @@ namespace Narzioth.Utilities
         #endregion
         #region Extention Methods
 
+        /// <summary>
+        /// Rotates the z axis of the transform to face the <paramref name="target_"/>.
+        /// </summary>
+        /// <param name="transform_"></param>
+        /// <param name="target_"></param>
+        public static void LookAt2D(this Transform transform_, Transform target_)
+        {
+            Vector2 targetPos = target_.position;
 
+            float angle = Mathf.Atan2(targetPos.y - transform_.position.y, targetPos.x - transform_.position.x) * Mathf.Rad2Deg;
+            Quaternion lookAt = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+
+            transform_.rotation = lookAt;
+        }
+        /// <summary>
+        /// Rotates the z axis of the transform over time by <paramref name="speed_"/> to face the <paramref name="target_"/>.
+        /// </summary>
+        /// <param name="transform_"></param>
+        /// <param name="target_"></param>
+        public static void LookAt2D(this Transform transform_, Transform target_, float speed_)
+        {
+            Vector2 targetPos = target_.position;
+
+            float angle = Mathf.Atan2(targetPos.y - transform_.position.y, targetPos.x - transform_.position.x) * Mathf.Rad2Deg;
+            Quaternion lookAt = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+
+            transform_.rotation = Quaternion.Lerp(transform_.rotation, lookAt, speed_ * Time.deltaTime);
+        }
 
         #endregion
     }

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[Core Programming - 'New Enemy Type'] Started creating Knight enemy. Created projectile and set up enemy sprites
+finished Knight enemy with movement, charge up, attack, and death; separated enemy movement classes with an EnemyMovement base class; separated enemy animStateChanger classes with EnemyAnimStateChanger base class
 
 last - 
-finished implementing Slow and Damage negative powerups; Changed HUD icons to simple activate and deactivate instead of fading
+[Core Programming - 'New Enemy Type'] Started creating Knight enemy. Created projectile and set up enemy sprites
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -36,6 +36,7 @@ Heights (rooftops, clouds)   <--- Highest
 "New Enemy Type"
 - moves, then stops and throws a knife at player
 - fires a shotgun-like volley after a short chargeup
+- get both spawning with waveSOs
 
 "Balanced Spawning"
 - revamp spawning with a weight table

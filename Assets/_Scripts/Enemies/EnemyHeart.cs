@@ -48,7 +48,9 @@ public class EnemyHeart : MonoBehaviour
     void Death()
     {
         _enemyMovement.StopMoving();
+
         _animStateChanger.PlayDeathAnimation();
+
         GameManager.Instance.IncrementScore();
         StartCoroutine(WaitForDeathAnimToFinishRtn());
         AudioManager.Instance.PlayEnemyDeath();

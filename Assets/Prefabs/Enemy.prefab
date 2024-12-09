@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2495038891385216288}
-  - component: {fileID: 7171967419205868428}
-  - component: {fileID: 3479727073672173237}
+  - component: {fileID: -6481535772246056195}
+  - component: {fileID: 5577612926033102229}
   - component: {fileID: 1891684895690908322}
   - component: {fileID: 5470563488589255745}
   - component: {fileID: 4839708177363858497}
@@ -37,9 +37,9 @@ Transform:
   - {fileID: 781431098154329402}
   - {fileID: 3492711211189797967}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7171967419205868428
+--- !u!114 &-6481535772246056195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,15 +48,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 541813928304913277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa76a94b1174c249925d8739baaa0c4, type: 3}
+  m_Script: {fileID: 11500000, guid: be9cc15818f1fe94fbaa8b04213b8c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animStateChanger: {fileID: 3479727073672173237}
-  _moveSpeed: 3
+  _baseMoveSpeed: 4
   _yOffScreenPoint: -7
   _yResetPoint: 6.5
   _xBounds: 9
---- !u!114 &3479727073672173237
+  _animStateChanger: {fileID: 0}
+  _diagonalMovementChance: 10
+--- !u!114 &5577612926033102229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 541813928304913277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c211d1e66611b8941b4b31752cefe090, type: 3}
+  m_Script: {fileID: 11500000, guid: 34cce36c3cb4e4949a3c60789ff5abf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 4839708177363858497}
@@ -299,8 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776c304ba1b48424091f934e9c10979e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMovement: {fileID: 7171967419205868428}
-  _animStateChanger: {fileID: 3479727073672173237}
+  _enemyMovement: {fileID: -6481535772246056195}
+  _animStateChanger: {fileID: 0}
   _health: 50
   _enemyContainer: {fileID: 541813928304913277}
   _thisCollider: {fileID: 2744672957695426269}

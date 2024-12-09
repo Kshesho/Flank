@@ -25,6 +25,11 @@ public class GameManager : MonoSingleton<GameManager>
     bool _gamePaused;
     public bool GamePaused { get { return _gamePaused; } }
 
+    public Transform PlayerTransform()
+    {
+        return GameObject.FindWithTag(Tags.Player).transform;
+    }
+
 #endregion
 #region Base Methods
 

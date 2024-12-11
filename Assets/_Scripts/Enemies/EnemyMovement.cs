@@ -30,7 +30,11 @@ public class EnemyMovement : MonoBehaviour
     protected virtual void DownwardMovement()
     {
         transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime, Space.World);
+        ResetPosition();
+    }
 
+    protected virtual void ResetPosition()
+    {
         if (transform.position.y < _yOffScreenPoint)
         {
             var rand = Random.Range(_xBounds * -1, _xBounds);

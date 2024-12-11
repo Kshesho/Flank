@@ -73,6 +73,18 @@ namespace Narzioth.Utilities
             transform_.rotation = Quaternion.Lerp(transform_.rotation, lookAt, speed_ * Time.deltaTime);
         }
 
+        /// <summary>
+        /// Randomly sets the bool to true or false.
+        /// </summary>
+        /// <param name="bool_"></param>
+        public static void CoinFlip(this ref bool bool_)
+        {
+            int rand = UnityEngine.Random.Range(0, 2);
+            if (rand == 0)
+                bool_ = false;
+            else bool_ = true;
+        }
+
         #endregion
     }
 }

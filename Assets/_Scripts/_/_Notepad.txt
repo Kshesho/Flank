@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-finished Knight enemy with movement, charge up, attack, and death; separated enemy movement classes with an EnemyMovement base class; separated enemy animStateChanger classes with EnemyAnimStateChanger base class
+creataed the full Vigilante enemy who moves horizontally and throws knives
 
 last - 
-[Core Programming - 'New Enemy Type'] Started creating Knight enemy. Created projectile and set up enemy sprites
+finished Knight enemy with movement, charge up, attack, and death; separated enemy movement classes with an EnemyMovement base class; separated enemy animStateChanger classes with EnemyAnimStateChanger base class
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -34,8 +34,8 @@ Heights (rooftops, clouds)   <--- Highest
 [CORE PROGRAMMING]
 
 "New Enemy Type"
-- moves, then stops and throws a knife at player
-- fires a shotgun-like volley after a short chargeup
+♦ moves slowly, then stops and fires shotgun-like volley after a short chargeup
+♦ moves quickly across the screen horizontally, throws a knife at player every couple seconds
 - get both spawning with waveSOs
 
 "Balanced Spawning"

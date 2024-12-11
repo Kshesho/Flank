@@ -1,3 +1,16 @@
 {
-	"name": "Flank.ScriptableObjects"
+    "name": "Flank.ScriptableObjects",
+    "rootNamespace": "",
+    "references": [
+        "GUID:40a77135fdbf28d46bc680db0cfcf3d4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

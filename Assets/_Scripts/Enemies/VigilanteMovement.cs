@@ -47,7 +47,7 @@ public class VigilanteMovement : EnemyMovement
 
 #endregion
 
-	void MoveToSpawnPosition()
+	protected override void MoveToSpawnPosition()
 	{
 		var randY = Random.Range(-5.24f, 3.95f);
 

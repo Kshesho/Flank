@@ -26,6 +26,7 @@ public class KnightMovement : EnemyMovement
 	{
 		base.Start();
 
+		MoveToSpawnPosition();
 		RefreshStopTimer();
 	}
 	protected override void Update () 

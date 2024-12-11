@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Handles moving the Enemy
 /// </summary>
-public class EnemyMovement : MonoBehaviour 
+public abstract class EnemyMovement : MonoBehaviour 
 {
 #region Variables
 
@@ -25,8 +25,16 @@ public class EnemyMovement : MonoBehaviour
         DownwardMovement();
 	}
 
-#endregion
+    #endregion
 
+    /// <summary>
+    /// Moves the enemy to its starting location when it spawns.
+    /// </summary>
+    protected virtual void MoveToSpawnPosition()
+    {
+        transform.position = new Vector2(Random.Range(_xBounds * -1, _xBounds), _yResetPoint);
+    }
+    
     protected virtual void DownwardMovement()
     {
         transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime, Space.World);

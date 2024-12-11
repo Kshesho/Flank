@@ -17,3 +17,10 @@ public enum RangedWeaponType
     Shuriken,
     Javelin
 }
+
+public enum EnemyType
+{
+    Pirate,
+    Knight,
+    Vigilante
+}

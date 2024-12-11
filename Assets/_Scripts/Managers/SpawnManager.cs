@@ -12,11 +12,9 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     [SerializeField] PowerupSpawner _powerupSpawner;
 
-    [SerializeField] float _spawnCooldown = 2;
-    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] GameObject[] _enemyPrefabs;
 
-    bool _spawning = true;
-    float _xBounds = 9, _ySpawnPos = 7;
+    Vector2 _defaultSpawnPos = new Vector2(0, 7);
 
     [SerializeField] WaveSO[] _enemyWaves;
     int _wave = 0;
@@ -58,10 +56,11 @@ public class SpawnManager : MonoSingleton<SpawnManager>
             UIManager.Instance.NewWaveUI(_wave, wave.waveTime);
 
             //Spawn each enemy
-            for (int i = 0; i < wave.enemies; i++)
+            for (int i = 0; i < wave.enemies.Length; i++)
             {
-                Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-                Instantiate(_enemyPrefab, spawnPos, Quaternion.identity, _enemyContainer);
+                //convert the waves EnemyType from enum to int
+                int index = (int)wave.enemies[i];
+                Instantiate(_enemyPrefabs[index], _defaultSpawnPos, Quaternion.identity, _enemyContainer);
                 yield return HM.WaitTime(wave.timeBetweenEnemies);
             }
 
@@ -105,7 +104,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     void StopSpawning()
     {
-        _spawning = false;
+        StopAllCoroutines();
         _powerupSpawner.StopSpawningPowerups();
     }
 

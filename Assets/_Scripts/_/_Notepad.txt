@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-creataed the full Vigilante enemy who moves horizontally and throws knives
+added Knight and Vigilante enemies to spawn waves, reworking how enemies are spawned to allow for different types; renamed first enemy to "Pirate"; Enemies now handle (instead of SpawnManager) assigning themselves a random position upon spawning; Fixed: Knight's animations were broken becuase of renaming its "Crossbow" to "Crossbow_sprite"
 
 last - 
-finished Knight enemy with movement, charge up, attack, and death; separated enemy movement classes with an EnemyMovement base class; separated enemy animStateChanger classes with EnemyAnimStateChanger base class
+creataed the full Vigilante enemy who moves horizontally and throws knives
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -36,9 +36,10 @@ Heights (rooftops, clouds)   <--- Highest
 "New Enemy Type"
 ♦ moves slowly, then stops and fires shotgun-like volley after a short chargeup
 ♦ moves quickly across the screen horizontally, throws a knife at player every couple seconds
-- get both spawning with waveSOs
+♦ get both spawning with waveSOs
 
 "Balanced Spawning"
+- create a bunch of WaveSOs
 - revamp spawning with a weight table
 - determine which things need to be spawned together, and which spawn independently
 - ammo is frequent & health is rare

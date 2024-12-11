@@ -22,9 +22,11 @@ public class PirateMovement : EnemyMovement
 #endregion
 #region Base Methods
 
-    void Start () 
+    protected override void Start () 
     {
+        base.Start();
 		RollForDiagonalMovevment();
+        MoveToSpawnPosition();
 	}
 	
 	protected override void Update() 

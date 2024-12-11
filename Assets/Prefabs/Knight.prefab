@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3920455878384424924}
   - component: {fileID: 7448442918403967338}
   m_Layer: 0
-  m_Name: Crossbow_sprite
+  m_Name: Crossbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 2284809536473857123}
   - {fileID: 7713227364190745056}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &689319915940835853
 MonoBehaviour:

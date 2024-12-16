@@ -19,7 +19,6 @@ public class PlayerHeart : MonoBehaviour
 
     [SerializeField] int _maxHealth = 100;
     int _currentHealth;
-    bool _dodgeInvulnerability;
     public int CurrentHealth { get { return _currentHealth; } }
     [SerializeField] GameObject _playerContainer;
     [SerializeField] Collider2D _thisCollider;
@@ -81,8 +80,7 @@ public class PlayerHeart : MonoBehaviour
 
     void TakeDamage(Collider2D colliderBeingHit, int damage)
     {
-        if (colliderBeingHit != _thisCollider ||
-            _dodgeInvulnerability || _damageCooldownActive)
+        if (colliderBeingHit != _thisCollider || _damageCooldownActive)
             return;
 
         if (_shieldsActive)
@@ -146,11 +144,11 @@ public class PlayerHeart : MonoBehaviour
 
     public void EnableDodgeInvulnerability()
     {
-        _dodgeInvulnerability = true;
+        _thisCollider.enabled = false;
     }
     public void DisableDodgeInvulnerability()
     {
-        _dodgeInvulnerability = false;
+        _thisCollider.enabled = true;
     }
 
     void AddAShield(PowerupType powerupCollected)

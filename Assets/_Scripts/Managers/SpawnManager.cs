@@ -94,6 +94,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     }
     IEnumerator CountdownToNextWaveRtn()
     {
+        UIManager.Instance.NextWaveCountdown("5...");
+        yield return HM.WaitTime(1);
+        UIManager.Instance.NextWaveCountdown("4...");
+        yield return HM.WaitTime(1);
         UIManager.Instance.NextWaveCountdown("3...");
         yield return HM.WaitTime(1);
         UIManager.Instance.NextWaveCountdown("2...");

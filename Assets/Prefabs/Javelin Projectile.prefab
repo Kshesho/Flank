@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1049608511521214764}
   - component: {fileID: 1056829855544085365}
   - component: {fileID: 9090868165578319748}
+  - component: {fileID: 867864544124141863}
   m_Layer: 0
   m_Name: Javelin Projectile
   m_TagString: PWeapon
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5fe5d00bf7e724ab8a1c4c0b0d8488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 150
+  _damage: 20
   _moveSpeed: 20
 --- !u!114 &1049608511521214764
 MonoBehaviour:
@@ -169,3 +170,30 @@ PolygonCollider2D:
       - {x: 0.18540893, y: 0.25104827}
       - {x: -0.20460382, y: -0.026380543}
   m_UseDelaunayMesh: 0
+--- !u!50 &867864544124141863
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824697422607572412}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

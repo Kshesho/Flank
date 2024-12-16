@@ -14,27 +14,21 @@ public class PowerupSpawner : MonoBehaviour
 
     bool _spawning = true;
     float _xBounds = 9, _ySpawnPos = 7;
+    [Header("Ammo Crate")]
+    [Tooltip("Pwerups are spawned at a random interval between these minimum (X) and maximum (Y) values, in seconds.")]
+    [SerializeField] Vector2 _ammo_MinMaxSpawnFrequency = new Vector2(8f, 14f);
+    [SerializeField] GameObject _ammoCratePref;
+
+    [Header("Health Potion")]
+    [Tooltip("Pwerups are spawned at a random interval between these minimum (X) and maximum (Y) values, in seconds.")]
+    [SerializeField] Vector2 _health_MinMaxSpawnFrequency = new Vector2(35f, 40f);
+    [SerializeField] GameObject _healthPotionPref;
+
+    [Header("All Other Powerups")]
+    [Tooltip("Pwerups are spawned at a random interval between these minimum (X) and maximum (Y) values, in seconds.")]
+    [SerializeField] Vector2 _other_MinMaxSpawnFrequency = new Vector2(4f, 10f);
     [SerializeField] GameObject[] _powerupPrefabs;
     [SerializeField] int[] _powerupSpawnWeights;
-    [SerializeField] GameObject _ammoCratePref, _healthPotionPref;
-
-#endregion
-#region Base Methods
-
-    void Awake()
-    {
-        
-    }
-
-    void Start () 
-    {
-		
-	}
-	
-	void Update () 
-    {
-		
-	}
 
 #endregion
 
@@ -55,7 +49,7 @@ public class PowerupSpawner : MonoBehaviour
     {
         while (_spawning)
         {
-            float rand = Random.Range(4f, 10f);
+            float rand = Random.Range(_other_MinMaxSpawnFrequency.x, _other_MinMaxSpawnFrequency.y);
             yield return HM.WaitTime(rand);
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
             
@@ -90,7 +84,7 @@ public class PowerupSpawner : MonoBehaviour
     {
         while (_spawning)
         {
-            float rand = Random.Range(8f, 14f);
+            float rand = Random.Range(_ammo_MinMaxSpawnFrequency.x, _ammo_MinMaxSpawnFrequency.y);
             yield return HM.WaitTime(rand);
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
 
@@ -102,7 +96,8 @@ public class PowerupSpawner : MonoBehaviour
     {
         while (_spawning)
         {
-            yield return HM.WaitTime(40);
+            float rand = Random.Range(_health_MinMaxSpawnFrequency.x, _health_MinMaxSpawnFrequency.y);
+            yield return HM.WaitTime(rand);
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
 
             Instantiate(_healthPotionPref, spawnPos, Quaternion.identity);

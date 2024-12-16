@@ -12,7 +12,10 @@ public class PlayerWeaponController : MonoBehaviour
 #region Variables
 
     Coroutine _disableJavelinRtn, _disableWhipRtn;
-    int _javelinActiveTime = 6, _whipActiveTime = 15;
+    [Tooltip("How long the javelin stays active after the player collects the javelin powerup.")]
+    [SerializeField] int _javelinActiveTime = 6;
+    [Tooltip("How long the whip stays active after the player collects the whip powerup.")]
+    [SerializeField] int _whipActiveTime = 15;
 
     Weapon _primaryActiveWeapon;
     [SerializeField] Weapon _sword, _whip;

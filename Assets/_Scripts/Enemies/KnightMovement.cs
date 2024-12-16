@@ -42,7 +42,7 @@ public class KnightMovement : EnemyMovement
 
 #endregion
 
-	// make sure I'm on-screen (between y bounds) before attacking
+	// TODO: make sure I'm on-screen (between y bounds) before attacking
 
 	//called via keyframe in 'Knight_charge_color blink' animation
 	void ResumeMovement()

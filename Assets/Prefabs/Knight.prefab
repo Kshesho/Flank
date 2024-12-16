@@ -380,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyMovement: {fileID: 689319915940835853}
   _animStateChanger: {fileID: 5506163608673933879}
-  _health: 100
+  _health: 30
   _enemyContainer: {fileID: 6792937328411478719}
   _thisCollider: {fileID: 6295697194973245947}
 --- !u!61 &6295697194973245947

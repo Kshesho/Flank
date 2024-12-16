@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9cc15818f1fe94fbaa8b04213b8c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseMoveSpeed: 2.5
+  _baseMoveSpeed: 2
   _yOffScreenPoint: -7
   _yResetPoint: 6.5
   _xBounds: 9
   _animStateChanger: {fileID: 3734786169094487381}
-  _diagonalMovementChance: 10
+  _diagonalMovementChance: 35
 --- !u!114 &3734786169094487381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyMovement: {fileID: 3217652111917865273}
   _animStateChanger: {fileID: 3734786169094487381}
-  _health: 50
+  _health: 10
   _enemyContainer: {fileID: 7126091625803615516}
   _thisCollider: {fileID: 2711296628687348538}
 --- !u!61 &2711296628687348538

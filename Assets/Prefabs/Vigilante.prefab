@@ -127,7 +127,7 @@ Transform:
   - {fileID: 550409535184289969}
   - {fileID: 8425214239826887465}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5095134969104833092
 MonoBehaviour:
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyMovement: {fileID: 5095134969104833092}
   _animStateChanger: {fileID: 6925755016221387322}
-  _health: 30
+  _health: 10
   _enemyContainer: {fileID: 5850023471509766748}
   _thisCollider: {fileID: 4328845021534635513}
 --- !u!61 &4328845021534635513

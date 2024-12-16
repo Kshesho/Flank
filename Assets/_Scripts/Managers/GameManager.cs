@@ -27,6 +27,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     public Transform PlayerTransform()
     {
+        //If player is dead (game over) return this transform, which is at 0,0,0
+        if (GameOver)
+            return this.transform;
         return GameObject.FindWithTag(Tags.Player).transform;
     }
 

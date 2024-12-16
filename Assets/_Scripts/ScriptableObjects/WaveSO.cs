@@ -13,6 +13,6 @@ public class WaveSO : ScriptableObject
     /// <summary>
     /// How much time until the wave ends after it starts.
     /// </summary>
-    public int waveTime;
+    public int waveTime = 10;
 
 }

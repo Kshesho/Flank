@@ -68,7 +68,7 @@ public class PirateMovement : EnemyMovement
     void DiagonalMovement()
     {
         //move in current direction
-        transform.Translate(_curMoveDirection * _baseMoveSpeed * Time.deltaTime, Space.World);
+        transform.Translate(_curMoveDirection * _moveSpeed * Time.deltaTime, Space.World);
         
         //if I hit the edge of the left or right side of the screen, move the other way
         if (transform.position.x > _xBounds ||

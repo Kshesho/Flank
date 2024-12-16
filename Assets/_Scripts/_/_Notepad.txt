@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-added Knight and Vigilante enemies to spawn waves, reworking how enemies are spawned to allow for different types; renamed first enemy to "Pirate"; Enemies now handle (instead of SpawnManager) assigning themselves a random position upon spawning; Fixed: Knight's animations were broken becuase of renaming its "Crossbow" to "Crossbow_sprite"
+[CORE PROGRAMMING - 'Balanced Spawning'] gameplay rebalancing; changed next wave countdown from 3 to 5 seconds; added min and max values for all powerup spawn frequencies; player no longer collides with projectiles while dodging; moved waves panel to corner of screen; changed appearance of negative powerups to make their negativity more obvious; Fixed: javelin couldn't damage knights; Fixed: diagonal pirates keep moving on death
 
 last - 
-creataed the full Vigilante enemy who moves horizontally and throws knives
+added Knight and Vigilante enemies to spawn waves, reworking how enemies are spawned to allow for different types; renamed first enemy to "Pirate"; Enemies now handle (instead of SpawnManager) assigning themselves a random position upon spawning; Fixed: Knight's animations were broken becuase of renaming its "Crossbow" to "Crossbow_sprite"
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -29,20 +29,25 @@ Fauna 2 (trees)
 Player
 Heights (rooftops, clouds)   <--- Highest
 
+HEALTH & DAMAGE
+Pirate - 10hp
+Knight - 30hp
+Vigilante - 10hp
+
+Sword - 15
+Shuriken - 5
+Javelin - 20
+Whip - 30
+
 
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"New Enemy Type"
-♦ moves slowly, then stops and fires shotgun-like volley after a short chargeup
-♦ moves quickly across the screen horizontally, throws a knife at player every couple seconds
-♦ get both spawning with waveSOs
-
 "Balanced Spawning"
-- create a bunch of WaveSOs
-- revamp spawning with a weight table
-- determine which things need to be spawned together, and which spawn independently
-- ammo is frequent & health is rare
+♦ create a bunch of WaveSOs
+♦ revamp spawning with a weight table
+♦ determine which things need to be spawned together, and which spawn independently
+♦ ammo is frequent & health is rare
 
 "Enemy Shields"
 - After a certain number of waves, some enemies (or new enemy) spawn with shields that give them 1 extra hit

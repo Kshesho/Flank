@@ -12,5 +12,4 @@ public class RotateZAxis : MonoBehaviour
         transform.Rotate(0, 0, _rotateSpeed * Time.deltaTime);
     }
 
-
 }

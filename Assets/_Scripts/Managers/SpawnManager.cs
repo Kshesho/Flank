@@ -18,6 +18,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     [SerializeField] WaveSO[] _enemyWaves;
     int _wave = 0;
+    public int CurrentWave { get { return _wave; } }
     [SerializeField] Transform _enemyContainer;
     int _waveTimer;
     Coroutine _waveTimerRtn;

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Balanced Spawning'] gameplay rebalancing; changed next wave countdown from 3 to 5 seconds; added min and max values for all powerup spawn frequencies; player no longer collides with projectiles while dodging; moved waves panel to corner of screen; changed appearance of negative powerups to make their negativity more obvious; Fixed: javelin couldn't damage knights; Fixed: diagonal pirates keep moving on death
+[CORE PROGRAMMING - 'Enemy Shields'] enemies now have a random chance to get a shield after wave 2, allowing them to take one extra hit
 
 last - 
-added Knight and Vigilante enemies to spawn waves, reworking how enemies are spawned to allow for different types; renamed first enemy to "Pirate"; Enemies now handle (instead of SpawnManager) assigning themselves a random position upon spawning; Fixed: Knight's animations were broken becuase of renaming its "Crossbow" to "Crossbow_sprite"
+[CORE PROGRAMMING - 'Balanced Spawning'] gameplay rebalancing; changed next wave countdown from 3 to 5 seconds; added min and max values for all powerup spawn frequencies; player no longer collides with projectiles while dodging; moved waves panel to corner of screen; changed appearance of negative powerups to make their negativity more obvious; Fixed: javelin couldn't damage knights; Fixed: diagonal pirates keep moving on death
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -43,15 +43,10 @@ Whip - 30
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Balanced Spawning"
-♦ create a bunch of WaveSOs
-♦ revamp spawning with a weight table
-♦ determine which things need to be spawned together, and which spawn independently
-♦ ammo is frequent & health is rare
-
 "Enemy Shields"
-- After a certain number of waves, some enemies (or new enemy) spawn with shields that give them 1 extra hit
-- no matter how much damage the player does, these enemies can take at least 2 hits
+♦ After a certain number of waves, some enemies (or new enemy) spawn with shields that give them 1 extra hit
+♦ no matter how much damage the player does, these enemies can take at least 2 hits
+♦ the higher the wave, the higher the likelyhood of an enemy spawning with a shield.
 
 "Aggressive Enemy Type"
 - enemies will swing swords or try and ram the player if player gets too close

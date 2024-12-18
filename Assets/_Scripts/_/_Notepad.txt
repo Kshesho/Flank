@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Enemy Shields'] enemies now have a random chance to get a shield after wave 2, allowing them to take one extra hit
+[CORE PROGRAMMING - 'Aggressive Enemy Type'] gave knight a melee attack that triggers when player gets too close; adjusted player and enemy colliders for better collision accuracy; added DestroyEmptyParent that destroys a Transform if it has no children
 
 last - 
-[CORE PROGRAMMING - 'Balanced Spawning'] gameplay rebalancing; changed next wave countdown from 3 to 5 seconds; added min and max values for all powerup spawn frequencies; player no longer collides with projectiles while dodging; moved waves panel to corner of screen; changed appearance of negative powerups to make their negativity more obvious; Fixed: javelin couldn't damage knights; Fixed: diagonal pirates keep moving on death
+[CORE PROGRAMMING - 'Enemy Shields'] enemies now have a random chance to get a shield after wave 2, allowing them to take one extra hit
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -43,14 +43,9 @@ Whip - 30
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Enemy Shields"
-♦ After a certain number of waves, some enemies (or new enemy) spawn with shields that give them 1 extra hit
-♦ no matter how much damage the player does, these enemies can take at least 2 hits
-♦ the higher the wave, the higher the likelyhood of an enemy spawning with a shield.
-
 "Aggressive Enemy Type"
-- enemies will swing swords or try and ram the player if player gets too close
-- short 'tell' before they hit the player, giving player time to dodge
+♦ Knight will swing sword if player gets too close
+♦ short 'tell' before the swing animation hits the player, giving player time to dodge
 
 "Smart Enemy"
 - enemy that fires a net when behind the player
@@ -87,6 +82,10 @@ OR
 - boss moves to the center of the screen and throws many ninja stars with unique attacks
 - boss health bar
 
+
+
+Final update:
+- improve dodge mechanic (make it last longer)
 
 
 

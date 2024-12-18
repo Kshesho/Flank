@@ -44,7 +44,7 @@ public class KnightMovement : EnemyMovement
 
 	// TODO: make sure I'm on-screen (between y bounds) before attacking
 
-	//called via keyframe in 'Knight_charge_color blink' animation
+	//called via keyframe in Knight animations
 	void ResumeMovement()
 	{
 		_animStateChanger.StopAttack();

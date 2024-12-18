@@ -35,4 +35,10 @@ public class KnightAnimStateChanger : EnemyAnimStateChanger
 		_anim.Play("Knight_charge_color blink");
     }
 
+    public void SwordAttack()
+    {
+        _attacking = true;
+        _anim.SetTrigger("sword");
+    }
+
 }

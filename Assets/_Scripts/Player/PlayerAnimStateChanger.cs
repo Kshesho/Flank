@@ -19,7 +19,9 @@ public class PlayerAnimStateChanger : MonoBehaviour
     const string IDLE = "Idle_Blend Tree";//interrupted by everything but DODGE
     const string WALK = "Walk_Blend Tree";//interrupted by everything
     const string SPRINT = "Sprint_Blend Tree";//interrupted by everything except IDLE
-    const string DODGE = "Dodge_Blend Tree";//will always finish, unless DEATH
+    const string DODGE = "Dodge_Blend Tree";//interrupted by NET, DEATH
+    
+    const string NET = "Net_Blend Tree";//interrupted by HIT, DEATH
 
     const string HIT = "Hit_Blend Tree";//interrupted by DODGE, DEATH
     const string DEATH = "Death_Blend Tree";//will always finish
@@ -107,6 +109,11 @@ public class PlayerAnimStateChanger : MonoBehaviour
         else if (_psm.PlayerIsThrowing)
         {
             ChangeAnimState(THROW);
+        }
+        //=====Caught In Net
+        else if (_psm.PlayerInNet)
+        {
+            ChangeAnimState(NET);
         }
         //=====Moving
         else if (_psm.PlayerIsMoving)

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Aggressive Enemy Type'] gave knight a melee attack that triggers when player gets too close; adjusted player and enemy colliders for better collision accuracy; added DestroyEmptyParent that destroys a Transform if it has no children
+[CORE PROGRAMMING - 'Smart Enemy'] started creating the Huntress and her movement halting effect on the player. Huntress is animated and player stops moving after colliding with the net. Still need to get the Huntress moving, throwing the net, and the player moving again after being hit by the net
 
 last - 
-[CORE PROGRAMMING - 'Enemy Shields'] enemies now have a random chance to get a shield after wave 2, allowing them to take one extra hit
+[CORE PROGRAMMING - 'Aggressive Enemy Type'] gave knight a melee attack that triggers when player gets too close; adjusted player and enemy colliders for better collision accuracy; added DestroyEmptyParent that destroys a Transform if it has no children
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -43,14 +43,10 @@ Whip - 30
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Aggressive Enemy Type"
-♦ Knight will swing sword if player gets too close
-♦ short 'tell' before the swing animation hits the player, giving player time to dodge
-
 "Smart Enemy"
 - enemy that fires a net when behind the player
 - net moves pretty slowly
-- if this net hits player, they're movement is halted, and they have to rapidly press a button to break free
+- if this net hits player, their movement is halted for a couple seconds
 
 "Enemy Pickup Behavior"
 - pickups move slower than enemies

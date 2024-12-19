@@ -19,6 +19,11 @@ public class Events
     public static Action<PowerupType> OnPowerupCollected;
 
     /// <summary>
+    /// Event for when the player is hit by the Huntress' net.
+    /// </summary>
+    public static Action OnPlayerNetted;
+
+    /// <summary>
     /// Event for when the player gets damaged.
     /// </summary>
     public static Action OnPlayerDamaged;

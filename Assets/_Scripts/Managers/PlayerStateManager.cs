@@ -14,6 +14,7 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
 
     public bool PlayerIsMoving {  get; private set; }
     public bool PlayerIsSprinting { get; private set; }
+    public bool PlayerInNet { get; private set; }
     public bool PlayerIsDodging { get; private set; }
     public bool PlayerIsAttacking { get; private set; }
     public bool PlayerIsAttacking_Heavy { get; private set; }
@@ -47,6 +48,7 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     {
         PlayerIsMoving = false;
         PlayerIsSprinting = false;
+        PlayerInNet = false;
         PlayerIsDodging = false;
         PlayerIsAttacking = false;
         PlayerIsAttacking_Heavy = false;
@@ -132,6 +134,15 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     public void HitFinished()
     {
         PlayerIsBeingHit = false;
+    }
+
+    public void NetStarted()
+    {
+        PlayerInNet = true;
+    }
+    public void NetFinished()
+    {
+        PlayerInNet = false;
     }
 
 

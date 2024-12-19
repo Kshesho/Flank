@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _walkSpeed = 100, _sprintSpeed = 200, _heavyAtkMoveSpeed = 50;
     float _curSpeed;
     bool _sprinting;
+
+    [SerializeField] GameObject _net;
     
     //speed is multiplied by this to slow the player when slow powerup is collected
     float _slowedMovementPrct = 1f;
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         Events.OnPowerupCollected += CollectSlowPowerup;
         Events.OnPlayerHeavyAttackStarted += SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished += ResetSpeed;
+        Events.OnPlayerNetted += HaltMovement;
         Events.OnPlayerDeath += StopMovement;
     }
     void OnDisable()
@@ -87,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         Events.OnPowerupCollected -= CollectSlowPowerup;
         Events.OnPlayerHeavyAttackStarted -= SetHeavyAttackSpeed;
         Events.OnPlayerHeavyAttackFinished -= ResetSpeed;
+        Events.OnPlayerNetted -= HaltMovement;
         Events.OnPlayerDeath -= StopMovement;
     }
 
@@ -195,10 +199,24 @@ public class PlayerMovement : MonoBehaviour
         ResetSpeed();
     }
 
-    void StopMovement()
+    /// <summary>
+    /// Stops the player's movement, but keeps this component active.
+    /// </summary>
+    void HaltMovement()
     {
         _rBody.velocity = Vector2.zero;
         _curSpeed = 0;
+        _net.SetActive(true);
+        PlayerStateManager.Instance.NetStarted();
+        //start timer
+    }
+
+    /// <summary>
+    /// Stops the player and disables this component.
+    /// </summary>
+    void StopMovement()
+    {
+        HaltMovement();
         this.enabled = false;
     }
 

@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     bool _sprinting;
 
     [SerializeField] GameObject _net;
+    Coroutine _resumeMovementRtn;
     
     //speed is multiplied by this to slow the player when slow powerup is collected
     float _slowedMovementPrct = 1f;
@@ -207,8 +208,16 @@ public class PlayerMovement : MonoBehaviour
         _rBody.velocity = Vector2.zero;
         _curSpeed = 0;
         _net.SetActive(true);
-        PlayerStateManager.Instance.NetStarted();
-        //start timer
+
+        if (_resumeMovementRtn != null) StopCoroutine(_resumeMovementRtn);
+        _resumeMovementRtn = StartCoroutine(ResumeMovementRtn());
+    }
+    IEnumerator ResumeMovementRtn()
+    {
+        yield return HM.WaitTime(2);
+        PlayerStateManager.Instance.NetFinished();
+        _net.SetActive(false);
+        ResetSpeed();
     }
 
     /// <summary>
@@ -413,6 +422,8 @@ public class PlayerMovement : MonoBehaviour
             return false;
         if (_staminaOnCooldown || CurStamina < _dodgeStaminaCost)
             return false;
+        if (PlayerStateManager.Instance.PlayerInNet)
+            return false;
         if (!PlayerIsMoving())
             return false;
         
@@ -428,6 +439,8 @@ public class PlayerMovement : MonoBehaviour
         if (_sprinting)
             return false;
         if (_staminaOnCooldown)
+            return false;
+        if (PlayerStateManager.Instance.PlayerInNet)
             return false;
 
         return true;
@@ -448,10 +461,12 @@ public class PlayerMovement : MonoBehaviour
         _curSpeed = _heavyAtkMoveSpeed;
     }
     /// <summary>
-    /// Sets current speed based on whether the player is sprinting, dodging, or neither.
+    /// Sets current speed based on the player's current movement state.
     /// </summary>
     void ResetSpeed()
     {
+        if (PlayerStateManager.Instance.PlayerInNet)
+            return;
         if (_sprinting)
         {
             _curSpeed = _sprintSpeed;

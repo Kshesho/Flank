@@ -139,6 +139,7 @@ public class PlayerStateManager : MonoSingleton<PlayerStateManager>
     public void NetStarted()
     {
         PlayerInNet = true;
+        Events.OnPlayerNetted?.Invoke();
     }
     public void NetFinished()
     {

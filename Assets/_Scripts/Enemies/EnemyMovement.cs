@@ -3,7 +3,7 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// Handles moving the Enemy
+/// Base class for enemy movement.
 /// </summary>
 public abstract class EnemyMovement : MonoBehaviour 
 {

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Smart Enemy'] started creating the Huntress and her movement halting effect on the player. Huntress is animated and player stops moving after colliding with the net. Still need to get the Huntress moving, throwing the net, and the player moving again after being hit by the net
+Huntress enemy is almost complete. She just needs to get damaged and spawn with waves
 
 last - 
-[CORE PROGRAMMING - 'Aggressive Enemy Type'] gave knight a melee attack that triggers when player gets too close; adjusted player and enemy colliders for better collision accuracy; added DestroyEmptyParent that destroys a Transform if it has no children
+[CORE PROGRAMMING - 'Smart Enemy'] started creating the Huntress and her movement halting effect on the player. Huntress is animated and player stops moving after colliding with the net. Still need to get the Huntress moving, throwing the net, and the player moving again after being hit by the net
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -44,9 +44,9 @@ Whip - 30
 [CORE PROGRAMMING]
 
 "Smart Enemy"
-- enemy that fires a net when behind the player
-- net moves pretty slowly
-- if this net hits player, their movement is halted for a couple seconds
+♦ enemy that fires a net when the player is behind her
+♦ net moves pretty slowly
+♦ if this net hits player, their movement is halted for a couple seconds
 
 "Enemy Pickup Behavior"
 - pickups move slower than enemies

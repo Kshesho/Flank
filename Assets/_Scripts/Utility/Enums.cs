@@ -22,5 +22,6 @@ public enum EnemyType
 {
     Pirate,
     Knight,
-    Vigilante
+    Vigilante,
+    Huntress
 }

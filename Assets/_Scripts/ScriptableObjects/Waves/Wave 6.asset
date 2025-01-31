@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06d3e2351e2e32409ac75452179ef2f, type: 3}
   m_Name: Wave 6
   m_EditorClassIdentifier: 
-  enemies: 01000000010000000100000001000000
+  enemies: 0100000001000000030000000100000001000000
   timeBetweenEnemies: 2
   waveTime: 40

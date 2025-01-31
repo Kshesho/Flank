@@ -16,6 +16,8 @@ public class EnemyAnimStateChanger : MonoBehaviour
 
     public float DeathAnimClipLength()
     {
+        if (_animDeathClip == null)
+            return 0;
         return _animDeathClip.length;
     }
     public void PlayDeathAnimation()

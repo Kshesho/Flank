@@ -38,9 +38,8 @@ public class VigilanteAttack : MonoBehaviour
         {
             TriggerCooldown();
 
-            GameObject newKnife = Instantiate(_knifePref, transform.position, Quaternion.identity);
-            //rotate knife to face the player (or do this in Knife class)
-            newKnife.transform.LookAt2D(GameManager.Instance.PlayerTransform());
+            /*create Knife*/ 
+            Instantiate(_knifePref, transform.position, Quaternion.identity);
 
             _animStateChanger.PlayThrow();
         }

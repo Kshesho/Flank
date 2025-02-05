@@ -8,6 +8,7 @@ TagManager:
   - PDamagable
   - PWeapon
   - Enemy
+  - Powerup
   layers:
   - Default
   - TransparentFX

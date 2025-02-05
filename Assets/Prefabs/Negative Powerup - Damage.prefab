@@ -4926,7 +4926,7 @@ GameObject:
   - component: {fileID: 2966529619543551268}
   m_Layer: 0
   m_Name: Negative Powerup - Damage
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4962,6 +4962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _powerupType: 6
   _moveSpeed: 1
+  _thisCollider: {fileID: 2966529619543551268}
 --- !u!114 &4791119989483604878
 MonoBehaviour:
   m_ObjectHideFlags: 0

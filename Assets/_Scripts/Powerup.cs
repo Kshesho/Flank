@@ -11,10 +11,18 @@ public class Powerup : MonoBehaviour
 
     [SerializeField] PowerupType _powerupType;
     [SerializeField] float _moveSpeed;
+    [Tooltip("How many hits until an enemy destroys me.")]
+    [SerializeField] int _health = 1;
+    [SerializeField] Collider2D _thisCollider;
 
 #endregion
-	
-	void Update () 
+
+    void OnEnable()
+    {
+        Events.OnCollide += TakeDamage;
+    }
+
+    void Update () 
     {
         transform.Translate(Vector2.down * _moveSpeed * Time.deltaTime, Space.World);
 	}
@@ -24,6 +32,18 @@ public class Powerup : MonoBehaviour
         if (other.CompareTag(Tags.Player))
         {
             Events.OnPowerupCollected?.Invoke(_powerupType);
+            Destroy(this.gameObject);
+        }
+    }
+
+    void TakeDamage(Collider2D colliderBeingHit, int damage)
+    {
+        if (colliderBeingHit != _thisCollider)
+            return;
+
+        _health -= damage;
+        if (_health <= 0)
+        {
             Destroy(this.gameObject);
         }
     }

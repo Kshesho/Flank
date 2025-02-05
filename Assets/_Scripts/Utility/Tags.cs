@@ -22,5 +22,7 @@ public class Tags
     public static string PWeapon
     { get { return nameof(PWeapon); } }
 
+    public static string Powerup
+    { get { return nameof(Powerup); } }
 
 }

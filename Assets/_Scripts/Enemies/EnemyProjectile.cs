@@ -11,20 +11,20 @@ public class EnemyProjectile : MonoBehaviour
 {
 #region Variables
 
-    [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] int _damage = 10;
+    [SerializeField] protected float _moveSpeed = 5f;
+    [SerializeField] protected int _damage = 10;
 
 #endregion
 #region Base Methods
 	
-	void Update () 
+	protected void Update () 
     {
 		transform.Translate(Vector2.up * _moveSpeed * Time.deltaTime, Space.Self);
 	}
 
 #endregion
 
-	private void OnTriggerEnter2D(Collider2D other)
+	protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(Tags.Player))
         {

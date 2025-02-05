@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-Huntress complete. She now gets damaged and spawns
+[CORE PROGRAMMING - 'Enemy Pickup Behavior'] Vigilantes now attack powerups if they are close to them when attacking
 
 last - 
-Huntress enemy is almost complete. She just needs to get damaged and spawn with waves
+Huntress complete. She now gets damaged and spawns
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -40,19 +40,24 @@ Shuriken - 5
 Javelin - 20
 Whip - 30
 
+Vigilante Knife damage to powerups - 1
+*Powerup Health:
+ Ammo Crate - 1
+ Health Potion - 2
+ Javelin - 1
+ Negative Damage - 1
+ Negative Slow - 1
+ Shield - 1
+ Stamina Boost - 1
+ Whip - 2
 
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Smart Enemy"
-♦ enemy that fires a net when the player is behind her
-♦ net moves pretty slowly
-♦ if this net hits player, their movement is halted for a couple seconds
-
 "Enemy Pickup Behavior"
-- pickups move slower than enemies
-- if enemey detects pickup close to them, they attack it (but prioritize attacking player)
-- pickups will be destroyed in 2 hits from enemies
+♦ if enemey detects pickup close to them, they attack it (but prioritize attacking player)
+♦ pickups will be destroyed in 2 hits from enemies
+♦ vigilantes spawn in groups of two
 
 "Pickup Collect"
 - if player is close enough to pickup, they can press 'C' to 'magnetize' pickup to them

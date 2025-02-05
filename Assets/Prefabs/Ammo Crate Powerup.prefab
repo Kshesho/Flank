@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 2790396058271488419}
   m_Layer: 0
   m_Name: Ammo Crate Powerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +373,7 @@ Transform:
   - {fileID: 6537210257974814079}
   - {fileID: 51111905112087094}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3692477694924684074
 MonoBehaviour:
@@ -389,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _powerupType: 4
   _moveSpeed: 1.5
+  _thisCollider: {fileID: 2607685160587126349}
 --- !u!114 &2988766138204623012
 MonoBehaviour:
   m_ObjectHideFlags: 0

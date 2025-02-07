@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Enemy Pickup Behavior'] Vigilantes now attack powerups if they are close to them when attacking
+[CORE PROGRAMMING - 'Pickup Collect'] Player can now magnetize powerups towards them by holding C; BUG - UI became broken again. Completely gone... sigh. 
 
 last - 
-Huntress complete. She now gets damaged and spawns
+[CORE PROGRAMMING - 'Enemy Pickup Behavior'] Vigilantes now attack powerups if they are close to them when attacking
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -54,16 +54,9 @@ Vigilante Knife damage to powerups - 1
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Enemy Pickup Behavior"
-♦ if enemey detects pickup close to them, they attack it (but prioritize attacking player)
-♦ pickups will be destroyed in 2 hits from enemies
-♦ vigilantes spawn in groups of two
-
 "Pickup Collect"
-- if player is close enough to pickup, they can press 'C' to 'magnetize' pickup to them
-- visual indicator for when player is close enough to do this
-- player uses harpoon-whip to grab it
-- harpoon whip has a cooldown, indicated on the HUD
+♦ while C is held, visual indicator of range shows
+♦ powerups in this range move towards player
 
 "Enemy Avoid Shot"
 - enemy that holds a shield

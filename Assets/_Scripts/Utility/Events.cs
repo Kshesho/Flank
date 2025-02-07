@@ -17,6 +17,14 @@ public class Events
     /// Event for when the Player collects a Powerup.
     /// </summary>
     public static Action<PowerupType> OnPowerupCollected;
+    /// <summary>
+    /// Event for when a powerup enters the player's Powerup Magnet.
+    /// </summary>
+    public static Action<GameObject> OnPowerupMagnetized;
+    /// <summary>
+    /// Event for when a powerup stops being affected by the player's Powerup Magnet.
+    /// </summary>
+    public static Action<GameObject> OnPowerupUnmagnetized;
 
     /// <summary>
     /// Event for when the player is hit by the Huntress' net.

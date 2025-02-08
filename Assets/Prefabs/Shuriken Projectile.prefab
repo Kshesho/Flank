@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2654065200456353664}
   m_Layer: 0
   m_Name: Shuriken Projectile
-  m_TagString: PWeapon
+  m_TagString: PProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

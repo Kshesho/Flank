@@ -1,7 +1,3 @@
-#region Using Statements
-
-#endregion
-
 /// <summary>
 /// (responsibility of this class)
 /// </summary>
@@ -21,6 +17,9 @@ public class Tags
 
     public static string PWeapon
     { get { return nameof(PWeapon); } }
+
+    public static string PProjectile
+    { get { return nameof(PProjectile); } }
 
     public static string Powerup
     { get { return nameof(Powerup); } }

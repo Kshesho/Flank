@@ -17,16 +17,6 @@ public class Projectile : MonoBehaviour
 
 #endregion
 #region Base Methods
-
-    void Awake()
-    {
-        
-    }
-
-    void Start () 
-    {
-		
-	}
 	
 	void Update () 
     {

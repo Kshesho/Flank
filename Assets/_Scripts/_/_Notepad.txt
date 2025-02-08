@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Pickup Collect'] Player can now magnetize powerups towards them by holding C; BUG - UI became broken again. Completely gone... sigh. 
+[CORE PROGRAMMING - 'Enemy Avoid Shot'] Huntress now dodges player projectiles. Still need to add dodge animation
 
 last - 
-[CORE PROGRAMMING - 'Enemy Pickup Behavior'] Vigilantes now attack powerups if they are close to them when attacking
+[CORE PROGRAMMING - 'Pickup Collect'] Player can now magnetize powerups towards them by holding C; BUG - UI became broken again. Completely gone... sigh. 
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -54,18 +54,10 @@ Vigilante Knife damage to powerups - 1
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
 
-"Pickup Collect"
-♦ while C is held, visual indicator of range shows
-♦ powerups in this range move towards player
-
 "Enemy Avoid Shot"
-- enemy that holds a shield
-- this enemy blocks all melee attacks
-- player must use ranged attacks to hit them
-OR
-- enemy that is very quick
-- dodges all ranged attacks
-- player can only hit the enemy with melee attacks
+♦ Huntress avoids all ranged attacks (shuriken, javelin, ?boomerang)
+♦ player can only hit her with melee attacks
+- dodge animation
 
 "Homing Projectile"
 - rare powerup that give player homing boomerang

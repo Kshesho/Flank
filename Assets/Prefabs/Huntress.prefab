@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2414709639438001606}
   - component: {fileID: 2657073699186888312}
   - component: {fileID: 4970419469344528378}
+  - component: {fileID: 8759583618811794945}
   - component: {fileID: 1473496033788587277}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Huntress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +38,7 @@ Transform:
   - {fileID: 2043271129756645918}
   - {fileID: 2143996580844682785}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3756012967252068116
 MonoBehaviour:
@@ -55,6 +56,9 @@ MonoBehaviour:
   _yOffScreenPoint: -7
   _yResetPoint: 6.5
   _xBounds: 9
+  _rBody: {fileID: 8759583618811794945}
+  _heartCollider: {fileID: 7218125465376917488}
+  _dodgeForce: 35
 --- !u!114 &1035115335704282580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +188,33 @@ PolygonCollider2D:
       - {x: 3.36, y: 1.89}
       - {x: -3.36, y: 1.89}
   m_UseDelaunayMesh: 0
+--- !u!50 &8759583618811794945
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189221119557033028}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 3
+  m_LinearDrag: 6
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!95 &1473496033788587277
 Animator:
   serializedVersion: 5
@@ -216,7 +247,7 @@ GameObject:
   - component: {fileID: 2143996580844682785}
   - component: {fileID: 7502645689744124935}
   - component: {fileID: 7218125465376917488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Heart
   m_TagString: EDamagable
   m_Icon: {fileID: 0}
@@ -313,7 +344,7 @@ GameObject:
   - component: {fileID: 2043271129756645918}
   - component: {fileID: 8478930797612985979}
   - component: {fileID: 4195574211557559139}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,9 +432,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2143996580844682785}
     m_Modifications:
+    - target: {fileID: 3253326547907586001, guid: eaf45ab178acdf24996630c0ed877a48, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3819442624724998253, guid: eaf45ab178acdf24996630c0ed877a48, type: 3}
       propertyPath: m_Name
       value: EnemyShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819442624724998253, guid: eaf45ab178acdf24996630c0ed877a48, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3819442624724998253, guid: eaf45ab178acdf24996630c0ed877a48, type: 3}
       propertyPath: m_IsActive

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Enemy Avoid Shot'] Huntress now dodges player projectiles. Still need to add dodge animation
+cleaned up Huntress dodge code and added a movement slow to it. Decided not to add dodge animation; Fixed bug: player melee weapons couldn't hit Huntress. Added 'Player Weapon' layer
 
 last - 
-[CORE PROGRAMMING - 'Pickup Collect'] Player can now magnetize powerups towards them by holding C; BUG - UI became broken again. Completely gone... sigh. 
+[CORE PROGRAMMING - 'Enemy Avoid Shot'] Huntress now dodges player projectiles. Still need to add dodge animation
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -53,11 +53,6 @@ Vigilante Knife damage to powerups - 1
 
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
-
-"Enemy Avoid Shot"
-♦ Huntress avoids all ranged attacks (shuriken, javelin, ?boomerang)
-♦ player can only hit her with melee attacks
-- dodge animation
 
 "Homing Projectile"
 - rare powerup that give player homing boomerang

@@ -59,6 +59,7 @@ MonoBehaviour:
   _rBody: {fileID: 8759583618811794945}
   _heartCollider: {fileID: 7218125465376917488}
   _dodgeForce: 35
+  _dodgeMoveSpeed: 0.5
 --- !u!114 &1035115335704282580
 MonoBehaviour:
   m_ObjectHideFlags: 0

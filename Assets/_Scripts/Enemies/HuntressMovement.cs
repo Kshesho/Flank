@@ -11,9 +11,9 @@ public class HuntressMovement : EnemyMovement
 #region Variables 
 
     [SerializeField] Rigidbody2D _rBody;
-    [SerializeField] Collider2D _heartCollider;
     bool _dodging;
     [SerializeField] float _dodgeForce = 200;
+    [SerializeField] float _dodgeMoveSpeed = 2;
 
 #endregion
 #region Base Methods
@@ -27,7 +27,6 @@ public class HuntressMovement : EnemyMovement
     protected override void Update()
     {
         base.Update();
-       
         DetectProjectile();
     }
 
@@ -57,20 +56,15 @@ public class HuntressMovement : EnemyMovement
     void Dodge()
     {
         if (_dodging) return;
-
         StartCoroutine(DodgeCooldownRtn());
+
         //nudge my rigidbody towards 0 on the X
-        
         Vector2 dir;
         if (transform.position.x < 0)
-            dir = Vector2.right;
-        
-        else
-            dir = Vector2.left;
+             dir = Vector2.right;
+        else dir = Vector2.left;
 
         _rBody.AddForce(dir * _dodgeForce, ForceMode2D.Impulse);
-        //play dodge animation (with correct flip direction)
-        //make sure dodge only triggers once
     }
     /// <summary>
     /// This is used to prevent the raycast from triggering the dodge multiple times at once.
@@ -79,14 +73,12 @@ public class HuntressMovement : EnemyMovement
     IEnumerator DodgeCooldownRtn()
     {
         _dodging = true;
-        _heartCollider.enabled = false;
-        //slow movement speed
+        _moveSpeed = _dodgeMoveSpeed;
 
-        yield return HM.WaitTime(0.25f);//wait until animation finishes (use actual clip time)
+        yield return HM.WaitTime(0.25f);
 
         _dodging = false;
-        _heartCollider.enabled = true;
-        //return movement speed to normal
+        _moveSpeed = _baseMoveSpeed;
     }
 
 }

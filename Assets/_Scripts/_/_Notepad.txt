@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-cleaned up Huntress dodge code and added a movement slow to it. Decided not to add dodge animation; Fixed bug: player melee weapons couldn't hit Huntress. Added 'Player Weapon' layer
+[CORE PROGRAMMING - 'Homing Projectile'] created boomerang powerup and weapon. Boomerang projectile functions fully. Need to finish a few more feature and polish
 
 last - 
-[CORE PROGRAMMING - 'Enemy Avoid Shot'] Huntress now dodges player projectiles. Still need to add dodge animation
+cleaned up Huntress dodge code and added a movement slow to it. Decided not to add dodge animation; Fixed bug: player melee weapons couldn't hit Huntress. Added 'Player Weapon' layer
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -39,6 +39,7 @@ Sword - 15
 Shuriken - 5
 Javelin - 20
 Whip - 30
+Boomerang - 30
 
 Vigilante Knife damage to powerups - 1
 *Powerup Health:
@@ -56,7 +57,8 @@ Vigilante Knife damage to powerups - 1
 
 "Homing Projectile"
 - rare powerup that give player homing boomerang
-- boomerang returns to player after hitting enemy, or if there are no enemies to hit, after a certain distance
+♦ boomerang returns to player after hitting enemy 
+- if there are no enemies to hit, it returns after a certain distance
 - boomerang cracks with each enemy hit, disappearing after 5 hits (and after a timer?)
 
 "Boss AI"
@@ -68,6 +70,7 @@ Vigilante Knife damage to powerups - 1
 
 Final update:
 - improve dodge mechanic (make it last longer)
+- add credits
 
 
 

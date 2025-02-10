@@ -21,7 +21,7 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] Weapon _sword, _whip;
 
     Weapon _secondaryActiveWeapon;
-    [SerializeField] Weapon _shurikens, _javelins;
+    [SerializeField] Weapon _shurikens, _javelins, _boomerang;
     // TODO: when using GetComponent again, remove this reference. OR have a different base type for ranged weapons
     [SerializeField] Shurikens _shurikensSpecificReference;
 
@@ -83,6 +83,11 @@ public class PlayerWeaponController : MonoBehaviour
             //show weapon icon on the HUD?
             if (_disableWhipRtn != null) StopCoroutine(_disableWhipRtn);
             _disableWhipRtn = StartCoroutine(DisableWhipRtn());
+        }
+        else if (powerupType == PowerupType.Boomerang)
+        {
+            _secondaryActiveWeapon = _boomerang;
+            //disable after all boomerangs have been used
         }
     }
     IEnumerator DisableJevelinRtn()

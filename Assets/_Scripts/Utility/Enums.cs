@@ -9,7 +9,8 @@ public enum PowerupType
     Ammo,
     HealthPotion,
     Negative_Damage,
-    Negative_Slow
+    Negative_Slow,
+    Boomerang
 }
 
 public enum RangedWeaponType

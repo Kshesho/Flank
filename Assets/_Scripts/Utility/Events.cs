@@ -53,4 +53,9 @@ public class Events
     /// </summary>
     public static Action OnPlayerHeavyAttackFinished;
 
+    /// <summary>
+    /// Event for when the player's Boomerang weapon projectile returns to them.
+    /// </summary>
+    public static Action OnBoomerangReturned;
+
 }

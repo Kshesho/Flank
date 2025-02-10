@@ -63,7 +63,8 @@ namespace Narzioth.Utilities
         /// </summary>
         /// <param name="transform_"></param>
         /// <param name="target_"></param>
-        public static void LookAt2D(this Transform transform_, Transform target_, float speed_)
+        /// <returns>true when the rotation reaches the value that faces the <paramref name="target_"/>.</returns>
+        public static bool LookAt2D(this Transform transform_, Transform target_, float speed_)
         {
             Vector2 targetPos = target_.position;
 
@@ -71,6 +72,12 @@ namespace Narzioth.Utilities
             Quaternion lookAt = Quaternion.Euler(new Vector3(0, 0, angle - 90));
 
             transform_.rotation = Quaternion.Lerp(transform_.rotation, lookAt, speed_ * Time.deltaTime);
+
+            //return true if the rotation is within N degrees of the value that faces the target
+            var rotationDifference = Mathf.Abs(transform_.rotation.eulerAngles.z - lookAt.eulerAngles.z);
+            if (rotationDifference <= 3)
+                return true;
+            return false;
         }
 
         /// <summary>

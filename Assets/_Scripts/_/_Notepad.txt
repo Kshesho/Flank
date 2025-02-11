@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Homing Projectile'] created boomerang powerup and weapon. Boomerang projectile functions fully. Need to finish a few more feature and polish
+Boomerang: powerup now spawns and equips boomerang upon pickup, added ammo, added proj sprites, improved proj movement, added proj collision; added offset value to FollowTarget class; created ClampPosition component
 
 last - 
-cleaned up Huntress dodge code and added a movement slow to it. Decided not to add dodge animation; Fixed bug: player melee weapons couldn't hit Huntress. Added 'Player Weapon' layer
+[CORE PROGRAMMING - 'Homing Projectile'] created boomerang powerup and weapon. Boomerang projectile functions fully. Need to finish a few more feature and polish
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -16,6 +16,7 @@ TODO:
 - Import object pooling asset? (write article about it)
 - Make sure player can only open the treasure chest with melee
 - stamina boost powerup instantly completes cooldown
+- boomerang ammo on HUD
 
 
 COLLISION
@@ -56,10 +57,13 @@ Vigilante Knife damage to powerups - 1
 [CORE PROGRAMMING]
 
 "Homing Projectile"
-- rare powerup that give player homing boomerang
+♦ rare powerup that give player homing boomerang
 ♦ boomerang returns to player after hitting enemy 
-- if there are no enemies to hit, it returns after a certain distance
-- boomerang cracks with each enemy hit, disappearing after 5 hits (and after a timer?)
+♦ detects enemys and chooses a target
+♦ if there are no enemies to hit, it returns after a certain distance
+♦ boomerang cracks with each enemy hit, disappearing after 5 hits (and after a timer?)
+♦ boomerang projectile sprite
+♦ initial forward movement before seeking
 
 "Boss AI"
 - waves culminate into a final boss wave
@@ -69,6 +73,9 @@ Vigilante Knife damage to powerups - 1
 
 
 Final update:
+- fix UI
+- add controlls to pause menu
+- audio?
 - improve dodge mechanic (make it last longer)
 - add credits
 

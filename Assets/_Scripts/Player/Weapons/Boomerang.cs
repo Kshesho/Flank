@@ -11,6 +11,7 @@ public class Boomerang : Weapon
 {
 #region Variables
 
+    [SerializeField] PlayerWeaponController _wepController;
     [SerializeField] GameObject _boomerangProjectile;
     int _curAmmo, _maxAmmo = 5;
     bool _boomerangAway;
@@ -18,10 +19,6 @@ public class Boomerang : Weapon
 #endregion
 #region Base Methods
 
-    void Start () 
-    {
-        RefillAmmo();
-	}
     void OnEnable()
     {
         Events.OnBoomerangReturned += BoomerangReturned;   
@@ -39,21 +36,22 @@ public class Boomerang : Weapon
         {
             _boomerangAway = true;
             Instantiate(_boomerangProjectile, transform.position, Quaternion.identity);
-            _curAmmo--;
-
-            if (_curAmmo < 1)
-            {
-                //un-equip this weapon in PlayerWeaponController
-            }
+            PlayerStateManager.Instance.ThrowStarted();
         }
     }
 
-    public void BoomerangReturned()
+    public void BoomerangReturned(bool enemyHit)
     {
+        if (enemyHit)
+            _curAmmo--;
+        
+        if (_curAmmo < 1)
+            _wepController.DisableBoomerang();
+
         _boomerangAway = false;
     }
 
-    void RefillAmmo()
+    public void RefillAmmo()
     {
         _curAmmo = _maxAmmo;
     }

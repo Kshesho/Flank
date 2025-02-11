@@ -55,7 +55,8 @@ public class Events
 
     /// <summary>
     /// Event for when the player's Boomerang weapon projectile returns to them.
+    /// Stores whether or not the boomerang hit a target.
     /// </summary>
-    public static Action OnBoomerangReturned;
+    public static Action<bool> OnBoomerangReturned;
 
 }

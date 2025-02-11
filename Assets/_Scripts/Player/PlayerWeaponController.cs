@@ -24,6 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] Weapon _shurikens, _javelins, _boomerang;
     // TODO: when using GetComponent again, remove this reference. OR have a different base type for ranged weapons
     [SerializeField] Shurikens _shurikensSpecificReference;
+    [SerializeField] Boomerang _boomerangSpecificReference;
 
 #endregion
 #region Base Methods
@@ -86,8 +87,8 @@ public class PlayerWeaponController : MonoBehaviour
         }
         else if (powerupType == PowerupType.Boomerang)
         {
+            _boomerangSpecificReference.RefillAmmo();
             _secondaryActiveWeapon = _boomerang;
-            //disable after all boomerangs have been used
         }
     }
     IEnumerator DisableJevelinRtn()
@@ -101,6 +102,13 @@ public class PlayerWeaponController : MonoBehaviour
     {
         yield return HM.WaitTime(_whipActiveTime);
         _primaryActiveWeapon = _sword;
+    }
+    /// <summary>
+    /// Called by the Boomerang when it runs out of ammo.
+    /// </summary>
+    public void DisableBoomerang()
+    {
+        _secondaryActiveWeapon = _shurikens;
     }
 
     /// <summary>

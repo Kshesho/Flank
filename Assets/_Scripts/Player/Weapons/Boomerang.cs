@@ -5,7 +5,7 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// (responsibility of this class)
+/// Allows the player to attack with the boomerang.
 /// </summary>
 public class Boomerang : Weapon 
 {
@@ -13,7 +13,8 @@ public class Boomerang : Weapon
 
     [SerializeField] PlayerWeaponController _wepController;
     [SerializeField] GameObject _boomerangProjectile;
-    int _curAmmo, _maxAmmo = 5;
+    int _curAmmo; 
+    [SerializeField] int _maxAmmo = 5;
     bool _boomerangAway;
 
 #endregion
@@ -25,10 +26,10 @@ public class Boomerang : Weapon
     }
     void OnDisable()
     {
-        Events.OnBoomerangReturned += BoomerangReturned;
+        Events.OnBoomerangReturned -= BoomerangReturned;
     }
 
-    #endregion
+#endregion
 
     public override void Attack()
     {

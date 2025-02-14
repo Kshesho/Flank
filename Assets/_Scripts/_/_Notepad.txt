@@ -1,9 +1,10 @@
 ﻿COMMIT
 cur - 
-Boomerang: powerup now spawns and equips boomerang upon pickup, added ammo, added proj sprites, improved proj movement, added proj collision; added offset value to FollowTarget class; created ClampPosition component
+[PRE-UPDATE UNITY VERSION] Fixed: Boomerang.cs was subscribing twice
+[CORE PROGRAMMING - 'Boss AI'] Fixed: boomerang would get stuck if its target was killed before it could reach
 
 last - 
-[CORE PROGRAMMING - 'Homing Projectile'] created boomerang powerup and weapon. Boomerang projectile functions fully. Need to finish a few more feature and polish
+Boomerang: powerup now spawns and equips boomerang upon pickup, added ammo, added proj sprites, improved proj movement, added proj collision; added offset value to FollowTarget class; created ClampPosition component
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -55,15 +56,6 @@ Vigilante Knife damage to powerups - 1
 
 -------------------------------------------------------------------------------------
 [CORE PROGRAMMING]
-
-"Homing Projectile"
-♦ rare powerup that give player homing boomerang
-♦ boomerang returns to player after hitting enemy 
-♦ detects enemys and chooses a target
-♦ if there are no enemies to hit, it returns after a certain distance
-♦ boomerang cracks with each enemy hit, disappearing after 5 hits (and after a timer?)
-♦ boomerang projectile sprite
-♦ initial forward movement before seeking
 
 "Boss AI"
 - waves culminate into a final boss wave

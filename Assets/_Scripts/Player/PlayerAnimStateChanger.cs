@@ -14,6 +14,8 @@ public class PlayerAnimStateChanger : MonoBehaviour
     string _currentState;
 
     float _horizontalInput, _verticalInput;
+    public float HorizontalInput { get { return _horizontalInput; } }
+    public float VerticalInput { get { return _verticalInput; } }
 
     //State Names
     const string IDLE = "Idle_Blend Tree";//interrupted by everything but DODGE

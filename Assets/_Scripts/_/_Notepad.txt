@@ -1,7 +1,8 @@
 ﻿COMMIT
 cur - 
-[PRE-UPDATE UNITY VERSION] Fixed: Boomerang.cs was subscribing twice
-[CORE PROGRAMMING - 'Boss AI'] Fixed: boomerang would get stuck if its target was killed before it could reach
+[CORE PROGRAMMING - 'Boss AI'] player sword now attack in 4 directions; added sprites for boss
+next -
+Fixed: boomerang would get stuck if its target was killed before it could reach
 
 last - 
 Boomerang: powerup now spawns and equips boomerang upon pickup, added ammo, added proj sprites, improved proj movement, added proj collision; added offset value to FollowTarget class; created ClampPosition component

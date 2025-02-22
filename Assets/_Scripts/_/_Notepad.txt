@@ -1,11 +1,9 @@
 ﻿COMMIT
 cur - 
-[CORE PROGRAMMING - 'Boss AI'] player sword now attack in 4 directions; added sprites for boss
-next -
-Fixed: boomerang would get stuck if its target was killed before it could reach
+added zombie boss mob and got it spawning, attacking, and chasing player. Need to fix zombie movement after attacking and get it dying; Fixed: boomerang would get stuck if its target was killed before it could reach
 
 last - 
-Boomerang: powerup now spawns and equips boomerang upon pickup, added ammo, added proj sprites, improved proj movement, added proj collision; added offset value to FollowTarget class; created ClampPosition component
+[CORE PROGRAMMING - 'Boss AI'] player sword now attack in 4 directions; added sprites for boss
 
 ------------------------------------------------------------------------------------
 TODO: 

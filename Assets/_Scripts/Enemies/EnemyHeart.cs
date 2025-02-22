@@ -4,6 +4,7 @@ using UnityEngine;
 using Narzioth.Utilities;
 #endregion
 
+[RequireComponent(typeof(Collider2D))]
 /// <summary>
 /// Holds Enemy health and damage functionality.
 /// </summary>

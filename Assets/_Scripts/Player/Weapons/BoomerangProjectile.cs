@@ -50,15 +50,27 @@ public class BoomerangProjectile : Projectile
         switch (_moveState)
         {
             case State.InitialMovement:
-                InitialForwardMovement();
+                if (_defaultTarget == null)
+                {
+                    _moveState = State.RotatingTowardsPlayer;
+                }
+                else InitialForwardMovement();
                 break;
             //------------------------------
             case State.RotatingTowardsTarget:
-                MoveTowardsTarget_Rotating();
+                if (_target == null)
+                {
+                    _moveState = State.RotatingTowardsPlayer;
+                }
+                else MoveTowardsTarget_Rotating();
                 break;
             //------------------------------
             case State.FacingTarget:
-                MoveTowardsTarget_Facing();
+                if (_target == null)
+                {
+                    _moveState = State.RotatingTowardsPlayer;
+                }
+                else MoveTowardsTarget_Facing();
                 break;
             //------------------------------
             case State.RotatingTowardsPlayer:
@@ -97,10 +109,10 @@ public class BoomerangProjectile : Projectile
     {
         //once +1.5 on the Y OR default target reached, find target
         ///Why check for both targets?
-        ///We want to make sure we account for reaching the default target first, 
-        ///since it doesn't go past the screen bounds but the initial target can.
-        ///If the the initial target is past the default target and I move to it,
-        ///I will then try and move to the default target and may get stuck.
+        /// We want to make sure we account for reaching the default target first, 
+        /// since it doesn't go past the screen bounds but the initial target can.
+        /// If the the initial target is past the default target and I move to it,
+        /// I will then try and move to the default target and may get stuck.
         if (Vector2.Distance(transform.position, _initialTargetPos) <= _targetReachedValue ||
             Vector2.Distance(transform.position, _defaultTarget.position) <= _targetReachedValue)
         {

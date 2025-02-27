@@ -25,20 +25,31 @@ public class GameManager : MonoSingleton<GameManager>
     bool _gamePaused;
     public bool GamePaused { get { return _gamePaused; } }
 
+    
+    Transform _playerTransform;
     public Transform PlayerTransform()
     {
-        var player = GameObject.FindWithTag(Tags.Player);
-        Transform playerOrThisTransform = player != null ? player.transform : this.transform;
+        Transform playerOrThisTransform = _playerTransform != null ? _playerTransform : this.transform;
 
         //If player is dead (game over) return this transform, which is off-screen
         if (GameOver)
             return this.transform;
         return playerOrThisTransform;
     }
+    public Vector2 PlayerPosition()
+    {
+        var pos = PlayerTransform().position;
+        //                        account for the player's center point being at their feet
+        return new Vector2(pos.x, pos.y + 0.28f);
+    }
 
 #endregion
 #region Base Methods
 
+    private void Start()
+    {
+        _playerTransform = GameObject.FindWithTag(Tags.Player).transform;
+    }
     void OnEnable() 
     {
         Events.OnPlayerDeath += () => _gameOver = true;

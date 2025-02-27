@@ -23,13 +23,11 @@ public class Zombie : MonoBehaviour
 
     [SerializeField] GameObject _heart;
 
-    Transform _target;
+    Vector2 _playerPos;
     [SerializeField] float _attackRange = 0.2f;
-    //This is set to the attack animation duration
-    float _atkCooldown = 1.1f;
+    [SerializeField] float _atkCooldown = 1.1f;
     float _cooldownTimer;
     [SerializeField] Animator _anim;
-    [SerializeField] AnimationClip _atkClip;
 
     [SerializeField] float _speedChangeFactor = 0.5f;
     [SerializeField] float _baseMoveSpeed = 1;
@@ -69,12 +67,12 @@ public class Zombie : MonoBehaviour
     void Start() 
     {
         RandomizeAnimStartDirection();
-        _atkCooldown = _atkClip.length;
-        _target = GameManager.Instance.PlayerTransform();
 	}
 	
 	void Update() 
     {
+        _playerPos = GameManager.Instance.PlayerPosition();
+
 		if (_state == State.Chasing)
         {
             Accelerate();
@@ -86,6 +84,15 @@ public class Zombie : MonoBehaviour
             Attack();
         }
 	}
+
+#if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        //Visualize the attack range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _attackRange);
+    }
+#endif
 
 #endregion
 
@@ -125,34 +132,25 @@ public class Zombie : MonoBehaviour
 
     void Chase()
     {
-        if (_target != null)
-        {
-            //move towards target at speed
-            Vector2 dirToPlayer = _target.position - transform.position;
-            dirToPlayer.Normalize();
+        //move towards target at speed
+        Vector2 dirToPlayer = _playerPos - (Vector2)transform.position;
+        dirToPlayer.Normalize();
 
-            float moveSpeed = _curMoveSpeed * Time.deltaTime;
-            transform.Translate(dirToPlayer * moveSpeed);
+        float moveSpeed = _curMoveSpeed * Time.deltaTime;
+        transform.Translate(dirToPlayer * moveSpeed);
 
-            ChangeAnimDirection(dirToPlayer);
+        ChangeAnimDirection(dirToPlayer);
 
-            if (PlayerInAttackRange())
-                _state = State.Attacking;
-        }
+        if (PlayerInAttackRange())
+            _state = State.Attacking;   
     }
 
     void Attack()
     {
         if (!PlayerInAttackRange())
         {
-            print("player out of range");
-            //wait until attack animation has finished before chasing again
-            AnimatorStateInfo stateInfo = _anim.GetCurrentAnimatorStateInfo(0);
-            if (stateInfo.normalizedTime >= 1)
-            {
-                print("atk finished. chasing...");
-                _state = State.Chasing;
-            }
+            _anim.SetBool("waitingToAttack", false);
+            _state = State.Chasing;
             return;
         }
         
@@ -160,6 +158,10 @@ public class Zombie : MonoBehaviour
         {
             _cooldownTimer = Time.time + _atkCooldown;
             _anim.SetTrigger("attack");
+        }
+        else
+        {
+            _anim.SetBool("waitingToAttack", true);
         }
     }
     bool CooldownFinished()
@@ -171,7 +173,7 @@ public class Zombie : MonoBehaviour
 
     bool PlayerInAttackRange()
     {
-        if (Vector2.Distance(transform.position, _target.position) <= _attackRange)
+        if (Vector2.Distance(transform.position, _playerPos) <= _attackRange)
             return true;
         return false;
     }

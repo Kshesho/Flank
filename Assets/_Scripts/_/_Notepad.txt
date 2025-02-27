@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-added zombie boss mob and got it spawning, attacking, and chasing player. Need to fix zombie movement after attacking and get it dying; Fixed: boomerang would get stuck if its target was killed before it could reach
+added player position reference to GameManager; zombie now correctly chases player's center. Added idle animation for when zombie is waiting to attack. Still need to get zombie dying
 
 last - 
-[CORE PROGRAMMING - 'Boss AI'] player sword now attack in 4 directions; added sprites for boss
+added zombie boss mob and got it spawning, attacking, and chasing player. Need to fix zombie movement after attacking and get it dying; Fixed: boomerang would get stuck if its target was killed before it could reach
 
 ------------------------------------------------------------------------------------
 TODO: 

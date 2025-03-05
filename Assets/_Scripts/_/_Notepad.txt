@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-added player position reference to GameManager; zombie now correctly chases player's center. Added idle animation for when zombie is waiting to attack. Still need to get zombie dying
+zombie now dies and is set up fully. Set up death animations. Broke down into separate enemy scripts
 
 last - 
-added zombie boss mob and got it spawning, attacking, and chasing player. Need to fix zombie movement after attacking and get it dying; Fixed: boomerang would get stuck if its target was killed before it could reach
+added player position reference to GameManager; zombie now correctly chases player's center. Added idle animation for when zombie is waiting to attack. Still need to get zombie dying
 
 ------------------------------------------------------------------------------------
 TODO: 

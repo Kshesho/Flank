@@ -6,187 +6,74 @@ using UnityEngine;
 #endregion
 
 /// <summary>
-/// (responsibility of this class)
+/// Holds and changes Zombie's state and acts as the Zombie controller.
 /// </summary>
 public class Zombie : MonoBehaviour 
 {
 #region Variables
 
-    enum State
-    {
-        Spawning,
-        Chasing,
-        Attacking,
-        Dying
-    }
-    State _state = State.Spawning;
-
     [SerializeField] GameObject _heart;
+    [SerializeField] ZombieAnimStateChanger _animStateChanger;
 
+    public ZombieState State { get; private set; } = ZombieState.Spawning;
+
+    [SerializeField] float _attackRange = 0.8f;
     Vector2 _playerPos;
-    [SerializeField] float _attackRange = 0.2f;
-    [SerializeField] float _atkCooldown = 1.1f;
-    float _cooldownTimer;
-    [SerializeField] Animator _anim;
-
-    [SerializeField] float _speedChangeFactor = 0.5f;
-    [SerializeField] float _baseMoveSpeed = 1;
-    float _curMoveSpeed;
-    /// <summary>
-    /// Slows move speed until it's 0.
-    /// </summary>
-    void SlowDown()
-    {
-        if (_curMoveSpeed != 0)
-        {
-            _curMoveSpeed = Mathf.Lerp(_curMoveSpeed, 0, _speedChangeFactor * Time.deltaTime);
-
-            //if close enough, set to 0
-            if (_curMoveSpeed <= 0.05f)
-                _curMoveSpeed = 0;
-        }
-    }
-    /// <summary>
-    /// Accelerates move speed until it's back to normal.
-    /// </summary>
-    void Accelerate()
-    {
-        if (_curMoveSpeed != _baseMoveSpeed)
-        {
-            _curMoveSpeed = Mathf.Lerp(_curMoveSpeed, _baseMoveSpeed, _speedChangeFactor * Time.deltaTime);
-
-            //if close enough, set to base
-            if (Mathf.Abs(_curMoveSpeed - _baseMoveSpeed) < 0.05f)
-                _curMoveSpeed = _baseMoveSpeed;
-        }
-    }
 
 #endregion
 #region Base Methods
-
-    void Start() 
-    {
-        RandomizeAnimStartDirection();
-	}
 	
 	void Update() 
     {
         _playerPos = GameManager.Instance.PlayerPosition();
 
-		if (_state == State.Chasing)
+        if (State == ZombieState.Chasing)
         {
-            Accelerate();
-            Chase();
+            if (PlayerInAttackRange())
+            {
+                State = ZombieState.Attacking;
+            }
         }
-        else if (_state == State.Attacking)
+        else if (State == ZombieState.Attacking)
         {
-            SlowDown();
-            Attack();
+            if (!PlayerInAttackRange())
+            {
+                _animStateChanger.Stop_WaitingToAttack();
+                State = ZombieState.Chasing;
+            }   
+        }
+        else if (State == ZombieState.Dying)
+        {
+            //make sure weapon is disabled?
         }
 	}
 
 #if UNITY_EDITOR
+    [SerializeField] bool _visualizeAttackRange = true;
+
     void OnDrawGizmos()
     {
-        //Visualize the attack range
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _attackRange);
+        if (_visualizeAttackRange)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _attackRange);
+        }
     }
 #endif
 
 #endregion
 
-    /// <summary>
-    /// Randomize the animation start direction to left, right, up, or down.
-    /// </summary>
-    void RandomizeAnimStartDirection()
-    {
-        int rand = Random.Range(0, 4);
-        Vector2 dir;
-
-        switch (rand)
-        {
-            case 1:
-                dir = Vector2.left;
-                break;
-            case 2:
-                dir = Vector2.right;
-                break;
-            case 3:
-                dir = Vector2.up;
-                break;
-            default:
-                dir = Vector2.down;
-                break;
-        }
-
-        _anim.SetFloat("Horizontal", dir.x);
-        _anim.SetFloat("Vertical", dir.y);
-    }
-
     public void FinishedSpawning()
     {
-        _state = State.Chasing;
+        State = ZombieState.Chasing;
         _heart.SetActive(true);
     }
-
-    void Chase()
-    {
-        //move towards target at speed
-        Vector2 dirToPlayer = _playerPos - (Vector2)transform.position;
-        dirToPlayer.Normalize();
-
-        float moveSpeed = _curMoveSpeed * Time.deltaTime;
-        transform.Translate(dirToPlayer * moveSpeed);
-
-        ChangeAnimDirection(dirToPlayer);
-
-        if (PlayerInAttackRange())
-            _state = State.Attacking;   
-    }
-
-    void Attack()
-    {
-        if (!PlayerInAttackRange())
-        {
-            _anim.SetBool("waitingToAttack", false);
-            _state = State.Chasing;
-            return;
-        }
-        
-        if (CooldownFinished())
-        {
-            _cooldownTimer = Time.time + _atkCooldown;
-            _anim.SetTrigger("attack");
-        }
-        else
-        {
-            _anim.SetBool("waitingToAttack", true);
-        }
-    }
-    bool CooldownFinished()
-    {
-        if (_cooldownTimer < Time.time)
-            return true;
-        return false;
-    }
-
+    
     bool PlayerInAttackRange()
     {
         if (Vector2.Distance(transform.position, _playerPos) <= _attackRange)
             return true;
         return false;
     }
-
-    /// <summary>
-    /// Changes the animation direction parameters to play animations that face in the player's direction.
-    /// </summary>
-    /// <param name="dirToPlayer"></param>
-    void ChangeAnimDirection(Vector2 dirToPlayer)
-    {
-        _anim.SetFloat("Horizontal", dirToPlayer.x);
-        _anim.SetFloat("Vertical", dirToPlayer.y);
-    }
-
 
 }

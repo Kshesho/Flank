@@ -26,3 +26,11 @@ public enum EnemyType
     Vigilante,
     Huntress
 }
+
+public enum ZombieState
+{
+    Spawning,
+    Chasing,
+    Attacking,
+    Dying
+}

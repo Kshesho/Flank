@@ -34,3 +34,15 @@ public enum ZombieState
     Attacking,
     Dying
 }
+
+public enum BossState
+{
+    Idle,
+    Spawning,
+    Blocking,
+    Atk_Chargeup,
+    Attacking,
+    Atk_Cooldown,
+    Summoning,
+    Dying
+}

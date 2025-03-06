@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-zombie now dies and is set up fully. Set up death animations. Broke down into separate enemy scripts
+set up boss state machine and boss intro sequence with animations
 
 last - 
-added player position reference to GameManager; zombie now correctly chases player's center. Added idle animation for when zombie is waiting to attack. Still need to get zombie dying
+zombie now dies and is set up fully. Set up death animations. Broke down into separate enemy scripts
 
 ------------------------------------------------------------------------------------
 TODO: 

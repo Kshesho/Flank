@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur - 
-set up boss state machine and boss intro sequence with animations
+boss now attacks, spawns zombies, and most states are set up. 
 
 last - 
-zombie now dies and is set up fully. Set up death animations. Broke down into separate enemy scripts
+set up boss state machine and boss intro sequence with animations
 
 ------------------------------------------------------------------------------------
 TODO: 

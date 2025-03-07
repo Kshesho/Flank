@@ -1,9 +1,8 @@
 ﻿COMMIT
-cur - 
-boss now attacks, spawns zombies, and most states are set up. 
+cur - boss transitions from summoning back to attacking, blocks, gets damaged, has a health bar, and dies now; got rid of water on tile pallet; Fixed: zombie non-trigger collider was interacting with player collider
 
 last - 
-set up boss state machine and boss intro sequence with animations
+boss now attacks, spawns zombies, and most states are set up. 
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -22,6 +21,7 @@ TODO:
 COLLISION
 Offensive collisions - things that do damage handle OnTriggerEnter and call OnCollision, giving it a damage amount
 things taking damage subscribe to OnCollision when they're enabled
+*Exception: The boss detects player's weapons and handles collisions, due to need for special functionality.
 
 TILE SORTING LAYERS
 Ground (grass, dirt, water, paths)   <--- Lowest
@@ -57,14 +57,14 @@ Vigilante Knife damage to powerups - 1
 [CORE PROGRAMMING]
 
 "Boss AI"
-- waves culminate into a final boss wave
-- boss moves to the center of the screen and throws many ninja stars with unique attacks
-- boss health bar
+♦ boss moves to the center of the screen and attacks
+♦ boss health bar
+- spawn boss after last wave (change wave # to skull)
+- does boomerang work with boss?
 
 
 
 Final update:
-- fix UI
 - add controlls to pause menu
 - audio?
 - improve dodge mechanic (make it last longer)
@@ -77,3 +77,7 @@ Credits:
 Character sprites by Chasersgaming [link]
 potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
 weapon sprites by Bennyboi_hack [https://opengameart.org/content/16x16-weapon-sprites-free]
+
+Portfolio:
+Entire project without using GetComponent
+Documented my process on Medium

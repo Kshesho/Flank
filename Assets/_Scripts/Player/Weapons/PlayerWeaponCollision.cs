@@ -15,6 +15,10 @@ public class PlayerWeaponCollision : MonoBehaviour
         {
             Events.OnCollide?.Invoke(other, _damage);
         }
+        else if (other.CompareTag(Tags.Boss))
+        {
+            Events.OnBossCollide_Melee?.Invoke(_damage);
+        }
     }
 
 

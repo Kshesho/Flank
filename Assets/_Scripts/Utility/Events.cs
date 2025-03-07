@@ -14,6 +14,16 @@ public class Events
     public static Action<Collider2D, int> OnCollide;
 
     /// <summary>
+    /// Event for when player melee attack collides with boss.
+    /// </summary>
+    public static Action<int> OnBossCollide_Melee;
+    /// <summary>
+    /// Event for when player projectile collides with boss.
+    /// </summary>
+    public static Action<int, GameObject> OnBossCollide_Projectile;
+    public static Action OnBossDeath;
+
+    /// <summary>
     /// Event for when the Player collects a Powerup.
     /// </summary>
     public static Action<PowerupType> OnPowerupCollected;

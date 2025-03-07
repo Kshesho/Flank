@@ -34,6 +34,10 @@ public class Projectile : MonoBehaviour
             AudioManager.Instance.PlayEnemyImpact();
             Destroy(this.gameObject, 0.01f); //this delay is a sloppy workaround. For some reason, without it, this was being destroyed before the line above could run
         }
+        else if (other.CompareTag(Tags.Boss))
+        {
+            Events.OnBossCollide_Projectile?.Invoke(_damage, this.gameObject);
+        }
     }
     
     

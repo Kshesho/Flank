@@ -9,6 +9,9 @@ public class Tags
     public static string Enemy 
     { get { return nameof(Enemy); } }
 
+    public static string Boss
+    { get { return nameof(Boss); } }
+
     public static string Player
     { get { return nameof(Player); } }
 

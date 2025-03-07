@@ -44,5 +44,6 @@ public enum BossState
     Attacking,
     Atk_Cooldown,
     Summoning,
+    Summoning_Cooldown,
     Dying
 }

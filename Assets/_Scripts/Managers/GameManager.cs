@@ -112,6 +112,19 @@ public class GameManager : MonoSingleton<GameManager>
 
     #endregion
 
+    public void BossKilled()
+    {
+        IncrementScore(20);
+        //trigger UI
+        //"Congratulations! You beat the game! But that was the easy part..."
+        //a few seconds later
+        //"Begin Endless Mode!"
+        //  get rid of "Next Wave in" text
+        //  spawn random enemy every # seconds.
+        //  Every # seconds, increase the spawn rate
+        //  player gets to see how high they can get their score
+    }
+
     /// <summary>
     /// Adds 1 to the score, then updates the UI.
     /// </summary>

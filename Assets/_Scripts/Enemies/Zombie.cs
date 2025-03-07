@@ -22,8 +22,8 @@ public class Zombie : MonoBehaviour
 
 #endregion
 #region Base Methods
-	
-	void Update() 
+
+    void Update() 
     {
         _playerPos = GameManager.Instance.PlayerPosition();
 

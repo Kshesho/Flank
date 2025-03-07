@@ -22,5 +22,9 @@ public class BossKeyframeEvents : MonoBehaviour
     {
         _bossFight.AttackFinished();
     }
+    public void DeathFinished()
+    {
+        _bossFight.DeathAnimationFinished();
+    }
 
 }

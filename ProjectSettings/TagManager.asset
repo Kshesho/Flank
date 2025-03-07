@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Powerup
   - PProjectile
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -55,4 +56,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2019705863
+    locked: 0
+  - name: WorldSpaceCanvas
+    uniqueID: 1066722037
     locked: 0

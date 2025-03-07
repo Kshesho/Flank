@@ -183,7 +183,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void UpdateScoreText(int score)
     {
-        _killsTxt.text = "Kills: " + score;
+        _killsTxt.text = "Score: " + score;
     }
 
     //Abilities

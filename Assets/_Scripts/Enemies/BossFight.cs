@@ -17,6 +17,9 @@ public class BossFight : MonoBehaviour
 
     [SerializeField] Animator _myAnim; //animates transform properties
     [SerializeField] Animator _spriteAnim; //animates sprite properties
+    [SerializeField] BoxCollider2D _spriteBodyCollider;
+    [SerializeField] SpriteRenderer _spriteRend;
+    [SerializeField] BossHeart _heart;
 
     int _curAtkCount = 3;
     bool _readyToAtk;
@@ -31,6 +34,7 @@ public class BossFight : MonoBehaviour
     const string CHARGE = "AttackCharge_Blend Tree";
     const string ATTACK = "BossAttack_Blend Tree";
     const string SUMMON = "Summon_Blend Tree";
+    const string DEATH = "Boss_Death_S";
 
     [SerializeField] GameObject _zombiePref;
     [SerializeField] Transform _zombieContainer;
@@ -46,10 +50,9 @@ public class BossFight : MonoBehaviour
 	
 	void Update () 
     {
-		if (CurState == BossState.Blocking ||
-            CurState == BossState.Atk_Chargeup)
+		if (CurState == BossState.Blocking)
         {
-            FacePlayer();
+            Sprite_FacePlayer();
         }
 
         if (_readyToAtk)
@@ -72,6 +75,8 @@ public class BossFight : MonoBehaviour
 
 #endregion
 
+    //================================================================================================
+    #region State Changing
     public void ChangeState(BossState newState)
     {
         if (CurState != newState)
@@ -86,53 +91,64 @@ public class BossFight : MonoBehaviour
         switch (CurState)
         {
             case BossState.Spawning:
-                //animate the sprite position from the top of the screen to the center (w/ special animation at the end to finish it off)
                 _spriteAnim.Play(WALK);
                 break;
+
             case BossState.Blocking:
                 _spriteAnim.Play(BLOCK);
-                //disable heart collider (deflict projectiles too)
+                _heart.Blocking_On();
                 StartCoroutine(AtkCountdownTimerRtn());
                 break;
+
             case BossState.Atk_Chargeup:
                 _curAtkCount--;
                 _myAnim.SetTrigger("attack");
                 _spriteAnim.Play(CHARGE);
-                //enable heart collider
+                _heart.Blocking_Off();
                 break;
+
             case BossState.Attacking:
                 _spriteAnim.Play(ATTACK);
-                //weapon collider gets enabled via animation
-                //heart collider stays active
                 break;
+
             case BossState.Idle:
                 _spriteAnim.Play(IDLE);
-                //heart collider stays active
+                _heart.Blocking_Off();
+                _heart.Floating_Off();
                 StartCoroutine(EndIdleTimerRtn());
                 break;
+
             case BossState.Atk_Cooldown:
                 _spriteAnim.Play(IDLE);
-                //heart collider stays active
                 break;
+
             case BossState.Summoning:
                 _myAnim.SetTrigger("rise");
-                //set sprite anim direction to S
-                _spriteAnim.SetFloat("Horizontal", 0);
-                _spriteAnim.SetFloat("Vertical", -1);
+                Sprite_FaceSouth();
                 _spriteAnim.Play(SUMMON);
-                //turn off body collider
-                //?can only be hit with projectiles while floating?
-                //enable heart collider
+                _spriteBodyCollider.enabled = false;
+                _spriteRend.sortingLayerName = "Player";
+                _heart.Floating_On();
                 break;
+
+            case BossState.Summoning_Cooldown:
+                _myAnim.SetTrigger("fall");
+                _spriteAnim.StopPlayback();
+                Sprite_FaceSouth();
+                break;
+
             case BossState.Dying:
-                //disable heart collider
-                //set dying animation
-                //trigger game over (or next wave) when finished
-                break;
-            default:
+                StopAllCoroutines();
+                _heart.gameObject.SetActive(false);
+                _spriteBodyCollider.enabled = false;
+                _spriteAnim.Play(DEATH);
+                _myAnim.SetTrigger("death");
+                Events.OnBossDeath?.Invoke();
                 break;
         }
     }
+    #endregion
+    //================================================================================================
 
     IEnumerator AtkCountdownTimerRtn()
     {
@@ -147,13 +163,18 @@ public class BossFight : MonoBehaviour
         else ChangeState(BossState.Blocking);
     }
 
-    void FacePlayer()
+    void Sprite_FacePlayer()
     {
         Vector2 dirToPlayer = GameManager.Instance.PlayerPosition() - (Vector2)transform.position;
         dirToPlayer.Normalize();
 
         _spriteAnim.SetFloat("Horizontal", dirToPlayer.x);
         _spriteAnim.SetFloat("Vertical", dirToPlayer.y);
+    }
+    void Sprite_FaceSouth()
+    {
+        _spriteAnim.SetFloat("Horizontal", 0);
+        _spriteAnim.SetFloat("Vertical", -1);
     }
     IEnumerator SpinAnimDirectionRtn()
     {
@@ -180,14 +201,6 @@ public class BossFight : MonoBehaviour
         }
     }
 
-    bool PlayerInRange()
-    {
-        var distanceToPlayer = Vector2.Distance(_spriteCenter.position, GameManager.Instance.PlayerPosition());
-        if (distanceToPlayer <= _atkRange)
-            return true;
-        return false;
-    }
-
     void RandomizeAtkCount()
     {
         _curAtkCount = Random.Range(3, 6);
@@ -195,11 +208,13 @@ public class BossFight : MonoBehaviour
 
     void SpawnZombies()
     {
-        StartCoroutine(SpawnZombiesRtn());
-        //after [timer or zomvbie count]
-        //  stop spawning zombies
-        //  exit state
-        //  turn off float animation
+        StartCoroutine(FinishSpawningZombiesRtn());
+    }
+    IEnumerator FinishSpawningZombiesRtn()
+    {
+        yield return StartCoroutine(SpawnZombiesRtn());
+
+        ChangeState(BossState.Summoning_Cooldown);
     }
     IEnumerator SpawnZombiesRtn()
     {
@@ -260,12 +275,45 @@ public class BossFight : MonoBehaviour
         StartCoroutine(SpinAnimDirectionRtn());
         SpawnZombies();
     }
+    /// <summary>
+    /// Called via keyframe in Summoning_Fall animation
+    /// </summary>
+    public void SummoningFallFinished()
+    {
+        _spriteAnim.Play(IDLE);
+        _spriteBodyCollider.enabled = true;
+        _spriteRend.sortingLayerName = "Foreground";
+        _heart.Floating_Off();
+        Invoke("CompleteSummoningCooldown", 5);
+    }
+    /// <summary>
+    /// Called after a delay when the summoning fall animation is finished. 
+    /// Sets state back to idle, preparing for attack.
+    /// </summary>
+    void CompleteSummoningCooldown()
+    {
+        RandomizeAtkCount();
+        ChangeState(BossState.Idle);
+    }
 
     #endregion
 
+    public void DeathAnimationFinished()
+    {
+        GameManager.Instance.BossKilled();
+        Destroy(this.gameObject);
+    }
     public void AttackFinished()
     {
         ChangeState(BossState.Idle);
+    }
+
+    bool PlayerInRange()
+    {
+        var distanceToPlayer = Vector2.Distance(_spriteCenter.position, GameManager.Instance.PlayerPosition());
+        if (distanceToPlayer <= _atkRange)
+            return true;
+        return false;
     }
 
 }

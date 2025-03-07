@@ -31,11 +31,13 @@ public class EnemyHeart : MonoBehaviour
     void OnEnable()
     {
         Events.OnCollide += TakeDamage;
+        Events.OnBossDeath += Death;
     }
 
     private void OnDisable()
     {
         Events.OnCollide -= TakeDamage;
+        Events.OnBossDeath -= Death;
     }
 
 #endregion

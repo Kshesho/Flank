@@ -97,6 +97,12 @@ public class BoomerangProjectile : Projectile
 
             _wasEnemyHit = true;
         }
+        else if (other.CompareTag(Tags.Boss))
+        {
+            Events.OnBossCollide_Projectile(_damage, this.gameObject);
+
+            _wasEnemyHit = true;
+        }
     }
 
     #region Movement
@@ -184,8 +190,9 @@ public class BoomerangProjectile : Projectile
         
         foreach(var hit in hits)
         {
+            var col = hit.collider;
             //if enemy hit
-            if (hit.collider.CompareTag(Tags.EDamagable))
+            if (col.CompareTag(Tags.EDamagable) || col.CompareTag(Tags.Boss))
             {
                 if (_target == null)
                     _target = hit.transform;

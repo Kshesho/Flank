@@ -41,6 +41,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] GameObject _pauseMenu;
 
+    [SerializeField] GameObject _endgameCanvasGO;
+
 #endregion
 #region Base Methods
 
@@ -225,6 +227,10 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _waveUI.NewWaveUI(wave, WaveTime);
     }
+    public void LastWaveUI()
+    {
+        _waveUI.LastWave();
+    }
     public void UpdateWaveTimer(int time)
     {
         _waveUI.UpdateWaveTimer(time);
@@ -232,6 +238,26 @@ public class UIManager : MonoSingleton<UIManager>
     public void NextWaveCountdown(string text)
     {
         _waveUI.NextWaveCountdown(text);
+    }
+
+    public void BossUI()
+    {
+        _waveUI.BossWaveUI();
+    }
+
+    public void EndgameSequence()
+    {
+        //play animation that plays when canvas is set active.
+        _endgameCanvasGO.SetActive(true);
+    }
+    public void EndgameSequenceFinished()
+    {
+        _endgameCanvasGO.SetActive(false);
+        _waveUI.EnableEndgameElements();
+    }
+    public void UpdateSpawnRate(float newSpawnRate)
+    {
+        _waveUI.UpdateSpawnRate(newSpawnRate);
     }
 
 }

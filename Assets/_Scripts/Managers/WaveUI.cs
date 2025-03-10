@@ -13,7 +13,10 @@ public class WaveUI : MonoBehaviour
 #region Variables
 
     [SerializeField] TextMeshProUGUI _waveNumTxt, _waveTimeTxt;
+    [SerializeField] GameObject _endlessModePanel;
+    [SerializeField] GameObject _waveTextGO, _nextWaveTextGO, _spawnRateTextGO, _SpawnRateIncreaseTextGO;
     [SerializeField] Animator _waveTimeTxtAnim;
+    [SerializeField] GameObject _skullIamge;
 
 #endregion
 
@@ -46,6 +49,20 @@ public class WaveUI : MonoBehaviour
         _waveTimeTxt.fontSize = 36;
     }
 
+    public void LastWave()
+    {
+        _waveNumTxt.text = "10";
+        _waveTimeTxt.text = "--:--";
+    }
+
+    public void BossWaveUI()
+    {
+        _waveNumTxt.gameObject.SetActive(true);
+        _skullIamge.SetActive(true);
+
+        _waveTimeTxt.text = "--:--";
+    }
+
     string FormattedTime(int time)
     {
         int minutes = time / 60;
@@ -58,6 +75,27 @@ public class WaveUI : MonoBehaviour
         _waveTimeTxt.color = Color.white;
         _waveTimeTxt.fontSize= 30;
     }
+
+    #region Endgame
+
+    public void EnableEndgameElements()
+    {
+        _skullIamge.SetActive(false);
+        //change "Next Wave in" to "+Spawn Rate in" and "Wave" to "Spawn Rate"
+        _waveTextGO.SetActive(false);
+        _spawnRateTextGO.SetActive(true);
+        _waveNumTxt.text = "1";
+        _nextWaveTextGO.SetActive(false);
+        _SpawnRateIncreaseTextGO.SetActive(true);
+        _endlessModePanel.SetActive(true);
+    }
+
+    public void UpdateSpawnRate(float newSpawnRate)
+    {
+        _waveNumTxt.text = newSpawnRate.ToString("F2");
+    }
+
+    #endregion
 
 
 }

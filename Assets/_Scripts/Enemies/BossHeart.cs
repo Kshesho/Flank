@@ -49,12 +49,16 @@ public class BossHeart : MonoBehaviour
 
     void CollideWith_PlayerProjectile(int damage, GameObject projectile)
     {
+        bool projIsBoomerang = projectile.name.Contains("Boomerang") ? true : false;
+
         if (_blocking)
-            Destroy(projectile);
-        
+        {
+            if (!projIsBoomerang) Destroy(projectile);
+        }
         else if (!_floating)
         {
-            Destroy(projectile);
+            //Don't destroy the Boomerang since it's not a normal projectile
+            if (!projIsBoomerang) Destroy(projectile);
             TakeDamage(damage);
         }
     }

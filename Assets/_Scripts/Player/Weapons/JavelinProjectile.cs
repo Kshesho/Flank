@@ -33,6 +33,10 @@ public class JavelinProjectile : MonoBehaviour
         {
             Events.OnCollide?.Invoke(other, _damage);
         }
+        else if (other.CompareTag(Tags.Boss))
+        {
+            Events.OnBossCollide_Projectile(_damage, this.gameObject);
+        }
     }
 
 #endregion

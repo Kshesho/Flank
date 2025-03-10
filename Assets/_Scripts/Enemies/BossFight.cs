@@ -129,20 +129,26 @@ public class BossFight : MonoBehaviour
                 _spriteBodyCollider.enabled = false;
                 _spriteRend.sortingLayerName = "Player";
                 _heart.Floating_On();
+
+                SpawnManager.Instance.StartSpawningPowerups_Boss();
                 break;
 
             case BossState.Summoning_Cooldown:
                 _myAnim.SetTrigger("fall");
                 _spriteAnim.StopPlayback();
                 Sprite_FaceSouth();
+
+                SpawnManager.Instance.StopSpawningPowerups_Boss();
                 break;
 
             case BossState.Dying:
                 StopAllCoroutines();
+                CancelInvoke("CompleteSummoningCooldown"); //Make sure state isn't reset while I'm dying
                 _heart.gameObject.SetActive(false);
                 _spriteBodyCollider.enabled = false;
                 _spriteAnim.Play(DEATH);
                 _myAnim.SetTrigger("death");
+                SpawnManager.Instance.StopSpawningPowerups_Boss();
                 Events.OnBossDeath?.Invoke();
                 break;
         }

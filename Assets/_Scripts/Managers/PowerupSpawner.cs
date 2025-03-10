@@ -30,17 +30,26 @@ public class PowerupSpawner : MonoBehaviour
     [SerializeField] GameObject[] _powerupPrefabs;
     [SerializeField] int[] _powerupSpawnWeights;
 
+    Coroutine _powerupsRtn, _ammoCratesRtn, _healthPotionsRtn;
+    Coroutine _bossPowerupsRtn;
+
 #endregion
 
     public void StartSpawningPowerups()
     {
-        StartCoroutine(SpawnPowerupsRtn());
-        StartCoroutine(SpawnAmmoCratesRtn());
-        StartCoroutine(SpawnHealthPotionsRtn());
+        StopSpawningPowerups();
+        _spawning = true;
+        
+        _powerupsRtn = StartCoroutine(SpawnPowerupsRtn());
+        _ammoCratesRtn = StartCoroutine(SpawnAmmoCratesRtn());
+        _healthPotionsRtn = StartCoroutine(SpawnHealthPotionsRtn());
     }
     public void StopSpawningPowerups()
     {
         _spawning = false;
+        if (_powerupsRtn != null) { StopCoroutine(_powerupsRtn); }
+        if (_ammoCratesRtn != null) { StopCoroutine(_ammoCratesRtn); }
+        if (_healthPotionsRtn != null) { StopCoroutine(_healthPotionsRtn); }
     }
 
 //==========================================================================
@@ -98,10 +107,64 @@ public class PowerupSpawner : MonoBehaviour
         {
             float rand = Random.Range(_health_MinMaxSpawnFrequency.x, _health_MinMaxSpawnFrequency.y);
             yield return HM.WaitTime(rand);
+            
             Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
-
             Instantiate(_healthPotionPref, spawnPos, Quaternion.identity);
         }
+    }
+    public void HealthExplosion()
+    {
+        if (_healthPotionsRtn != null) { StopCoroutine(_healthPotionsRtn); }
+        _healthPotionsRtn = StartCoroutine(SpawnAShitLoadOfHealthPotionsRtn());
+    }
+    IEnumerator SpawnAShitLoadOfHealthPotionsRtn()
+    {
+        float xPos;
+        float yPos = _ySpawnPos;
+        Vector2 spawnPos;
+
+        //spawn potions at random positions in quick succession, a little further back each time
+        for (int i = 50; i > 0; i--)
+        {
+            xPos = Random.Range(_xBounds * -1, _xBounds);
+            yPos += 0.05f;
+            spawnPos = new Vector2(xPos, yPos);    
+            Instantiate(_healthPotionPref, spawnPos, Quaternion.identity);
+            yield return HM.WaitTime(0.05f);
+        }
+    }
+
+    public void SpawnBossPowerups()
+    {
+        StopSpawningBossPowerups();
+        _bossPowerupsRtn = StartCoroutine(BossPowerupsRtn());
+    }
+    IEnumerator BossPowerupsRtn()
+    {
+        float wait = 2f;
+        yield return HM.WaitTime(wait);
+
+        //spawn 1 random powerup
+        Vector2 spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+        Instantiate(RandomPowerup(), spawnPos, Quaternion.identity);
+
+        yield return HM.WaitTime(wait);
+        //spawn 1 ammo crate
+        spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+        Instantiate(_ammoCratePref, spawnPos, Quaternion.identity);
+
+        yield return HM.WaitTime(wait);
+        //10% chance to spawn health potion
+        if (Random.Range(1, 101) <= 10)
+        {
+            spawnPos = new Vector2(Random.Range(_xBounds * -1, _xBounds), _ySpawnPos);
+            Instantiate(_healthPotionPref, spawnPos, Quaternion.identity);
+        }
+    }
+
+    public void StopSpawningBossPowerups()
+    {
+        if (_bossPowerupsRtn != null) { StopCoroutine(_bossPowerupsRtn); }
     }
 
 

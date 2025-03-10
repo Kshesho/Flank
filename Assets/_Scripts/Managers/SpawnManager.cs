@@ -13,6 +13,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     [SerializeField] PowerupSpawner _powerupSpawner;
 
     [SerializeField] GameObject[] _enemyPrefabs;
+    [SerializeField] GameObject _bossFightGO;
 
     Vector2 _defaultSpawnPos = new Vector2(0, 7);
 
@@ -21,11 +22,18 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     public int CurrentWave { get { return _wave; } }
     [SerializeField] Transform _enemyContainer;
     int _waveTimer;
-    Coroutine _waveTimerRtn;
+    Coroutine _waveTimerRtn, _spawnRateTimerRtn;
+
+    //Endgame
+    float _curSpawnInterval = 4f, _baseSpawnInterval;
 
 #endregion
 #region Base Methods
 
+    void Startt()
+    {
+        _baseSpawnInterval = _curSpawnInterval;
+    }
     void OnEnable()
     {
         Events.OnPlayerDeath += StopSpawning;
@@ -46,35 +54,50 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     IEnumerator SpawnEnemyWavesRtn()
     {
-        //break out of this if player dies
+        int TEST = _enemyWaves.Length - 1;
 
-        foreach(var wave in _enemyWaves)
+        for (int i = TEST; i < _enemyWaves.Length; i++)
         {
+            var wave = _enemyWaves[i];
+
             //start wave timer, increment wave #
             _wave++;
             _waveTimer = wave.waveTime;
-            StartWaveTimer(_waveTimer);
-            UIManager.Instance.NewWaveUI(_wave, wave.waveTime);
+            //don't start wave timer if last wave (before boss)
+            if (i == _enemyWaves.Length - 1)
+            {
+                UIManager.Instance.LastWaveUI();
+            }
+            else
+            {
+                StartWaveTimer(_waveTimer);
+                UIManager.Instance.NewWaveUI(_wave, wave.waveTime);
+            }
 
             //Spawn each enemy
-            for (int i = 0; i < wave.enemies.Length; i++)
+            for (int j = 0; j < wave.enemies.Length; j++)
             {
                 //convert the waves EnemyType from enum to int
-                int index = (int)wave.enemies[i];
+                int index = (int)wave.enemies[j];
                 Instantiate(_enemyPrefabs[index], _defaultSpawnPos, Quaternion.identity, _enemyContainer);
                 yield return HM.WaitTime(wave.timeBetweenEnemies);
             }
 
             //Wait until the wave is finished...
-            while (!WaveFinished())
-            {
+            while (!WaveFinished()) 
                 yield return null;
-            }
+
+            ///If I'm on the last wave, 
+            /// don't start wave timer
+            /// once post-countdown is complete,
+            /// spawn boss
 
             //Turn off countdown if it's still running. Then pre-wave countdown
             if (_waveTimerRtn != null) StopCoroutine(_waveTimerRtn);
             yield return StartCoroutine(CountdownToNextWaveRtn());
         }
+
+        SpawnBoss();
     }
     void StartWaveTimer(int waveTime)
     {
@@ -106,6 +129,92 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         UIManager.Instance.NextWaveCountdown("1...");
         yield return HM.WaitTime(1);
     }
+
+    #region Endgame Spawning
+
+    public void StartEndgameSpawning()
+    {
+        _powerupSpawner.StartSpawningPowerups();
+        StartCoroutine(EndgameSpawningRtn());
+        StartCoroutine(DecreaseSpawnIntervalRtn());
+    }
+    IEnumerator EndgameSpawningRtn()
+    {
+        yield return HM.WaitTime(2);
+        int index;
+        float baseDelay = _curSpawnInterval;
+
+        while (!GameManager.Instance.GameOver)
+        {
+            //pick a random enemy
+            index = Random.Range(0, _enemyPrefabs.Length);
+            Instantiate(_enemyPrefabs[index], _defaultSpawnPos, Quaternion.identity, _enemyContainer);
+
+            yield return HM.WaitTime(_curSpawnInterval);
+        }
+    }
+    IEnumerator DecreaseSpawnIntervalRtn()
+    {
+        int waitTime = 30;
+        while (!GameManager.Instance.GameOver)
+        {
+            if (_spawnRateTimerRtn != null) { StopCoroutine(_spawnRateTimerRtn); }
+            _spawnRateTimerRtn = StartCoroutine(SpawnRateTimerRtn(waitTime));
+
+            yield return HM.WaitTime(waitTime);
+            _curSpawnInterval *= 0.95f;
+            float newSpawnRate = 4 / _curSpawnInterval;
+            UIManager.Instance.UpdateSpawnRate(newSpawnRate);
+        }
+    }
+    IEnumerator SpawnRateTimerRtn(int time)
+    {
+        for (int i = time; i > 0; i--)
+        {
+            UIManager.Instance.UpdateWaveTimer(i);
+            yield return HM.WaitTime(1);
+        }
+    }
+
+    #endregion
+
+    #region Boss
+
+    void SpawnBoss()
+    {
+        UIManager.Instance.BossUI();
+        _powerupSpawner.StopSpawningPowerups();
+        HealthPotionExplosion();
+        StartCoroutine(SpawnBossAfterWaitRtn());
+    }
+    IEnumerator SpawnBossAfterWaitRtn()
+    {
+        //give time for health potions to spawn and move off-screen
+        yield return HM.WaitTime(21);
+        _bossFightGO.SetActive(true);
+    }
+
+    public void HealthPotionExplosion()
+    {
+        _powerupSpawner.HealthExplosion();
+    }
+
+    /// <summary>
+    /// Resumes powerup spawning that happens during the boss fight.
+    /// </summary>
+    public void StartSpawningPowerups_Boss()
+    {
+        _powerupSpawner.SpawnBossPowerups();
+    }
+    /// <summary>
+    /// Stops the powerup spawning that happens during the boss fight.
+    /// </summary>
+    public void StopSpawningPowerups_Boss()
+    {
+        _powerupSpawner.StopSpawningBossPowerups();
+    }
+
+    #endregion
 
     void StopSpawning()
     {

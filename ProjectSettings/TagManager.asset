@@ -11,6 +11,7 @@ TagManager:
   - Powerup
   - PProjectile
   - Boss
+  - Huntress
   layers:
   - Default
   - TransparentFX

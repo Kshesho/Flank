@@ -15,7 +15,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     [SerializeField] WaveUI _waveUI;
 
-    [SerializeField] TextMeshProUGUI _killsTxt;
+    [SerializeField] TextMeshProUGUI _killsTxt, _highScoreText;
 
     [SerializeField] TextMeshProUGUI _hpTxt;
     [SerializeField] Image _hpBarImage;
@@ -26,18 +26,20 @@ public class UIManager : MonoSingleton<UIManager>
     bool _hpTailMoving;
     [SerializeField] float _hpTailLerpSpeed = 1;
 
-    [SerializeField] GameObject _shurikenImage, _javelinImage;
-    [SerializeField] TextMeshProUGUI _ammoTxt;
-    Coroutine _timerRtn;
+    [SerializeField] GameObject _shurikenImage, _javelinImage, _boomerangImage;
+    [SerializeField] TextMeshProUGUI _ammoTxt, _whipTimerTxt;
+    Coroutine _javelinTimerRtn, _whipTimerRtn;
+    [SerializeField] GameObject _swordImage, _whipImage;
 
     [SerializeField] Image _staminaBarImage;
     [SerializeField] GameObject _staminaBarBorderImage;
     Color _halfAlpha = new Color(1, 1, 1, 0.5f);
 
     //Abilities
-    [SerializeField] GameObject _staminaBoostIcon, _slowedIcon;
+    [SerializeField] GameObject _staminaBoostIcon, _slowedIcon, _shieldIcon, _stoppedIcon;
 
     [SerializeField] GameObject _gameOverScreen;
+    [SerializeField] TextMeshProUGUI _newHighScoreTxt;
 
     [SerializeField] GameObject _pauseMenu;
 
@@ -144,32 +146,60 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _ammoTxt.text = count.ToString();
     }
-    public void ChangeWeaponIcon(RangedWeaponType weaponType, int ammo)
+    public void ChangeWeaponIcon(WeaponType weaponType, int ammo)
     {
         switch (weaponType)
         {
-            case RangedWeaponType.Shuriken:
+            case WeaponType.Shuriken:
                 _javelinImage.SetActive(false);
+                _boomerangImage.SetActive(false);
                 _shurikenImage.SetActive(true);
 
                 _ammoTxt.text = ammo.ToString();
                 break;
-            case RangedWeaponType.Javelin:
+            case WeaponType.Javelin:
                 _shurikenImage.SetActive(false);
+                _boomerangImage.SetActive(false);
                 _javelinImage.SetActive(true);
 
-                if (_timerRtn != null)
+                if (_javelinTimerRtn != null)
                 {
-                    StopCoroutine(_timerRtn);
+                    StopCoroutine(_javelinTimerRtn);
                     //in case the text was turned red by the stopped coroutine
                     _ammoTxt.color = Color.white;
                 }
-                _timerRtn = StartCoroutine(TimerRtn(ammo));
+                _javelinTimerRtn = StartCoroutine(JavelinTimerRtn(ammo));
 
+                break;
+            case WeaponType.Boomerang:
+                _shurikenImage.SetActive(false);
+                _javelinImage.SetActive(false);
+                _boomerangImage.SetActive(true);
+
+                _ammoTxt.text = ammo.ToString();
+                break;
+            //----Melee
+            case WeaponType.Sword:
+                _whipImage.SetActive(false);
+                _swordImage.SetActive(true);
+                _whipTimerTxt.gameObject.SetActive(false);
+                break;
+            case WeaponType.Whip:
+                _swordImage.SetActive(false);
+                _whipImage.SetActive(true);
+                _whipTimerTxt.gameObject.SetActive(true);
+
+                if (_whipTimerRtn != null)
+                {
+                    StopCoroutine(_whipTimerRtn);
+                    //in case the text was turned red by the stopped coroutine
+                    _whipTimerTxt.color = Color.white;
+                }
+                _whipTimerRtn = StartCoroutine(WhipTimerRtn(ammo));
                 break;
         }
     }
-    IEnumerator TimerRtn(int activeTime)
+    IEnumerator JavelinTimerRtn(int activeTime)
     {
         for (int i = activeTime; i > 0; i--)
         {
@@ -181,14 +211,31 @@ public class UIManager : MonoSingleton<UIManager>
         }
         _ammoTxt.color = Color.white;
     }
+    IEnumerator WhipTimerRtn(int activeTime)
+    {
+        for (int i = activeTime; i > 0; i--)
+        {
+            _whipTimerTxt.text = $"{i}s";
+            if (i < 3)
+                _whipTimerTxt.color = Color.red;
+
+            yield return HM.WaitTime(1);
+        }
+        _whipTimerTxt.color = Color.white;
+    }
 
 
     public void UpdateScoreText(int score)
     {
         _killsTxt.text = "Score: " + score;
     }
+    public void UpdateHighScoreText(int highScore)
+    {
+        _highScoreText.text = highScore.ToString();
+    }
 
-    //Abilities
+    #region Buffs
+
     public void Enable_StaminaBoostIcon()
     {
         _staminaBoostIcon.SetActive(true);
@@ -207,10 +254,34 @@ public class UIManager : MonoSingleton<UIManager>
         _slowedIcon.SetActive(false);
     }
 
+    public void EnableShieldIcon()
+    {
+        _shieldIcon.SetActive(true);
+    }
+    public void DisableShieldIcon()
+    {
+        _shieldIcon.SetActive(false);
+    }
+
+    public void EnableStoppedIcon()
+    {
+        _stoppedIcon.SetActive(true);
+    }
+    public void DisableStoppedIcon()
+    {
+        _stoppedIcon.SetActive(false);
+    }
+
+    #endregion
+
 
     void GameOverUI()
     {
         _gameOverScreen.SetActive(true);
+        if (GameManager.Instance.NewHighScoreReached)
+        {
+            _newHighScoreTxt.text = "New high score!";
+        }
     }
 
     public void EnablePauseMenu()

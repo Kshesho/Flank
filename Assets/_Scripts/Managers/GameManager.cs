@@ -13,8 +13,10 @@ public class GameManager : MonoSingleton<GameManager>
 {
 #region Variables
 
-    int _score;
+    int _score, _highScore;
     public int Score {  get { return _score; } }
+    const string HIGH_SCORE_KEY = "high score";
+    public bool NewHighScoreReached { get; private set; }
 
     bool _gameStarted;
     bool GameStarted { get { return _gameStarted; } }
@@ -52,15 +54,17 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         _playerTransform = GameObject.FindWithTag(Tags.Player).transform;
+        _highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+        UIManager.Instance.UpdateHighScoreText(_highScore);
     }
     void OnEnable() 
     {
-        Events.OnPlayerDeath += () => _gameOver = true;
+        Events.OnPlayerDeath += SetGameOver;
 	}
 	
 	void OnDisable() 
     {
-		Events.OnPlayerDeath -= () => _gameOver = true;
+		Events.OnPlayerDeath -= SetGameOver;
 	}
 
     void Update()
@@ -113,6 +117,12 @@ public class GameManager : MonoSingleton<GameManager>
         Application.Quit();
     }
 
+    public void SetGameOver()
+    {
+        _gameOver = true;
+        SaveHighScore();
+    }
+
     #endregion
 
     public void BossKilled()
@@ -147,11 +157,28 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _score++;
         UIManager.Instance.UpdateScoreText(_score);
+        CheckForHighScore();
     }
     public void IncrementScore(int amount)
     {
         _score += amount;
         UIManager.Instance.UpdateScoreText(_score);
+        CheckForHighScore();
+    }
+
+    void CheckForHighScore()
+    {
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            UIManager.Instance.UpdateHighScoreText(_highScore);
+            NewHighScoreReached = true;
+        }
+    }
+
+    public void SaveHighScore()
+    {
+        PlayerPrefs.SetInt(HIGH_SCORE_KEY, _highScore);
     }
 
 }

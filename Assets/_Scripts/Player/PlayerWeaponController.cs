@@ -58,12 +58,14 @@ public class PlayerWeaponController : MonoBehaviour
 
     void HandleAttackInput()
     {
-        if (Input.GetMouseButtonDown(0) && PlayerStateManager.Instance.PlayerCanPrimaryAttack())
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.J)) 
+            && PlayerStateManager.Instance.PlayerCanPrimaryAttack())
         {
             _primaryActiveWeapon.Attack();
         }
 
-        if (Input.GetMouseButtonDown(1) && PlayerStateManager.Instance.PlayerCanSecondaryAttack())
+        if ((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.K)) 
+            && PlayerStateManager.Instance.PlayerCanSecondaryAttack())
         {
             _secondaryActiveWeapon.Attack();
         }
@@ -74,14 +76,14 @@ public class PlayerWeaponController : MonoBehaviour
         if (powerupType == PowerupType.Javelin) 
         {
             _secondaryActiveWeapon = _javelins;
-            UIManager.Instance.ChangeWeaponIcon(RangedWeaponType.Javelin, _javelinActiveTime);
+            UIManager.Instance.ChangeWeaponIcon(WeaponType.Javelin, _javelinActiveTime);
             if (_disableJavelinRtn != null) StopCoroutine(_disableJavelinRtn);
             _disableJavelinRtn = StartCoroutine(DisableJevelinRtn());
         }
         else if (powerupType == PowerupType.Whip)
         {
             _primaryActiveWeapon = _whip;
-            //show weapon icon on the HUD?
+            UIManager.Instance.ChangeWeaponIcon(WeaponType.Whip, _whipActiveTime);
             if (_disableWhipRtn != null) StopCoroutine(_disableWhipRtn);
             _disableWhipRtn = StartCoroutine(DisableWhipRtn());
         }
@@ -89,19 +91,20 @@ public class PlayerWeaponController : MonoBehaviour
         {
             _boomerangSpecificReference.RefillAmmo();
             _secondaryActiveWeapon = _boomerang;
+            UIManager.Instance.ChangeWeaponIcon(WeaponType.Boomerang, _boomerangSpecificReference.Ammo);
         }
     }
     IEnumerator DisableJevelinRtn()
     {
         yield return HM.WaitTime(_javelinActiveTime);
         _secondaryActiveWeapon = _shurikens;
-        // TDOD: instead of changing back to Shuriken, change back to whichever weapon is equipped
-        UIManager.Instance.ChangeWeaponIcon(RangedWeaponType.Shuriken, _shurikensSpecificReference.Ammo);
+        UIManager.Instance.ChangeWeaponIcon(WeaponType.Shuriken, _shurikensSpecificReference.Ammo);
     }
     IEnumerator DisableWhipRtn()
     {
         yield return HM.WaitTime(_whipActiveTime);
         _primaryActiveWeapon = _sword;
+        UIManager.Instance.ChangeWeaponIcon(WeaponType.Sword, 0);
     }
     /// <summary>
     /// Called by the Boomerang when it runs out of ammo.
@@ -109,6 +112,7 @@ public class PlayerWeaponController : MonoBehaviour
     public void DisableBoomerang()
     {
         _secondaryActiveWeapon = _shurikens;
+        UIManager.Instance.ChangeWeaponIcon(WeaponType.Shuriken, _shurikensSpecificReference.Ammo);
     }
 
     /// <summary>

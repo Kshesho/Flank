@@ -13,10 +13,13 @@ public enum PowerupType
     Boomerang
 }
 
-public enum RangedWeaponType
+public enum WeaponType
 {
+    Sword,
+    Whip,
     Shuriken,
-    Javelin
+    Javelin,
+    Boomerang
 }
 
 public enum EnemyType

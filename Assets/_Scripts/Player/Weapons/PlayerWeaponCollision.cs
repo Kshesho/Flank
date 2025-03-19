@@ -11,7 +11,7 @@ public class PlayerWeaponCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(Tags.EDamagable))
+        if (other.CompareTag(Tags.EDamagable) || other.CompareTag(Tags.Huntress))
         {
             Events.OnCollide?.Invoke(other, _damage);
         }

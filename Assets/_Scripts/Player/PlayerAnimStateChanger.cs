@@ -141,9 +141,6 @@ public class PlayerAnimStateChanger : MonoBehaviour
         {
             switch (_currentState)
             {
-                case DODGE:
-                    _psm.DodgeFinished();
-                    break;
                 case HIT:
                     _psm.HitFinished();
                     break;

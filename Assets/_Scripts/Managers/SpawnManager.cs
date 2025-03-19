@@ -54,9 +54,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     IEnumerator SpawnEnemyWavesRtn()
     {
-        int TEST = _enemyWaves.Length - 1;
+        // TODO: remove this
+        //int TEST = _enemyWaves.Length - 1;
 
-        for (int i = TEST; i < _enemyWaves.Length; i++)
+        for (int i = 0; i < _enemyWaves.Length; i++)
         {
             var wave = _enemyWaves[i];
 

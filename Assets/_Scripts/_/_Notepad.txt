@@ -1,8 +1,9 @@
 ﻿COMMIT
-cur - boss spawns after wave 10, wave number changes to skull, and timer gets cancelled on wave 10; Powerups spawn while boss is summoning; Javelin works on boss; Set up endgame. Random enemies spawn after the boss with increasing spawn rate that's reflected on HUD; Fixed: boss would go back into attacking state if it was killed while on summoning cooldown
+cur -
+[Final Update] changed controls and added them and credits to updated pause menu; New HUD sprites; added shield and stopped buff icons; Added high score functionality; Improved the dodge mechanic; Fixed: only zombie's first attack hit player. Huntress collisions were broken
 
 last - 
-boss transitions from summoning back to attacking, blocks, gets damaged, has a health bar, and dies now; got rid of water on tile pallet; Fixed: zombie non-trigger collider was interacting with player collider
+boss spawns after wave 10, wave number changes to skull, and timer gets cancelled on wave 10; Powerups spawn while boss is summoning; Javelin works on boss; Set up endgame. Random enemies spawn after the boss with increasing spawn rate that's reflected on HUD; Fixed: boss would go back into attacking state if it was killed while on summoning cooldown
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -54,38 +55,37 @@ Vigilante Knife damage to powerups - 1
  Whip - 2
 
 -------------------------------------------------------------------------------------
-[CORE PROGRAMMING]
-
-"Boss AI"
-♦ boss moves to the center of the screen and attacks
-♦ boss health bar
-♦ spawn boss after last wave 
-♦ wave # skull sprite
-♦ stop spawning powerups during boss, except when zombies are spawning
-♦ does boomerang work with boss? Javelin?
-- zombie audio: spawn, die
-- fix huntress not throwing net 
-
-
 
 Final update:
-- add controlls to pause menu
-- show boomerang info on HUD
-- audio?
-- display high score on endgame screen and main menu.
-- improve dodge mechanic (make it last longer)
-- add credits
-- Go tell creators that you used their stuff and provide a link to the game.
+- using pickup magnet drains stamina
+- stamina system
+♦ UI sprites for HUD
+♦ Get new HUD fully functional
+- UI sprites for pause menu?
+- audio? zombie audio: spawn, die
 - bug: health tail doesn't trail properly
+♦ add controlls to pause menu
+♦ show boomerang info on HUD
+♦ "FLANK" in pause menu
+♦ display high score
+♦ improve dodge mechanic (make it last longer)
+♦ add credits
+♦ bug: only first attack of zombie hits player
+♦ bug: huntress not throwing net 
+
+BUILD:
+- make sure credits links work
++ message creators, friends, GDHQ when the game drops
 
 
 
 
 Credits:
-Character sprites by Chasersgaming [link]
-potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
-weapon sprites by Bennyboi_hack [https://opengameart.org/content/16x16-weapon-sprites-free]
+Character sprites by Chasersgaming [https://www.patreon.com/Chasersgaming]
+Potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x16]
+Weapon sprites by Bennyboi_hack [https://opengameart.org/content/16x16-weapon-sprites-free]
 Skull sprite by @nyk_nck [https://itch.io/profile/nyknck]
+UI by Buch [https://opengameart.org/users/buch]
 
 Portfolio:
 Entire project without using GetComponent

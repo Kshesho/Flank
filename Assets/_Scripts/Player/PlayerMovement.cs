@@ -173,16 +173,20 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckForSprintInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             if (CanSprint())
             {
                 StartSprinting();
             }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (_sprinting)
         {
-            StopSprinting();
+            //only stop sprinting if both keys are NOT being held
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            {
+                StopSprinting();
+            }
         }
     }
     void StartSprinting()
@@ -208,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
         _rBody.velocity = Vector2.zero;
         _curSpeed = 0;
         _net.SetActive(true);
+        UIManager.Instance.EnableStoppedIcon();
 
         if (_resumeMovementRtn != null) StopCoroutine(_resumeMovementRtn);
         _resumeMovementRtn = StartCoroutine(ResumeMovementRtn());
@@ -217,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
         yield return HM.WaitTime(2);
         PlayerStateManager.Instance.NetFinished();
         _net.SetActive(false);
+        UIManager.Instance.DisableStoppedIcon();
         ResetSpeed();
     }
 
@@ -274,6 +280,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            PlayerStateManager.Instance.DodgeFinished();
+
             _playerSpriteRend.color = Color.white;
             _heart.DisableDodgeInvulnerability();
         }
@@ -288,11 +296,6 @@ public class PlayerMovement : MonoBehaviour
         _dodging = false;
         ResetSpeed();
         SetDodgeForeignValues(false);
-    }
-
-    IEnumerator DodgeCooldownRtn()
-    {
-        yield return HM.WaitTime(_dodgeCooldown);
     }
 
     #endregion

@@ -158,6 +158,7 @@ public class PlayerHeart : MonoBehaviour
             _shieldsVisual.AddAShield();
             ShieldCount++;
             _shieldsActive = true;
+            UIManager.Instance.EnableShieldIcon();
         }
     }
     void RemoveAShield()
@@ -165,7 +166,10 @@ public class PlayerHeart : MonoBehaviour
         _shieldsVisual.RemoveAShield();
         ShieldCount--;
         if (ShieldCount == 0)
+        {
             _shieldsActive = false;
+            UIManager.Instance.DisableShieldIcon();
+        }
     }
 
 

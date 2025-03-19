@@ -15,6 +15,10 @@ public class Boomerang : Weapon
     [SerializeField] GameObject _boomerangProjectile;
     int _curAmmo; 
     [SerializeField] int _maxAmmo = 5;
+    /// <summary>
+    /// Returns the current ammo count of the Boomerang.
+    /// </summary>
+    public int Ammo { get { return _curAmmo; } }
     bool _boomerangAway;
 
 #endregion
@@ -44,7 +48,10 @@ public class Boomerang : Weapon
     public void BoomerangReturned(bool enemyHit)
     {
         if (enemyHit)
+        {
             _curAmmo--;
+            UIManager.Instance.UpdateAmmoCount(_curAmmo);
+        }
         
         if (_curAmmo < 1)
             _wepController.DisableBoomerang();

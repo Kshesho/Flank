@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur -
-[Final Update] changed controls and added them and credits to updated pause menu; New HUD sprites; added shield and stopped buff icons; Added high score functionality; Improved the dodge mechanic; Fixed: only zombie's first attack hit player. Huntress collisions were broken
+sexied up the pause menu; added sfx for powerups, boomerang, lose shields, zombies; added mute options; adjusted stamina system
 
 last - 
-boss spawns after wave 10, wave number changes to skull, and timer gets cancelled on wave 10; Powerups spawn while boss is summoning; Javelin works on boss; Set up endgame. Random enemies spawn after the boss with increasing spawn rate that's reflected on HUD; Fixed: boss would go back into attacking state if it was killed while on summoning cooldown
+[Final Update] changed controls and added them and credits to updated pause menu; New HUD sprites; added shield and stopped buff icons; Added high score functionality; Improved the dodge mechanic; Fixed: only zombie's first attack hit player. Huntress collisions were broken
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -57,21 +57,14 @@ Vigilante Knife damage to powerups - 1
 -------------------------------------------------------------------------------------
 
 Final update:
-- using pickup magnet drains stamina
-- stamina system
-♦ UI sprites for HUD
-♦ Get new HUD fully functional
-- UI sprites for pause menu?
-- audio? zombie audio: spawn, die
-- bug: health tail doesn't trail properly
-♦ add controlls to pause menu
-♦ show boomerang info on HUD
-♦ "FLANK" in pause menu
-♦ display high score
-♦ improve dodge mechanic (make it last longer)
-♦ add credits
-♦ bug: only first attack of zombie hits player
-♦ bug: huntress not throwing net 
+♦ stamina system
+♦ UI sprites for pause menu?
+- Audio: 
+    - boss music 
+    - endless mode music
+♦ nerf vigilante
+- merge onto main branch
+- upload music to soundcloud
 
 BUILD:
 - make sure credits links work
@@ -86,6 +79,7 @@ Potion sprites by Bonsaiheldin [https://opengameart.org/content/rpg-potions-16x1
 Weapon sprites by Bennyboi_hack [https://opengameart.org/content/16x16-weapon-sprites-free]
 Skull sprite by @nyk_nck [https://itch.io/profile/nyknck]
 UI by Buch [https://opengameart.org/users/buch]
+Ammo pickup #1 by zivs -- https://freesound.org/s/433770/ -- License: Attribution 4.0
 
 Portfolio:
 Entire project without using GetComponent

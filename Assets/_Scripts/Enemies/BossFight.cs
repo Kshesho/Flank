@@ -130,6 +130,7 @@ public class BossFight : MonoBehaviour
                 _spriteRend.sortingLayerName = "Player";
                 _heart.Floating_On();
 
+                AudioManager.Instance.Play_ZombieCrowd();
                 SpawnManager.Instance.StartSpawningPowerups_Boss();
                 break;
 

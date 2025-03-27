@@ -100,7 +100,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _hpTailRtnRunning = true;
 
-        yield return HM.WaitTime(1.1f);
+        yield return HM.WaitTime(0.8f);
         _hpTailMoving = true;
 
         _hpTailRtnRunning = false;

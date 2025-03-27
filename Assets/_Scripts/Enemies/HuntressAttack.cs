@@ -20,7 +20,6 @@ public class HuntressAttack : MonoBehaviour
     {
         if (other.CompareTag(Tags.Player))
         {
-            print("collided with player");
             if (_throwCooldownTimer < Time.time)
             {
                 _throwCooldownTimer = Time.time + _throwCooldown;

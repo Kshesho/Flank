@@ -21,6 +21,8 @@ public class EnemyHeart : MonoBehaviour
     bool _shieldActive;
     [SerializeField] GameObject _shieldGO;
 
+    [SerializeField] EnemyType _enemyType_forAudio;
+
 #endregion
 #region Base Methods
 
@@ -68,7 +70,8 @@ public class EnemyHeart : MonoBehaviour
 
         GameManager.Instance.IncrementScore();
         StartCoroutine(WaitForDeathAnimToFinishRtn());
-        AudioManager.Instance.PlayEnemyDeath();
+
+        AudioManager.Instance.PlayEnemyDeath(_enemyType_forAudio);
     }
     IEnumerator WaitForDeathAnimToFinishRtn()
     {

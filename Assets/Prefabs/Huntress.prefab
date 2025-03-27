@@ -288,6 +288,7 @@ MonoBehaviour:
   _enemyContainer: {fileID: 189221119557033028}
   _thisCollider: {fileID: 7218125465376917488}
   _shieldGO: {fileID: 7377988163691306574}
+  _enemyType_forAudio: 3
 --- !u!61 &7218125465376917488
 BoxCollider2D:
   m_ObjectHideFlags: 0

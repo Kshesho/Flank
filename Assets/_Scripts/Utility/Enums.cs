@@ -27,7 +27,8 @@ public enum EnemyType
     Pirate,
     Knight,
     Vigilante,
-    Huntress
+    Huntress,
+    Zombie
 }
 
 public enum ZombieState

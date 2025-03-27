@@ -168,6 +168,7 @@ public class PlayerHeart : MonoBehaviour
         if (ShieldCount == 0)
         {
             _shieldsActive = false;
+            AudioManager.Instance.Play_PlayerLoseShields();
             UIManager.Instance.DisableShieldIcon();
         }
     }

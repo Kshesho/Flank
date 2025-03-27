@@ -66,10 +66,10 @@ public class PlayerMovement : MonoBehaviour
     }
     [SerializeField][Range(0f, 1f)] float _dodgeStaminaCost = 0.35f, _sprintStaminaCostPerSec = 0.25f;
     float _maxStamina = 1;
-    float _defStaminaGain = 0.25f;
+    float _defStaminaGain = 0.3f;
     float _staminaGainPerSecond;
     //Stamina Gain powerup
-    float _boostedStaminaGain = 0.4f;
+    float _boostedStaminaGain = 0.85f;
     Coroutine _disableStaminaBoostRtn;
     [SerializeField] float _staminaBoostPowerupActiveTime = 5;
 

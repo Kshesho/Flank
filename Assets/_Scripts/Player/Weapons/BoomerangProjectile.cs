@@ -42,8 +42,14 @@ public class BoomerangProjectile : Projectile
         _moveState = State.InitialMovement;
     }
 
-    protected override void Update()
-    {}
+    void OnEnable()
+    {
+        AudioManager.Instance.Play_BoomerangFly();
+    }
+    void OnDisable()
+    {
+        AudioManager.Instance.Stop_BoomerangFly();
+    }
 
     void FixedUpdate()
     {

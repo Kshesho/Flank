@@ -13,7 +13,9 @@ public class AudioManager : MonoSingleton<AudioManager>
 {
 #region Variables
 
-	[SerializeField] AudioSource _musicAuSrc;
+	[SerializeField] AudioSource _battleMusicAuSrc, _bossIntroMusicAuSrc, _bossLoopMusicAuSrc,
+		_endlessIntroMusicAuSrc, _endlessLoopMusicAuSrc;
+	float _bossIntroMaxVolume, _endlessIntroMaxVolume;
 
 	[Header("Player SFX")]
 	[SerializeField] AudioSource _swordSwingAuSrc;
@@ -59,6 +61,8 @@ public class AudioManager : MonoSingleton<AudioManager>
     {
         _audioMixer.SetFloat("MusicVolume", _musicVolume);
 		_audioMixer.SetFloat("SFXVolume", _sfxVolume);
+		_bossIntroMaxVolume = _bossIntroMusicAuSrc.volume;
+		_endlessIntroMaxVolume = _endlessIntroMusicAuSrc.volume;
     }
     void OnEnable()
 	{
@@ -73,12 +77,89 @@ public class AudioManager : MonoSingleton<AudioManager>
 
 #endregion
 
-	public void PlayMainTheme()
+    #region Music
+
+    /// <summary>
+    /// When the fighting starts, just play audio source with fight music
+	/// When Wave 10 finishes
+	///		fade out fight music (and stop when volume is 0)
+    /// When boss spawns in
+    ///		(play and) fade in boss intro
+    ///		Get boss loop ready to play as soon as intro is finished
+    ///	When boss dies
+    ///		Fade out (then stop) boss loop
+    ///	When Endless Mode starts
+    ///		Fade in Endless Mode intro
+    ///		Get Endless loop ready to play as soon as intro is finished
+    /// </summary>
+
+    public void PlayMusic_BattleTheme()
 	{
-		_musicAuSrc.Play();
+		_battleMusicAuSrc.Play();
+	}
+	public void StopMusic_BattleTheme()
+	{
+		StartCoroutine(Music_FadeOutRtn(_battleMusicAuSrc));
 	}
 
-	public void PlayPlayerHurt()
+	public void PlayMusic_BossTheme()
+	{
+		StartCoroutine(Music_FadIntRtn(_bossIntroMusicAuSrc, _bossIntroMaxVolume));
+		StartCoroutine(PlayBossLoopRtn());
+	}
+	IEnumerator PlayBossLoopRtn()
+	{
+		while (_bossIntroMusicAuSrc.isPlaying)
+		{
+			yield return null;
+		}
+		_bossLoopMusicAuSrc.Play();
+	}
+	public void StopMusic_BossTheme()
+	{
+		StartCoroutine(Music_FadeOutRtn((_bossLoopMusicAuSrc)));
+	}
+
+	public void PlayMusic_EndlessTheme()
+	{
+		StartCoroutine(Music_FadIntRtn(_endlessIntroMusicAuSrc, _endlessIntroMaxVolume));
+		StartCoroutine(PlayEndlessLoopRtn());
+	}
+	IEnumerator PlayEndlessLoopRtn()
+	{
+		while (_endlessIntroMusicAuSrc.isPlaying)
+		{
+			yield return null;
+		}
+		_endlessLoopMusicAuSrc.Play();
+	}
+
+
+	IEnumerator Music_FadeOutRtn(AudioSource sourceToFade)
+	{
+		while (sourceToFade.volume > 0.01f)
+		{
+			sourceToFade.volume -= (Time.deltaTime * 0.25f);
+			yield return null;
+		}
+		sourceToFade.Stop();
+	}
+	IEnumerator Music_FadIntRtn(AudioSource sourceToFade, float maxVolume)
+	{
+		sourceToFade.volume = 0;
+		sourceToFade.Play();
+
+		while (sourceToFade.volume < maxVolume)
+		{
+			sourceToFade.volume += (Time.deltaTime * 0.25f);
+			yield return null;
+		}
+		sourceToFade.volume = maxVolume;
+	}
+
+    #endregion
+
+    public void PlayPlayerHurt()
 	{
 		_playerDamagedAuSrc.clip = RandomClip(_playerDamagedAuClips);
 		_playerDamagedAuSrc.Play();

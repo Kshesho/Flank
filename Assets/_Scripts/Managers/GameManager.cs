@@ -96,7 +96,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _gameStarted = true;
         SpawnManager.Instance.StartSpawning();
-        AudioManager.Instance.PlayMainTheme();
+        AudioManager.Instance.PlayMusic_BattleTheme();
     }
 
     public void PauseGame()
@@ -128,6 +128,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void BossKilled()
     {
         IncrementScore(20);
+        AudioManager.Instance.StopMusic_BossTheme();
         StartCoroutine(StartEndgameSequenceAfterWaitRtn());
         
         ///<summary> After Endgame Sequence animation finishes...
@@ -148,6 +149,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         UIManager.Instance.EndgameSequenceFinished();
         SpawnManager.Instance.StartEndgameSpawning();
+        AudioManager.Instance.PlayMusic_EndlessTheme();
     }
 
     /// <summary>

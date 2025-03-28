@@ -54,9 +54,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     IEnumerator SpawnEnemyWavesRtn()
     {
-        // TODO: remove this
-        //int TEST = _enemyWaves.Length - 1;
-
         for (int i = 0; i < _enemyWaves.Length; i++)
         {
             var wave = _enemyWaves[i];
@@ -186,6 +183,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         UIManager.Instance.BossUI();
         _powerupSpawner.StopSpawningPowerups();
         HealthPotionExplosion();
+        AudioManager.Instance.StopMusic_BattleTheme();
         StartCoroutine(SpawnBossAfterWaitRtn());
     }
     IEnumerator SpawnBossAfterWaitRtn()
@@ -193,6 +191,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         //give time for health potions to spawn and move off-screen
         yield return HM.WaitTime(21);
         _bossFightGO.SetActive(true);
+        AudioManager.Instance.PlayMusic_BossTheme();
     }
 
     public void HealthPotionExplosion()

@@ -1,9 +1,9 @@
 ﻿COMMIT
 cur -
-updated main music and added boss & endless mode music with looping and corssfading effects; updated credits; created WebGL build
+resolved some build errors due to bad namespaces; turned off the pause menu. duh; finished credits
 
 last - 
-sexied up the pause menu; added sfx for powerups, boomerang, lose shields, zombies; added mute options; adjusted stamina system
+updated main music and added boss & endless mode music with looping and corssfading effects; updated credits; created WebGL build
 
 ------------------------------------------------------------------------------------
 TODO: 
@@ -57,15 +57,13 @@ Vigilante Knife damage to powerups - 1
 -------------------------------------------------------------------------------------
 
 Final update:
-- Audio: 
-    - boss music 
-    - endless mode music
 - merge onto main branch
-- upload music to soundcloud
-
-BUILD:
-- make sure credits links work
+- upload music to soundcloud (and reply on medium to that one guy)
+- get credits links to work?
 + message creators, friends, GDHQ when the game drops
++ improve itch page with info and screenshots
++add mac build
++ finish medium article
 
 
 

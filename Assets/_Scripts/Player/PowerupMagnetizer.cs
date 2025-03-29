@@ -1,8 +1,5 @@
 #region Using Statements
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.DesktopGUI.Filters;
 #endregion
 
 /// <summary>

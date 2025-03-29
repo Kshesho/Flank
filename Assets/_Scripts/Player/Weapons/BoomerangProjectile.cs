@@ -1,10 +1,6 @@
 #region Using Statements
 using Narzioth.Utilities;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Codice.Client.Commands.WkTree.WorkspaceTreeNode;
-using static UnityEngine.GraphicsBuffer;
 #endregion
 
 /// <summary>

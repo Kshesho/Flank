@@ -6,17 +6,6 @@ last -
 updated main music and added boss & endless mode music with looping and corssfading effects; updated credits; created WebGL build
 
 ------------------------------------------------------------------------------------
-TODO: 
-- player actually attacks in the direction they're facing
-- Implement melee attack for enemy
-- BUG: player doesn't start sprinting when holding shift when the stamina cooldown ends
-- Have enemies NOT reappear at the top of the screen after player dies
-- Blend torso and legs player animations so the legs keep running when player attacks
-- custom inspector for DestoryOrDisable to show variables only if corresponding bools are ticked (article)
-- Import object pooling asset? (write article about it)
-- Make sure player can only open the treasure chest with melee
-- stamina boost powerup instantly completes cooldown
-- boomerang ammo on HUD
 
 
 COLLISION
@@ -55,18 +44,6 @@ Vigilante Knife damage to powerups - 1
  Whip - 2
 
 -------------------------------------------------------------------------------------
-
-Final update:
-- merge onto main branch
-- upload music to soundcloud (and reply on medium to that one guy)
-- get credits links to work?
-+ message creators, friends, GDHQ when the game drops
-+ improve itch page with info and screenshots
-+add mac build
-+ finish medium article
-
-
-
 
 Credits:
 Character sprites by Chasersgaming [https://www.patreon.com/Chasersgaming]
